@@ -1,6 +1,6 @@
 const mix = require('laravel-mix');
 mix.autoload({
-    jquery: ['$', 'global.jQuery',"jQuery","global.$","jquery","global.jquery"]
+    jquery: ['$', 'global.jQuery', "jQuery", "global.$", "jquery", "global.jquery"]
 });
 
 
@@ -15,5 +15,5 @@ mix.autoload({
  |
  */
 
-mix.js('resources/js/root.js', 'public/js')
-.sass('resources/sass/root.scss', 'public/css')
+mix.js('resources/js/root.js', 'public/js').sourceMaps()
+    .sass('resources/sass/root.scss', 'public/css')
