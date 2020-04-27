@@ -1,0 +1,14 @@
+@import './public/core/css/sb-admin-2';
+
+// Custom styles for DataTables
+@import './public/core/plugins/DataTables/datatables';
+
+$fa-font-path: "../webfonts";
+// Custom Free version of Font Awesome
+// $fa-font-path: "../webfonts";
+@import '~@fortawesome/fontawesome-free/scss/fontawesome.scss';
+@import '~@fortawesome/fontawesome-free/scss/solid.scss';
+@import '~@fortawesome/fontawesome-free/scss/brands.scss';
+
+// Custom styles for comments of system
+@import './assets/comments';
