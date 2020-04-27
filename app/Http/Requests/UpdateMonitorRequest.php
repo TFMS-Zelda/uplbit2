@@ -35,7 +35,6 @@ class UpdateMonitorRequest extends FormRequest
                'input_connector_type' => 'required|max:32',
                'maximum_resolution' => 'required|max:64',
                'power_supply' => 'required|max:64',
-               'power_serial' => "required|max:64|unique:monitors,power_serial,{$this->monitor->id}",
                 'license_plate' => "required|digits_between:7,7|unique:monitors,license_plate,{$this->monitor->id}",
                'article_id' => 'required|numeric',
                'location' => 'required|max:64',

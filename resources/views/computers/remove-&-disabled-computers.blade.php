@@ -21,10 +21,10 @@
                         <div class="row no-gutters align-items-center">
                             <div class="col mr-2">
                                 <div class="text-xs font-weight-bold text-white text-uppercase mb-1">
-                                    Equipo de Computo Registrados
+                                    Equipo de Computo Retirados del inventario
                                 </div>
                                 <div class="h5 mb-0 font-weight-bold text-white">
-                                    12
+                                    {{ $computersRemove }}
                                 </div>
                             </div>
                             <div class="col-auto">
@@ -104,7 +104,12 @@
                                     </div>
                                 </td>
                                 <td>
-                                    <h5><span class="badge badge-danger">{{ $computerRemoveInventary->status }} </span></h5>
+                                    <div class="h6 mb-0 font-weight-bold text-muted">
+                                        <h5><span class="badge badge-danger">{{ $computerRemoveInventary->status }}
+                                            </span></h5>
+                                        Eliminado: {{ $computerRemoveInventary->deleted_at }} -
+                                        {{ Carbon\Carbon::parse($computerRemoveInventary->deleted_at)->format('l jS \\of F Y ') }}
+                                    </div>
                                 </td>
                                 <td>
 
@@ -126,5 +131,5 @@
     $(document).ready(function () {
           $('#table-computers').DataTable();
       });
-  </script>
+</script>
 @endpush

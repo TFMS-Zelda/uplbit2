@@ -39,24 +39,14 @@
                             <label>*Marca:</label>
                             <select class="form-control BrandSelectClass" name="brand" id="brandSelectId"
                                 onchange="cargarModelos()" required>
-                                <option value="{{ $monitor->brand }}" @if (old($monitor->
-                                    brand)=='{{ $monitor->brand }}') selected="selected" @endif>
-                                    {{ $monitor->brand }}
-                                </option>
+                                <option value="">Seleccione...</option>
 
-                                <option style="font-size: 2pt; background-color: #E9EFF7;" disabled>&nbsp;</option>
                             </select>
                         </div>
                         <div class="form-group col-md-6">
                             <label>*Módelo:</label>
                             <select class="form-control" name="model" id="modelSelectId" required>
-                                <option value="{{ $monitor->model }}" @if (old($monitor->model)=='{{ $monitor->model }}'
-                                    )
-                                    selected="selected" @endif>
-                                    {{ $monitor->model }}
-                                </option>
-
-                                <option style="font-size: 2pt; background-color: #E9EFF7;" disabled>&nbsp;</option>
+                                <option value="">Seleccione...</option>
                             </select>
                         </div>
                     </div>
@@ -68,7 +58,7 @@
                     <div class="form-row">
                         <div class="form-group col-md-8">
                             <label><code>*Serial del Monitor:</code></label>
-                            <input type="text" class="form-control" id="serviceTag" maxlength="64" name="serial"
+                            <input type="text" class="form-control" maxlength="64" name="serial"
                                 placeholder="Enter Serial" value="{{ old('serial') }}" required />
                             <small class="form-text">
                                 <code>
@@ -87,28 +77,34 @@
                             <label>*Tipo de Pantalla:</label>
                             <select class="form-control" name="screen_type" required>
                                 <option value="">Escoger...</option>
-                                <option value="TFT">TFT</option>
-                                <option value="IPS">IPS</option>
-                                <option value="AMOLED">AMOLED</option>
-                                <option value="OLED">OLED</option>
+                                <option value="TFT" {{ old('screen_type') == 'TFT' ? 'selected' : ''}}>TFT</option>
+                                <option value="IPS" {{ old('screen_type') == 'IPS' ? 'selected' : ''}}>IPS</option>
+                                <option value="AMOLED" {{ old('screen_type') == 'AMOLED' ? 'selected' : ''}}>AMOLED
+                                </option>
+                                <option value="OLED" {{ old('screen_type') == 'OLED' ? 'selected' : ''}}>OLED</option>
                             </select>
                         </div>
                         <div class="form-group col-md-4">
                             <label>*Retro Iluminación:</label>
                             <select class="form-control" name="backlight" required>
                                 <option value="">Escoger...</option>
-                                <option value="LED">LED</option>
-                                <option value="LDC">LDC</option>
-                                <option value="PLASMA">PLASMA</option>
+                                <option value="LED" {{ old('backlight') == 'LED' ? 'selected' : ''}}>LED</option>
+                                <option value="LDC" {{ old('backlight') == 'LDC' ? 'selected' : ''}}>LDC</option>
+                                <option value="PLASMA" {{ old('backlight') == 'PLASMA' ? 'selected' : ''}}>PLASMA
+                                </option>
                             </select>
                         </div>
                         <div class="form-group col-md-4">
                             <label>*Tipo de Conector:</label>
                             <select class="form-control" name="input_connector_type" required>
                                 <option value="">Escoger...</option>
-                                <option value="HDMI">HDMI</option>
-                                <option value="VGA">VGA</option>
-                                <option value="HDMI & VGA">HDMI & VGA</option>
+                                <option value="HDMI" {{ old('input_connector_type') == 'HDMI' ? 'selected' : ''}}>HDMI
+                                </option>
+                                <option value="VGA" {{ old('input_connector_type') == 'VGA' ? 'selected' : ''}}>VGA
+                                </option>
+                                <option value="HDMI & VGA"
+                                    {{ old('input_connector_type') == 'HDMI & VGA' ? 'selected' : ''}}>
+                                    HDMI & VGA</option>
                             </select>
                         </div>
                     </div>
@@ -122,31 +118,52 @@
                             <label>*Formato de Pantalla:</label>
                             <select class="form-control" name="screen_format" required>
                                 <option value="">Escoger...</option>
-                                <option value="4:3">4:3</option>
-                                <option value="16:9">16:9</option>
-                                <option value="16:9">16:9</option>
-                                <option value="16:10">16:10</option>
-                                <option value="21:9">21:9</option>
+                                <option value="4:3" {{ old('screen_format') == '4:3' ? 'selected' : ''}}>4:3</option>
+                                <option value="16:9" {{ old('screen_format') == '16:9' ? 'selected' : ''}}>16:9</option>
+                                <option value="16:10" {{ old('screen_format') == '16:10' ? 'selected' : ''}}>16:10
+                                </option>
+
                             </select>
                         </div>
                         <div class="form-group col-md-4">
                             <label>*Máxima Resolución:</label>
                             <select class="form-control" name="maximum_resolution" required>
                                 <option value="">Escoger...</option>
-                                <option value="1024 x 768 Pixeles">1024 x 768 Pixeles</option>
-                                <option value="1280 x 800 Pixeles">1280 x 800 Pixeles</option>
-                                <option value="1280 x 1024 Pixeles">1280 x 1024 Pixeles</option>
-                                <option value="1600 x 1200 Pixeles">1600 x 1200 Pixeles</option>
-                                <option value="1920 x 1080 Pixeles">1920 x 1080 Pixeles</option>
-                                <option value="1920 x 1024 Pixeles">1920 x 1024 Pixeles</option>
+                                <option value="1024 x 768 Pixeles"
+                                    {{ old('maximum_resolution') == '1024 x 768 Pixeles' ? 'selected' : ''}}>1024 x 768
+                                    Pixeles
+                                </option>
+                                <option value="1280 x 800 Pixeles"
+                                    {{ old('maximum_resolution') == '1280 x 800 Pixeles' ? 'selected' : ''}}>1280 x 800
+                                    Pixeles
+                                </option>
+                                <option value="1280 x 1024 Pixeles"
+                                    {{ old('maximum_resolution') == '1280 x 1024 Pixeles' ? 'selected' : ''}}>1280 x
+                                    1024
+                                    Pixeles</option>
+                                <option value="1600 x 1200 Pixeles"
+                                    {{ old('maximum_resolution') == '1600 x 1200 Pixeles' ? 'selected' : ''}}>1600 x
+                                    1200
+                                    Pixeles</option>
+                                <option value="1920 x 1080 Pixeles"
+                                    {{ old('maximum_resolution') == '1920 x 1080 Pixeles' ? 'selected' : ''}}>1920 x
+                                    1080
+                                    Pixeles</option>
+                                <option value="1920 x 1024 Pixeles"
+                                    {{ old('maximum_resolution') == '1920 x 1024 Pixeles' ? 'selected' : ''}}>1920 x
+                                    1024
+                                    Pixeles</option>
                             </select>
                         </div>
                         <div class="form-group col-md-4">
                             <label>*Fuente de Poder:</label>
                             <select class="form-control" name="power_supply" required>
                                 <option value="">Escoger...</option>
-                                <option value="DC 12v, 100-240V 50/60 HZ">DC 12v, 100-240V 50/60 HZ</option>
-                                <option value="Cable 120 V">Cable 120 V</option>
+                                <option value="DC 12v, 100-240V 50/60 Hz"
+                                    {{ old('power_supply') == 'DC 12v, 100-240V 50/60 Hz' ? 'selected' : ''}}>DC 12v,
+                                    100-240V 50/60 Hz
+                                <option value="Cable 120 V" {{ old('power_supply') == 'Cable 120 V' ? 'selected' : ''}}>
+                                    Cable 120 V
                             </select>
                         </div>
                     </div>
@@ -208,8 +225,11 @@
                             <label>*Ubicación del Monitor:</label>
                             <select class="form-control" name="location" required>
                                 <option value="">Escoger...</option>
-                                <option value="Bogota">Bogota</option>
-                                <option value="Cundinamarca - Madrid">Cundinamarca - Madrid</option>
+                                <option value="Bogota" {{ old('location') == 'Bogota' ? 'selected' : ''}}>Bogota
+                                </option>
+                                <option value="Cundinamarca - Madrid"
+                                    {{ old('location') == 'Cundinamarca - Madrid' ? 'selected' : ''}}>Cundinamarca -
+                                    Madrid</option>
                             </select>
                         </div>
                     </div>
@@ -221,8 +241,11 @@
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label>*Estado del Monitor:</label>
-                            <select class="form-control" name="status" v required>
-                                <option value="Inactivo - No Asignado">Inactivo - No Asignado</option>
+                            <select class="form-control" name="status" required>
+                                <option value="Inactivo - No Asignado"
+                                    {{ old('status') == 'Inactivo - No Asignado' ? 'selected' : ''}}>Inactivo - No
+                                    Asignado
+                                </option>
                             </select>
                             <small>
                                 El estado Inactivo - No Asignado es seleccionado por el sistema
@@ -237,12 +260,13 @@
                     <div class="form-row">
                         <div class="form-group col-md-4">
                             <label>*Inicio de Garantía:</label>
-                            <input type="date" class="form-control" name="warranty_start" required>
+                            <input type="date" class="form-control" name="warranty_start"
+                                value="{{ old('warranty_start') }}" required autofocus>
                         </div>
                         <div class="form-group col-md-4">
                             <label>*Fin de Garantía:</label>
-                            <input type="date" class="form-control" name="warranty_end" required>
-
+                            <input type="date" class="form-control" name="warranty_end"
+                                value="{{ old('warranty_end') }}" required autofocus>
                         </div>
                     </div>
                 </div>
@@ -270,7 +294,7 @@
                 <div class="col-md-12">
                     <div class="form-row">
                         <div class="form-group col-md-12">
-                            <textarea name="body" class="form-control" required autofocus></textarea>
+                            <textarea name="body" class="form-control" required autofocus>{{ old('body') }}</textarea>
                             <small class="form-text text-gray-600">
                                 Ingrese algun comentario u observación
                             </small>

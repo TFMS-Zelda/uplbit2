@@ -24,6 +24,7 @@
                                     Impresoras Registradas
                                 </div>
                                 <div class="h5 mb-0 font-weight-bold text-white">
+                                    {{ $printersTotal }}
                                 </div>
                             </div>
                             <div class="col-auto">
@@ -44,7 +45,8 @@
         <div class="card mb-4 py-3 border-left-primary">
             <div class="card-body">
                 <div class="table-responsive">
-                    <table class="table table-light  table-striped table-bordered table-sm  table-hover" id='table-printers'>
+                    <table class="table table-light  table-striped table-bordered table-sm  table-hover"
+                        id='table-printers'>
                         <thead>
                             <tr class="bg-gradient-primary text-white text-center">
                                 <th>ID:</th>
@@ -155,7 +157,7 @@
 <script src="{{ asset('/core/plugins/DataTables/datatables.min.js') }}"></script>
 
 <script>
-   $(document).ready(function () {
+    $(document).ready(function () {
           $('#table-printers').DataTable({});
       });
     

@@ -354,29 +354,19 @@
             </div>
 
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-12">
                     <div class="form-row">
                         <div class="form-group col-md-6">
-                            <label>*Estado:</label>
-                            <select class="form-control" name="status" required autofocus>
-                                <option value="">Escoger...</option>
-                                <option value="Activo - Asignado"
-                                    {{ old('status') == 'Activo - Asignado' ? 'selected' : ''}}>
-                                    Activo - Asignado
-                                </option>
+                            <label>*Estado del Monitor:</label>
+                            <select class="form-control" name="status" required>
                                 <option value="Inactivo - No Asignado"
-                                    {{ old('status') == 'Inactivo - No Asignado' ? 'selected' : ''}}>
-                                    Inactivo - No Asignado
-                                </option>
-                                <option value="Reportado por Hurto"
-                                    {{ old('status') == 'Reportado por Hurto' ? 'selected' : ''}}>
-                                    Reportado por Hurto
-                                </option>
-                                <option value="Retirado - Baja de Activo"
-                                    {{ old('status') == 'Retirado - Baja de Activo' ? 'selected' : ''}}>
-                                    Retirado - Baja de Activo
+                                    {{ old('status') == 'Inactivo - No Asignado' ? 'selected' : ''}}>Inactivo - No
+                                    Asignado
                                 </option>
                             </select>
+                            <small>
+                                El estado Inactivo - No Asignado es seleccionado por el sistema
+                            </small>
                         </div>
                     </div>
                 </div>

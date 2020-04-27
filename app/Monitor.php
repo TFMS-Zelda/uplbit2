@@ -35,7 +35,6 @@ class Monitor extends Model
         return $this->hasOne('App\User', 'id', 'user_id');
     }
 
-    
     public function comments()
     {
         return $this->morphMany(Comment::class, 'commentable');

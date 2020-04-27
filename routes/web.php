@@ -105,7 +105,7 @@ Route::middleware(['auth'])->group(function () {
 		->middleware('can:permission:articles.destroy');
 	Route::get('articles/{article}/edit', 'ArticleController@edit')->name('articles.edit')
 		->middleware('can:permission:articles.edit');
-		
+
 	// computers
 	Route::post('computers/store', 'ComputerController@store')->name('computers.store')
 		->middleware('can:permission:computers.create');
@@ -143,7 +143,7 @@ Route::middleware(['auth'])->group(function () {
 	// remove tablets
 	Route::get('tablets.remove-&-disabled-tablets', 'TabletController@removeDisabledTablets')->name('tablets.remove-&-disabled-tablets')
 	->middleware('can:permission:tablets.remove-&-disabled-tablets');
-		
+
 	// employees
 	Route::post('managers.employees/store', 'EmployeeController@store')->name('managers.employees.store')
 		->middleware('can:permission:managers.employees.create');
@@ -175,6 +175,11 @@ Route::middleware(['auth'])->group(function () {
 		->middleware('can:permission:peripherals.monitors.destroy');
 	Route::get('peripherals.monitors/{monitor}/edit', 'MonitorController@edit')->name('peripherals.monitors.edit')
 		->middleware('can:permission:peripherals.monitors.edit');
+		// remove monitors
+	Route::get('peripherals.monitors.remove-&-disabled-monitors', 'MonitorController@removeDisabledMonitors')->name('peripherals.monitors.remove-&-disabled-monitors')
+		->middleware('can:permission:peripherals.monitors.remove-&-disabled-monitors');
+
+		
 
 	// printers
 	Route::post('peripherals.printers/store', 'PrinterController@store')->name('peripherals.printers.store')
@@ -259,4 +264,3 @@ Route::middleware(['auth'])->group(function () {
 		->middleware('can:permission:reports.maintenance-of-printers.download');;
 
 	});
-	

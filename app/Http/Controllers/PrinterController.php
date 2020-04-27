@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Printer;
 use App\Article;
+use App\Provider;
 
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -12,6 +13,7 @@ use Auth;
 use DB;
 use App\Comment;
 use App\Http\Requests\UpdatePrinterRequest;
+use App\Services\ProviderOrArticle;
 
 
 class PrinterController extends Controller
@@ -25,8 +27,9 @@ class PrinterController extends Controller
     {
         $printers = \App\Printer::orderBy('id', 'DESC')
         ->paginate(10);
+        $printersTotal = \App\Printer::all()->count();
 
-        return view('peripherals.printers.index', compact('printers'));
+        return view('peripherals.printers.index', compact('printers', 'printersTotal'));
     }
     
 
@@ -37,9 +40,38 @@ class PrinterController extends Controller
      */
     public function create()
     {
-        $articles = Article::all();
-        $articles = Article::all();
-        return view('peripherals.printers.create', compact('articles'));
+        $providersValidation = Provider::count();
+        $articlesValidation = Article::count();
+
+        if ($providersValidation >= 1 && $articlesValidation >= 1 ) {
+             # code...
+            // Nota: este es un servicio
+            $providers = app(ProviderOrArticle::class)->getProviders();
+            return view('peripherals.printers.create', compact('providers'));
+            
+        } else {
+           
+            alert()->html('<i>Provedor ó Articulo, no registrado en el sistema</i>',"
+        
+            <div role='alert' class='alert alert-danger alert-dismissible'>
+                <button aria-label='Close' data-dismiss='alert' class='close' type='button'><span
+                aria-hidden='true'>×</span></button>
+            <h2 class='alert-heading'>Error!</h2>
+            <p>Pueda que no tenga registros relacionados para crear un Equipo de computo en este momento!</p>
+            <hr>
+
+            <p><h4>Actualmente tiene registrado:</h4>
+            <img class='img-fluid' style='width: 50px;'
+            src='/core/undraw/error-cloud.svg'> <br>
+            </p>
+            <h3>$providersValidation , Provedores registrados</h3>
+            <h3>$articlesValidation , Articulos registrados de un provedor</h3>
+            <hr> 
+            </div>
+          ",'error')->persistent('Close');
+            
+            return redirect()->route('peripherals.printers.index');
+        }
     }
 
     /**

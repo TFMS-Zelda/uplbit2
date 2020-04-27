@@ -467,28 +467,36 @@
             </div>
 
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-12">
                     <div class="form-row">
                         <div class="form-group col-md-6">
-                            <label>*Estado:</label>
-                            <select class="form-control" name="status" required autofocus>
-                                <option value="">Escoger...</option>
+                            <label>*Estado Computer:</label>
+                            <select class="form-control" name="status" v required>
                                 <option value="Activo - Asignado"
-                                    {{ old('status', $computer->status) == 'Activo - Asignado' ? 'selected' : '' }}>
+                                    {{ old('status', $computer->status) == 'Activo - Asignado' ? 'selected' : ''}}>
                                     Activo - Asignado
                                 </option>
+
                                 <option value="Inactivo - No Asignado"
-                                    {{ old('status', $computer->status) == 'Inactivo - No Asignado' ? 'selected' : '' }}>
+                                    {{ old('status', $computer->status) == 'Inactivo - No Asignado' ? 'selected' : ''}}>
                                     Inactivo - No Asignado
                                 </option>
-                                <option value="Reportado por Hurto"
-                                    {{ old('status', $computer->status) == 'Reportado por Hurto' ? 'selected' : '' }}>
-                                    Reportado por Hurto
+
+                                <option value="En Mantenimiento"
+                                    {{ old('status', $computer->status) == 'En Mantenimiento' ? 'selected' : ''}}>
+                                    En Mantenimiento
                                 </option>
+
+                                <option value="Dañado"
+                                    {{ old('status', $computer->status) == 'Dañado' ? 'selected' : ''}}>
+                                    Dañado
+                                </option>
+
                                 <option value="Retirado - Baja de Activo"
-                                    {{ old('status', $computer->status) == 'Retirado - Baja de Activo' ? 'selected' : '' }}>
+                                    {{ old('status', $computer->status) == 'Retirado - Baja de Activo' ? 'selected' : ''}}>
                                     Retirado - Baja de Activo
                                 </option>
+
                             </select>
                         </div>
                     </div>

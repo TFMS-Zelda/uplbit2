@@ -90,22 +90,18 @@ class MonitorController extends Controller
 
         // se obtiene el ultimo computer creado
         $monitor = Monitor::all()->last();
-        
-
+    
         // se obtiene el id del usuario que esta en la sesion
         $sessionIdUser = Auth::id();
                 
-          // se agrega una relacion polimorfica en tabla comments se agrega modelo y se crea un nuevo comentario
-          $comment = new Comment();
-          $comment->user_id = $sessionIdUser;
-          $comment->commentable_id = $monitor->id;
-      
-          $comment->body =  $request->body;
-          $monitor->comments()->save($comment);
-  
-          Alert::success('Success!', 'Perisferico de Tipo Monitor' . $monitor->license_plate . 'Registrado correctamente en el sistema');
-  
-          return redirect()->route('peripherals.monitors.index');
+        // se agrega una relacion polimorfica en tabla comments se agrega modelo y se crea un nuevo comentario
+        $comment = new Comment();
+        $comment->user_id = $sessionIdUser;
+        $comment->commentable_id = $monitor->id;
+        $comment->body =  $request->body;
+        $monitor->comments()->save($comment);
+        Alert::success('Success!', 'Perisferico de Tipo Monitor' . $monitor->license_plate . 'Registrado correctamente en el sistema');
+        return redirect()->route('peripherals.monitors.index');
     }
 
     /**
@@ -162,7 +158,7 @@ class MonitorController extends Controller
 
         Alert::success('Success!', 'Monitor:' . ' ' . $monitor->license_plate . ' ' .'Actualizado correctamente en el sistema');
 
-        return redirect()->route('computers.index');
+        return redirect()->route('peripherals.monitors.index');
 
     }
 
@@ -174,6 +170,39 @@ class MonitorController extends Controller
      */
     public function destroy(Monitor $monitor)
     {
-        //
+          try {
+
+              if ($monitor->status  === 'Retirado - Baja de Activo' ) {
+                  $updateStatusPostDelete = 'Retirado - Baja de Activo';
+                  $whenUserDeleteMonitor = Auth::id();
+                  Monitor::where('id','=', $monitor->id)->update(['status' => $updateStatusPostDelete, 'user_id' => $whenUserDeleteMonitor ]);
+                //   $monitor->delete();
+                  alert()->info('Atención','El equipo de computo' . ' ' . $monitor->license_plate . ' ' . 'a sido eliminado
+                  correctamente del sistema');
+                  
+                  return redirect()->route('peripherals.monitors.remove-&-disabled-monitors');
+
+              } else {
+
+                  Alert::error('Error, Eliminar Monitor', 'No puede eliminar este perisferico porque contiene un estado'
+                . ' ' . $monitor->status)->persistent('Close');
+                  return redirect()->route('peripherals.monitors.index');
+              }
+              
+        } catch (\Illuminate\Database\QueryException $e){
+            
+            return alert()->error('Error','se presento un error al momento de eliminar el siguiente monitor del sistema' + $e);
+
+        }
     }
+
+    public function removeDisabledMonitors()
+    {
+        $monitorsRemoveInventary = DB::table('monitors')->where('status', 'like', '%Retirado - Baja de Activo%')->get();
+        return view('peripherals.monitors.remove-&-disabled-monitors', [
+            'monitorsRemoveInventary' => $monitorsRemoveInventary
+        ]);
+    }
+
+
 }

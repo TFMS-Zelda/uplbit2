@@ -19,8 +19,6 @@ class Printer extends Model
         'license_plate', 'location', 'mac_adrress', 'ip_address', 'status', 'warranty_start', 'warranty_end', 'article_id', 'user_id'
     ];
     
-
-
      /**
      * Get the article record associated with the Printer.
      */

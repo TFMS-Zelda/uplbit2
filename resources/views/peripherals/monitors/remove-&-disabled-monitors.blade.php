@@ -3,32 +3,32 @@
 @section('title', 'information-&-technologies')
 
 @section('content')
-@section('titlePosition', 'companies')
+@section('titlePosition', 'computers/ remove-&-disabled-monitors')
 <section class="content">
     <div class="container-fluid">
-        <h1 class="h3 mb-1 text-gray-800">Monitores</h1>
+        <h1 class="h3 mb-1 text-gray-800">Monitores retirados del sistema</h1>
         <p class="mb-4 text-justify">
             La siguiente información se almacena, organiza, mantiene y difunde de manera digital. Esta información es
             de
             acceso privado para usuarios directamente autentificados en el sistema.
-            En este sitio encontrara el listado de Monitores corporativos registrados en el sistema.
+            En este sitio encontrara el listado de los monitores retirados del sistema.
         </p>
 
         <div class="row">
             <div class="col-xl-3 col-md-6 mb-4">
-                <div class="card border-left-success shadow h-100 py-2 bg-success">
+                <div class="card border-left-warning shadow h-100 py-2 bg-warning">
                     <div class="card-body">
                         <div class="row no-gutters align-items-center">
                             <div class="col mr-2">
                                 <div class="text-xs font-weight-bold text-white text-uppercase mb-1">
-                                    Monitores Registrados
+                                    Monitores Retirados
                                 </div>
                                 <div class="h5 mb-0 font-weight-bold text-white">
-                                    {{ $totalMonitor }}
+                                    12
                                 </div>
                             </div>
                             <div class="col-auto">
-                                <i class="fas fa-tv fa-2x text-white" aria-hidden="true"></i>
+                                <i class="fas fa-monitor fa-2x text-white"></i>
                             </div>
                         </div>
                     </div>
@@ -42,31 +42,7 @@
         </div>
 
         <div class="card mb-4 py-3 border-left-primary">
-
             <div class="card-body">
-
-                @can('permission:peripherals.monitors.remove-&-disabled-monitors')
-                <!-- split remove peripherals.monitors   -->
-                <div class="btn-group dropright">
-                    <button type="button" class="btn btn-ligth">
-                        <h1 class="h6 mb-1 text-gray-800">Monitor</h1>
-                        <small class="text-muted">
-                            <p class="text-right">Record & History</p>
-                        </small>
-                    </button>
-                    <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split"
-                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <span class="sr-only">Toggle Dropright</span>
-                    </button>
-                    <div class="dropdown-menu">
-                        <a class="dropdown-item" href="{{ route('peripherals.monitors.remove-&-disabled-monitors') }} ">
-                            <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                            Monitores retirados del inventario
-                        </a>
-                    </div>
-                </div>
-                <!-- end split remove peripherals.monitors -->
-                @endcan
 
                 <div class="table-responsive">
                     <table class="table table-sm table-striped table-light table-hover table-fixed" id="table-monitors">
@@ -81,9 +57,8 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach($monitors as $monitor)
+                            @foreach($monitorsRemoveInventary as $monitor)
                             <tr class="text-center">
-
                                 <td>
                                     <div class="col-auto text-center">
                                         <i class="fas fa-tv fa-2x"></i>
@@ -113,78 +88,33 @@
                                 </td>
                                 <td>
                                     <div class="h6 mb-0 font-weight-bold text-muted">
-                                        @if ($monitor->status === 'Activo - Asignado')
-                                        <h5><span class="badge badge-success">{{ $monitor->status }} </span></h5>
-
-                                        @elseif($monitor->status === 'Inactivo - No Asignado')
                                         <h5><span class="badge badge-danger">{{ $monitor->status }} </span></h5>
-
-                                        @elseif($monitor->status === 'En Mantenimiento')
-                                        <h5><span class="badge badge-warning">{{ $monitor->status }} </span></h5>
-
-                                        @elseif($monitor->status === 'Dañado')
-                                        <h5><span class="badge badge-black">{{ $monitor->status }} </span></h5>
-
-                                        @elseif($monitor->status === 'Retirado - Baja de Activo')
-                                        <h5><span class="badge badge-primary">{{ $monitor->status }} </span></h5>
-                                        @endif
+                                        Eliminado: {{ $monitor->deleted_at }} -
+                                        {{ Carbon\Carbon::parse($monitor->deleted_at)->format('l jS \\of F Y ') }}
                                     </div>
                                 </td>
                                 <td>
-                                    @can('permission:peripherals.monitors.show')
                                     <a href="{{ route('peripherals.monitors.show', $monitor->id) }}"
                                         class="btn btn-success btn-circle btn-sm">
                                         <i class="fas fa-info-circle"></i>
                                     </a>
-                                    @endcan
-
-                                    @can('permission:peripherals.monitors.edit')
-                                    <a href="{{ route('peripherals.monitors.edit', $monitor->id)}}"
-                                        class="btn btn-warning btn-circle btn-sm">
-                                        <i class="fas fa-exclamation-triangle"></i>
-                                    </a>
-                                    @endcan
-
-                                    @can('permission:peripherals.monitors.destroy')
-                                    <form action="{{ route('peripherals.monitors.destroy', $monitor->id) }}"
-                                        method="POST">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="btn btn-danger btn-circle btn-sm">
-                                            <i class="fas fa-times"></i>
-                                        </button>
-                                    </form>
-                                    @endcan
-
-
                                 </td>
                             </tr>
                             @endforeach
                         </tbody>
                     </table>
                 </div>
-
-                @can('permission:peripherals.monitors.create')
-                <a href="{{ route('peripherals.monitors.create') }}" class="btn btn-secondary btn-icon-split">
-                    <span class="icon text-white-50">
-                        <i class="fas fa-arrow-right"></i>
-                    </span>
-                    <span class="text">Add monitor</span>
-                </a>
-                @endcan
             </div>
         </div>
+
+    </div>
 </section>
 @endsection
 @push('scripts')
 <script src="{{ asset('/core/plugins/DataTables/datatables.min.js') }}"></script>
-
 <script>
     $(document).ready(function () {
-          $('#table-monitors').DataTable({});
+          $('#table-monitors').DataTable();
       });
-    
-    document.onsubmit = function () {
-        return confirm('Atencion: {{ Auth::user()->name }}, ¿Esta seguro de eliminar el siguiente perisferico: monitor del sistema?');}
 </script>
 @endpush
