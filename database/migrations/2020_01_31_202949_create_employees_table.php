@@ -32,19 +32,17 @@ class CreateEmployeesTable extends Migration
             $table->string('profile_avatar')->default('/core/image/EmployeesAvatar/employee-avatar-default.svg');
             $table->date('creation_date');
 
-            //Relation 1 a 1 , Table companies
-            $table->bigInteger('company_id')->unsigned();
-            //Llave Foreign  Tabla companies
+            $table->bigInteger('company_id')->unsigned()->nullable();
             $table->foreign('company_id')->references('id')->on('companies')
-            ->onDelete('cascade')
-            ->onUpdate('cascade');
-
+            ->onUpdate('cascade')
+            ->onDelete('set null');
+            
             //Relation 1 a 1 , Table users
-            $table->bigInteger('user_id')->unsigned();
+            $table->bigInteger('user_id')->unsigned()->nullable();
              //Llave Foreign  Tabla users
             $table->foreign('user_id')->references('id')->on('users')
-            ->onDelete('cascade')
-            ->onUpdate('cascade');
+            ->onUpdate('cascade')
+            ->onDelete('set null');
 
             $table->softDeletes();
             $table->timestamps();

@@ -41,7 +41,6 @@ class CreateOtherPeripheralsTable extends Migration
             $table->foreign('user_id')->references('id')->on('users')
             ->onUpdate('cascade');
             
-            $table->text('observations_news', 1024);
             $table->softDeletes();
             $table->timestamps();
         });

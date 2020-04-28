@@ -15,7 +15,6 @@ use App\Comment;
 use App\Http\Requests\UpdatePrinterRequest;
 use App\Services\ProviderOrArticle;
 
-
 class PrinterController extends Controller
 {
     /**
@@ -31,7 +30,6 @@ class PrinterController extends Controller
 
         return view('peripherals.printers.index', compact('printers', 'printersTotal'));
     }
-    
 
     /**
      * Show the form for creating a new resource.
@@ -127,16 +125,14 @@ class PrinterController extends Controller
      */
     public function edit(Printer $printer)
     {
-        
-        $articles = \App\Article::orderBy('id', 'DESC')
-        ->paginate(10);
-        
-        $commentsPrinter = Printer::find($printer)->pluck('comments')->collapse();
-        
+        // Nota: este es un servicio
+        $providers = app(ProviderOrArticle::class)->getProviders();
+        $commentsPrinter = \App\Printer::find($printer)->pluck('comments')->collapse();
+
         return view('peripherals.printers.edit', [
-            'articles' => $articles,
             'printer' => $printer,
             'commentsPrinter' => $commentsPrinter,
+            'providers' => $providers,
         ]);
     }
 
@@ -149,9 +145,7 @@ class PrinterController extends Controller
      */
     public function update(UpdatePrinterRequest $request, Printer $printer)
     {
-
         $printer->update($request->all());
-
         $sessionIdUser = Auth::id();
 
         $comment = new Comment();
@@ -177,17 +171,34 @@ class PrinterController extends Controller
     public function destroy(Printer $printer)
     {
         try {
+            if ($printer->status  === 'Retirado - Baja de Activo' ) {
+                $updateStatusPostDelete = 'Retirado - Baja de Activo';
+                $whenUserDeletePrinter = Auth::id();
+                Printer::where('id','=', $printer->id)->update(['status' => $updateStatusPostDelete, 'user_id' => $whenUserDeletePrinter ]);
+                $printer->delete();
+                alert()->info('Atención','La impresora' . ' ' . $printer->license_plate . ' ' . 'a sido eliminada
+                correctamente del sistema');
+                return redirect()->route('peripherals.printers.remove-&-disabled-printers');
+            } else {
 
-            $printer->delete();
-            alert()->info('Atención','L' . ' ' . $printer->license_plate . ' ' . 'a sido eliminado
-            correctamente del sistema');
-    
-            return redirect()->route('computers.index');
-        
-        } catch (\Illuminate\Database\QueryException $e){
-            
-            return alert()->error('Error','se presento un error al momento de eliminar el equipo de computo' + $e);
+                Alert::error('Error, Eliminar Printer', 'No puede eliminar esta perisferico - impresora porque el estado actual es'
+                . ' ' . $printer->status)->persistent('Close');
 
+                  return redirect()->route('peripherals.printers.index');
+                }
+            } catch (\Illuminate\Database\QueryException $e) {
+                return alert()->error('Error','Se presento un error al momento de eliminar la siguiente impresora del sistema' + $e);
         }
+    }
+
+    public function removeDisabledPrinters()
+    {
+        $printersRemoveInventary = DB::table('printers')->where('status', 'like', '%Retirado - Baja de Activo%')->get();
+        $printersRemove = DB::table('printers')->where('status', 'like', '%Retirado - Baja de Activo%')->count();
+
+        return view('peripherals.printers.remove-&-disabled-printers', [
+            'printersRemoveInventary' => $printersRemoveInventary,
+            'printersRemove' => $printersRemove
+        ]);
     }
 }

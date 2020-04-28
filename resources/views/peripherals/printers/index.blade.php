@@ -16,7 +16,7 @@
 
         <div class="row">
             <div class="col-xl-3 col-md-6 mb-4">
-                <div class="card border-left-info shadow h-100 py-2 bg-info">
+                <div class="card border-left-success shadow h-100 py-2 bg-success">
                     <div class="card-body">
                         <div class="row no-gutters align-items-center">
                             <div class="col mr-2">
@@ -41,9 +41,32 @@
                 src="{{ asset('/core/undraw/photocopy.svg') }}">
         </div>
 
-
         <div class="card mb-4 py-3 border-left-primary">
             <div class="card-body">
+
+                @can('permission:peripherals.printers.remove-&-disabled-printers')
+                <!-- split remove peripherals.printers   -->
+                <div class="btn-group dropright">
+                    <button type="button" class="btn btn-ligth">
+                        <h1 class="h6 mb-1 text-gray-800">Printer</h1>
+                        <small class="text-muted">
+                            <p class="text-right">Record & History</p>
+                        </small>
+                    </button>
+                    <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <span class="sr-only">Toggle Dropright</span>
+                    </button>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="{{ route('peripherals.printers.remove-&-disabled-printers') }} ">
+                            <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                            Impresoras retiradas del inventario
+                        </a>
+                    </div>
+                </div>
+                <!-- end split remove peripherals.printers -->
+                @endcan
+
                 <div class="table-responsive">
                     <table class="table table-light  table-striped table-bordered table-sm  table-hover"
                         id='table-printers'>
@@ -60,7 +83,6 @@
                         <tbody>
                             @foreach($printers as $printer)
                             <tr class="text-center">
-
                                 <td>
                                     <div class="col-auto text-center">
                                         <i class="fas fa-print fa-2x"></i>
@@ -133,7 +155,6 @@
                                     </form>
                                     @endcan
 
-
                                 </td>
                             </tr>
                             @endforeach
@@ -149,6 +170,7 @@
                     <span class="text">Add Printer</span>
                 </a>
                 @endcan
+
             </div>
         </div>
 </section>

@@ -33,19 +33,20 @@ class CreateProvidersTable extends Migration
             $table->string('billing_period', 128);
             $table->string('payment_type', 128);
             $table->date('creation_date');
-
-            //Relation 1 a N , Table companies
-            $table->bigInteger('company_id')->unsigned();
-             //Llave Foreign  Tabla companies
+            
+            //  Relation 1 a 1 , Table articles     
+            $table->bigInteger('company_id')->unsigned()->nullable();
+            //Llave Foreign  Tabla articles
             $table->foreign('company_id')->references('id')->on('companies')
-            ->onUpdate('cascade');
-
-
-            //Relation 1 a N , Table users
-            $table->bigInteger('user_id')->unsigned();
+            ->onUpdate('cascade')
+            ->onDelete('set null');
+            
+            //Relation 1 a 1 , Table users
+            $table->bigInteger('user_id')->unsigned()->nullable();
              //Llave Foreign  Tabla users
             $table->foreign('user_id')->references('id')->on('users')
-            ->onUpdate('cascade');
+            ->onUpdate('cascade')
+            ->onDelete('set null');
             
             $table->timestamps();
         });

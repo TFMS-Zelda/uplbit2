@@ -379,22 +379,6 @@
             </div>
 
             <div class="row">
-                <div class="col-md-8">
-                    <div class="form-row">
-                        <div class="form-group col-md-4">
-                            <label>*Inicio de Garantía:</label>
-                            {{ Form::date('warranty_start', date($monitor->warranty_start), ['class' => 'form-control']) }}
-
-                        </div>
-                        <div class="form-group col-md-4">
-                            <label>*Fin de Garantía:</label>
-                            {{ Form::date('warranty_end', date($monitor->warranty_end), ['class' => 'form-control']) }}
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="row">
                 <div class="col-md-12">
                     <div class="form-row">
                         <div class="form-group col-md-4">
@@ -487,11 +471,12 @@
                 <!-- end timeline -->
             </div>
 
-            <!--Modal -->
+            <!-- Modal-->
             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalEditMonitor">
                 Editar
             </button>
-            <!-- Modal -->
+
+            <!-- Modal modalEditMonitor-->
             <div class="modal fade" id="modalEditMonitor" tabindex="-1" role="dialog" aria-labelledby="modalEditMonitor"
                 aria-hidden="true">
                 <div class="modal-dialog" role="document">
@@ -504,20 +489,32 @@
                         </div>
                         <div class="modal-body">
                             <div class="col col-md-12">
-                                <div class="card border-left-warning shadow h-100 py-2">
+                                <div class="card border-left-primary shadow h-100 py-2">
                                     <div class="card-body">
                                         <div class="row no-gutters align-items-center">
                                             <div class="col mr-2">
-                                                <div class="text-xs font-weight-bold text-muted text-uppercase mb-1">
-                                                    <strong>Agregar Monitor?</strong>
+                                                <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                                    ¿Actualizar Perisferico Monitor?
                                                 </div>
                                                 <div class="p mb-0 font-weight text-gray-800">
                                                     <p>Atención!
                                                         <br>
-                                                        {{ Auth::user()->name }}, ¿Desea Actualizar el siguiente
-                                                        Monitor? <br>
-                                                        {{ $monitor->license_plate }}
-
+                                                        {{ Auth::user()->name }} <br>
+                                                        ¿Desea actualizar el siguiente Monitor?
+                                                        <ul>
+                                                            <li>
+                                                                <div class="h6 mb-0 font-weight-bold text-gray-800">
+                                                                    <i class="fa fa-cog fa-spin" aria-hidden="true"></i>
+                                                                    Placa: {{ $monitor->license_plate }}
+                                                                </div>
+                                                            </li>
+                                                            <li>
+                                                                <div class="h6 mb-0 font-weight-bold text-gray-800">
+                                                                    <i class="fas fa-barcode" aria-hidden="true"></i>
+                                                                    Serial: {{ $monitor->serial }}
+                                                                </div>
+                                                            </li>
+                                                        </ul>
                                                     </p>
                                                 </div>
                                             </div>
@@ -529,8 +526,9 @@
                                 </div>
                             </div>
                         </div>
+
                         <div class="modal-footer">
-                            <button type="submit" class="btn btn-primary">Guardar</button>
+                            <button type="submit" class="btn btn-secondary">Confirmar</button>
                             <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
                         </div>
                     </div>

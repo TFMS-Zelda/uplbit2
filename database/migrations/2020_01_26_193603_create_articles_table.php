@@ -33,21 +33,19 @@ class CreateArticlesTable extends Migration
             $table->string('digital_invoice')->unique();
             $table->text('observations', 1024);
 
-
-            //Relacion 1 a N , Tabla provedors
-            $table->bigInteger('provider_id')->unsigned();
-            //Llave Foreign  Tabla provedors
+            //  Relation 1 a 1 , Table articles     
+            $table->bigInteger('provider_id')->unsigned()->nullable();
+            //Llave Foreign  Tabla articles
             $table->foreign('provider_id')->references('id')->on('providers')
-            ->onDelete('cascade')
-            ->onUpdate('cascade');
+            ->onUpdate('cascade')
+            ->onDelete('set null');
             
-            
-            //Relacion 1 a N , Tabla users
-            $table->bigInteger('user_id')->unsigned();
-            //Llave Foreign -> Tabla users
+            //Relation 1 a 1 , Table users
+            $table->bigInteger('user_id')->unsigned()->nullable();
+             //Llave Foreign  Tabla users
             $table->foreign('user_id')->references('id')->on('users')
-            ->onDelete('cascade')
-            ->onUpdate('cascade');
+            ->onUpdate('cascade')
+            ->onDelete('set null');
             
             $table->timestamps();
         });

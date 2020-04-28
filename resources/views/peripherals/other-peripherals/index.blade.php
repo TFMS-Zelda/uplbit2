@@ -51,9 +51,9 @@
                             <tr class="bg-gradient-primary text-white text-center">
                                 <th>ID:</th>
                                 <th>Tipo de Perisferico:</th>
-                                <th>Perisferico</th>
-                                <th>Marca:</th>
-                                <th>Módelo</th>
+                                <th>Marca</th>
+                                <th>Módelo:</th>
+                                <th>Placa corporativa</th>
                                 <th>Estado:</th>
                                 <th>Acciones:</th>
                             </tr>
@@ -72,7 +72,8 @@
                                 </td>
                                 <td>
                                     <div class="h6 mb-0 font-weight-bold text-muted">
-                                        {{ $otherPeripheral->type_machine }}
+                                        {{ $otherPeripheral->type_device }} -
+                                        {{ $otherPeripheral->type_other_peripherals }}
                                     </div>
                                 </td>
 
@@ -80,20 +81,15 @@
                                     <div class="h6 mb-0 font-weight-bold text-muted">{{ $otherPeripheral->brand }}
                                     </div>
                                     <small>
-                                        {{ $otherPeripheral->processor }} <br>
-                                        {{ $otherPeripheral->memory_ram }} - {{ $otherPeripheral->hard_drive }}
+                                        Serial: {{ $otherPeripheral->serial }}
                                     </small>
                                 </td>
                                 <td>
-                                    <div class="h6 mb-0 font-weight-bold text-muted">{{ $otherPeripheral->model }} <br>
-                                        <small>
-                                            {{ $otherPeripheral->operating_system }}
-                                        </small>
+                                    <div class="h6 mb-0 font-weight-bold text-muted">{{ $otherPeripheral->model }}
                                     </div>
                                 </td>
                                 <td>
-                                    <div class="h6 mb-0 font-weight-bold text-muted">{{ $otherPeripheral->servicetag }}
-                                        <br>
+                                    <div class="h6 mb-0 font-weight-bold text-muted">
                                         <button type="button" class="btn btn-primary btn-sm">
                                             {{ $otherPeripheral->license_plate }} <span
                                                 class="badge badge-light">Placa</span>
@@ -120,6 +116,32 @@
 
                                 </td>
                                 <td>
+
+                                    @can('permission:peripherals.other-peripherals.show')
+                                    <a href="{{ route('peripherals.monitors.show', $otherPeripheral->id) }}"
+                                        class="btn btn-success btn-circle btn-sm">
+                                        <i class="fas fa-info-circle"></i>
+                                    </a>
+                                    @endcan
+
+                                    @can('permission:peripherals.other-peripherals.edit')
+                                    <a href="{{ route('peripherals.monitors.edit', $otherPeripheral->id)}}"
+                                        class="btn btn-warning btn-circle btn-sm">
+                                        <i class="fas fa-exclamation-triangle"></i>
+                                    </a>
+                                    @endcan
+
+                                    @can('permission:peripherals.other-peripherals.destroy')
+                                    <form action="{{ route('peripherals.monitors.destroy', $otherPeripheral->id) }}"
+                                        method="POST">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-danger btn-circle btn-sm">
+                                            <i class="fas fa-times"></i>
+                                        </button>
+                                    </form>
+                                    @endcan
+
 
                                 </td>
                             </tr>

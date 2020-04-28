@@ -14,7 +14,6 @@ use App\Services\ProviderOrArticle;
 use App\Article;
 use App\Provider;
 
-
 class ComputerController extends Controller
 {
     public function __construct(){
@@ -181,6 +180,7 @@ class ComputerController extends Controller
      * @param  \App\Computer  $computer
      * @return \Illuminate\Http\Response
      */
+
     public function destroy(Computer $computer)
     {
         try {
@@ -199,15 +199,13 @@ class ComputerController extends Controller
 
                   return redirect()->route('computers.index');
                 }
-            } catch (\Illuminate\Database\QueryException $e){
+            } catch (\Illuminate\Database\QueryException $e) {
                 return alert()->error('Error','se presento un error al momento de eliminar el siguiente equipo de computo del sistema' + $e);
-            }
         }
+    }
 
-   
     public function removeDisabledComputers()
     {
-
         $computersRemoveInventary = DB::table('computers')->where('status', 'like', '%Retirado - Baja de Activo%')->get();
         $computersRemove = DB::table('computers')->where('status', 'like', '%Retirado - Baja de Activo%')->count();
 

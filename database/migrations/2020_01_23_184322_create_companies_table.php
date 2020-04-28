@@ -31,14 +31,13 @@ class CreateCompaniesTable extends Migration
             $table->string('phone_contact', 7)->unique();
             $table->string('extension_contact', 10);
             $table->date('creation_date');
-            
-            //Relation 1 a N , Table users
-            $table->bigInteger('user_id')->unsigned();
+
+            //Relation 1 a 1 , Table users
+            $table->bigInteger('user_id')->unsigned()->nullable();
              //Llave Foreign  Tabla users
             $table->foreign('user_id')->references('id')->on('users')
-            ->onDelete('cascade')
-            ->onUpdate('cascade');
-            
+            ->onUpdate('cascade')
+            ->onDelete('set null');
             $table->timestamps();
         });
     }

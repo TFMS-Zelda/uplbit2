@@ -91,7 +91,7 @@
                     </div>
                 </div>
             </div>
-            
+
             <div class="row">
                 <div class="col-md-12">
                     <div class="form-row">
@@ -218,7 +218,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="form-row">
-                        <div class="form-group col-md-2">
+                        <div class="form-group col-md-4">
                             <label>
                                 *Fecha de Creación:
                             </label>

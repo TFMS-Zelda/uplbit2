@@ -27,14 +27,20 @@ class CreateMaintenanceComputersTable extends Migration
             $table->string('attachments', 128)->nullable()->unique();
 
 
-            $table->bigInteger('user_id')->unsigned();
-            $table->foreign('user_id')->references('id')->on('users')
-            ->onUpdate('cascade');
-
-            $table->bigInteger('computer_id')->unsigned();
+             //  Relation 1 a 1 , Table articles     
+            $table->bigInteger('computer_id')->unsigned()->nullable();
+            //Llave Foreign  Tabla articles
             $table->foreign('computer_id')->references('id')->on('computers')
-            ->onDelete('cascade')
-            ->onUpdate('cascade');
+            ->onUpdate('cascade')
+            ->onDelete('set null');
+            
+            //Relation 1 a 1 , Table users
+            $table->bigInteger('user_id')->unsigned()->nullable();
+             //Llave Foreign  Tabla users
+            $table->foreign('user_id')->references('id')->on('users')
+            ->onUpdate('cascade')
+            ->onDelete('set null');
+            
             $table->timestamps();
         });
     }

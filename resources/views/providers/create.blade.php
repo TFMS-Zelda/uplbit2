@@ -130,7 +130,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="form-row">
-                        <div class="form-group col-md-2">
+                        <div class="form-group col-md-4">
                             <label>*Fecha de Creación:</label>
                             {{ Form::date('creation_date', new \DateTime(), ['class' => 'form-control', 'readonly'] ) }}
                         </div>

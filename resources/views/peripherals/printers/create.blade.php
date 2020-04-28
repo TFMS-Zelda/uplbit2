@@ -58,7 +58,7 @@
                 <div class="col-md-12">
                     <div class="form-row">
                         <div class="form-group col-md-6">
-                            <label><code>*Serial del Monitor:</code></label>
+                            <label><code>*Serial Impresora:</code></label>
                             <input type="text" class="form-control" maxlength="64" name="serial"
                                 placeholder="Enter Serial" value="{{ old('serial') }}" required />
                             <small class="form-text">

@@ -11,7 +11,9 @@ class OtherPeripheral extends Model
     use SoftDeletes;
      
     protected $fillable = [
-        'type_device', 
+        'type_device', 'type_other_peripherals', 'brand', 'model', 'serial', 'license_plate',
+        'location', 'status', 'warranty_start', 'warranty_end', 'description_of_characteristics',
+        'article_id', 'user_id'
         
         ];
     

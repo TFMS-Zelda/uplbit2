@@ -36,18 +36,19 @@ class CreateMonitorsTable extends Migration
             $table->date('warranty_start');
             $table->date('warranty_end');
 
-            //  Relation 1 a 1 , Table articles
-            $table->bigInteger('article_id')->unsigned();
+           //  Relation 1 a 1 , Table articles     
+            $table->bigInteger('article_id')->unsigned()->nullable();
             //Llave Foreign  Tabla articles
             $table->foreign('article_id')->references('id')->on('articles')
-            ->onDelete('cascade')
-            ->onUpdate('cascade');
+            ->onUpdate('cascade')
+            ->onDelete('set null');
             
             //Relation 1 a 1 , Table users
-            $table->bigInteger('user_id')->unsigned();
+            $table->bigInteger('user_id')->unsigned()->nullable();
              //Llave Foreign  Tabla users
             $table->foreign('user_id')->references('id')->on('users')
-            ->onUpdate('cascade');
+            ->onUpdate('cascade')
+            ->onDelete('set null');
             
             $table->softDeletes();
             $table->timestamps();
