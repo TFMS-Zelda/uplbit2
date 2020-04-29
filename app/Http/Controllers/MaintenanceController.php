@@ -7,8 +7,6 @@ use Illuminate\Http\Request;
 use App\MaintenanceComputer;
 use App\MaintenancePrinter;
 
-
-
 class MaintenanceController extends Controller
 {
     /**
@@ -21,14 +19,10 @@ class MaintenanceController extends Controller
         $totalMaintenanceComputer = MaintenanceComputer::count();
         $totalMaintenancePrinter = MaintenancePrinter::count();
 
-
         return view('maintenances.index', [
             'totalMaintenanceComputer' => $totalMaintenanceComputer,
             'totalMaintenancePrinter' => $totalMaintenancePrinter,
-
-
         ]);
     }
-
 
 }

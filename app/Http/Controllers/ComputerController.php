@@ -95,9 +95,6 @@ class ComputerController extends Controller
         // se obtiene el ultimo computer creado
         $computer = Computer::all()->last();
         
-        // se obtiene el id del computer
-        $idComputer = $computer->id;
-
         // se obtiene el id del usuario que esta en la sesion
         $sessionIdUser = Auth::id();
 

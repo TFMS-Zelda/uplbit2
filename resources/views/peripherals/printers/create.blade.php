@@ -124,7 +124,7 @@
                                 onkeyup="javascript:this.value=this.value.toUpperCase();">
                         </div>
                         <div class="form-group col-md-4">
-                            <label>*Discuo Duro</label>
+                            <label>*Disco Duro</label>
                             <input type="text" class="form-control" name="hard_disk" maxlength="128"
                                 value="{{ old('hard_disk') }}" placeholder="Enter Size" required autofocus
                                 onkeyup="javascript:this.value=this.value.toUpperCase();">
@@ -251,18 +251,17 @@
                     <div class="form-row">
                         <div class="form-group col-md-4">
                             <label><code>*Mac Address:</code></label>
-                            <input type="text" class="form-control" name="mac_adrress" maxlength="64"
-                                value="{{ old('mac_adrress') }}" placeholder="Enter Mac" required autofocus
-                                onkeyup="javascript:this.value=this.value.toUpperCase();">
+                            <input type="text" id="inputMacAddress" class="form-control" name="mac_adrress"
+                                maxlength="14" value="{{ old('mac_adrress') }}" placeholder="Enter Mac" required
+                                autofocus onkeyup="javascript:this.value=this.value.toUpperCase();">
                             <small class="form-text text-gray-600">
                                 The Mac Address field cannot be duplicated
                             </small>
                         </div>
                         <div class="form-group col-md-4">
                             <label><code>*Ip Address:</code></label>
-                            <input type="text" class="form-control" name="ip_address" maxlength="64"
-                                value="{{ old('ip_address') }}" placeholder="Enter Ip" required autofocus
-                                onkeyup="javascript:this.value=this.value.toUpperCase();">
+                            <input type="text" class="form-control" id="ipv4" name="ipv4"
+                                placeholder="xxx.xxx.xxx.xxx" />
                             <small class="form-text text-gray-600">
                                 The Ip Address field cannot be duplicated
                             </small>
@@ -421,4 +420,6 @@
 @push('scripts')
 <!-- Custom scripts-->
 <script src="{{ asset('/core/js/select-brand-&-model-printer-fix.js') }}"></script>
+<script src="{{ asset('/core/js/selectValidationNumber.js') }}"></script>
+<script src="{{ asset('/core/js/macAddress-fix.js') }}"></script>
 @endpush

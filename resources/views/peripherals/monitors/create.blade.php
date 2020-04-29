@@ -357,4 +357,5 @@
 @push('scripts')
 <!-- Custom scripts-->
 <script src="{{ asset('/core/js/select-brand-&-model-monitor-fix.js') }}"></script>
+<script src="{{ asset('/core/js/selectValidationNumber.js') }}"></script>
 @endpush

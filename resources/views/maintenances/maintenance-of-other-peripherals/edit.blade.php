@@ -3,7 +3,7 @@
 @section('title', 'information-&-technologies')
 @section('content')
 
-@section('titlePosition', 'maintenances.maintenance-of-computers/edit')
+@section('titlePosition', 'maintenance-of-other-peripherals/edit')
 
 <style>
     input[type="text"],
@@ -34,10 +34,9 @@
 
     <section class="bg-primary text-center">
         <div class="container">
-            <h2> <i class="fas fa-wrench"></i> EDITAR MANTENIMIENTO EQUIPO DE COMPUTO N° {{ $historyMaintenance->id }}
+            <h2> <i class="fas fa-wrench"></i> EDITAR MANTENIMIENTO PERISFÉRICO N° {{ $historyMaintenance->id }}
             </h2>
         </div>
-        <!-- /.container-->
     </section>
 
     <section>
@@ -46,16 +45,22 @@
                 <h4 class="alert-heading">
                     <i class="fa fa-bell" aria-hidden="true"></i>
                     Nota!
+                    {{ $historyMaintenance->otherPeripheral->type_device }} -
+                    {{ $historyMaintenance->otherPeripheral->type_other_peripherals }}
                 </h4>
                 <p class="mb-0">
-                    {{ Auth::user()->name }}, a continuación editara un mantenimiento registrado del equipo de computo:
-                    <em>{{ $historyMaintenance->computer->brand }} {{ $historyMaintenance->computer->model }}</em> <br>
-                    ServiceTag Serial: <strong>{{ $historyMaintenance->computer->servicetag }}</strong> <br>
-                    Placa corporativa: <strong>{{ $historyMaintenance->computer->license_plate }}</strong>
+
+
+                    {{ Auth::user()->name }}, a continuación editara un mantenimiento registrado de un perisférico:
+
+                    <em>{{ $historyMaintenance->otherPeripheral->brand }}
+                        {{ $historyMaintenance->otherPeripheral->model }}</em> <br>
+                    Serial: <strong>{{ $historyMaintenance->otherPeripheral->serial }}</strong> <br>
+                    Placa corporativa: <strong>{{ $historyMaintenance->otherPeripheral->license_plate }}</strong>
                     <hr>
                     Log... Última fecha de actualización:
-                    {{ $historyMaintenance->computer->updated_at->diffForHumans() }},
-                    {{ Carbon\Carbon::parse($historyMaintenance->computer->updated_at)->format('l jS \\of F Y ') }}
+                    {{ $historyMaintenance->otherPeripheral->updated_at->diffForHumans() }},
+                    {{ Carbon\Carbon::parse($historyMaintenance->otherPeripheral->updated_at)->format('l jS \\of F Y ') }}
                 </p>
             </div>
         </div>
@@ -69,8 +74,8 @@
     @include('partials.errors-validation')
     <!-- close import -->
 
-    <form action="{{ route('maintenances.maintenance-of-computers.update', $historyMaintenance->id) }}" method="POST"
-        enctype="multipart/form-data">
+    <form action="{{ route('maintenances.maintenance-of-other-peripherals.update', $historyMaintenance->id) }}"
+        method="POST" enctype="multipart/form-data">
         @csrf
         @method('PUT')
 
@@ -196,36 +201,37 @@
             </div>
         </div>
 
-        <p class="h4 mb-1 text-gray-800"><i class="fas fa-laptop"></i> Equipo de computo</p>
+        <p class="h4 mb-1 text-gray-800"><i class="fas fa-asterisk"></i>Perisférico</p>
 
         <div class="row">
             <div class="col-md-12">
                 <div class="form-row">
                     <div class="form-group col-md-6">
-                        <select class="form-control" name="computer_id" required autofocus>
-                            <option value="{{ $historyMaintenance->computer->id }} ">
-                                {{ $historyMaintenance->computer->brand}}
-                                - {{ $historyMaintenance->computer->model }},
-                                {{ $historyMaintenance->computer->servicetag }}
+                        <select class="form-control" name="other_peripherals_id" required autofocus>
+                            <option value="{{ $historyMaintenance->otherPeripheral->id }} ">
+                                {{ $historyMaintenance->otherPeripheral->brand}}
+                                - {{ $historyMaintenance->otherPeripheral->model }},
+                                {{ $historyMaintenance->otherPeripheral->servicetag }}
                             </option>
                         </select>
                         <small class="form-text text-gray-600">
-                            El Equipo de computo es detectado automáticamente por el sistema, la placa corporativa de el
-                            equipo de computo
-                            es <strong><code>{{ $historyMaintenance->computer->license_plate }} </code></strong>...
+                            El perisférico es detectada automáticamente por el sistema, la placa corporativa del
+                            perisférico
+                            es
+                            <strong><code>{{ $historyMaintenance->otherPeripheral->license_plate }} </code></strong>...
                         </small>
                     </div>
                 </div>
             </div>
         </div>
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalUpdateMaintanceComputer">
-            Enviar
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalUpdate">
+            Actualizar
         </button>
 
 
         <!-- Modal -->
-        <div aria-hidden="true" aria-labelledby="modalUpdateMaintanceComputer" class="modal fade"
-            id="modalUpdateMaintanceComputer" role="dialog" tabindex="-1">
+        <div aria-hidden="true" aria-labelledby="modalUpdate" class="modal fade" id="modalUpdate" role="dialog"
+            tabindex="-1">
             <div class="modal-dialog" role="document">
                 <div class="modal-content card shadow mb-4">
                     <div class="modal-header">
@@ -243,7 +249,7 @@
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                                ¿Actualizar Mantenimiento de equipo de computo?
+                                                ¿Actualizar Mantenimiento de perisférico?
                                             </div>
                                             <div class="p mb-0 font-weight text-gray-800">
                                                 <p>
@@ -251,7 +257,7 @@
                                                     <br>
                                                     {{ Auth::user()->name }}
                                                     <br>
-                                                    ¿Desea actualizar el siguiente mantenimiento de equipo de computo?
+                                                    ¿Desea actualizar el siguiente mantenimiento del perisférico?
                                                     <div class="alert alert-warning" role="alert">
                                                         <h4 class="alert-heading">
                                                             <i class="fa fa-bell" aria-hidden="true"></i>
@@ -259,14 +265,15 @@
                                                         </h4>
                                                         <p class="mb-0">
                                                             a continuación actualizara el registro del
-                                                            mantenimiento al equipo de computo:
-                                                            <em>{{ $historyMaintenance->computer->brand }}
-                                                                {{ $historyMaintenance->computer->model }}</em> <br>
-                                                            ServiceTag Serial:
-                                                            <strong>{{ $historyMaintenance->computer->servicetag }}</strong>
+                                                            mantenimiento:
+                                                            <em>{{ $historyMaintenance->otherPeripheral->brand }}
+                                                                {{ $historyMaintenance->otherPeripheral->model }}</em>
+                                                            <br>
+                                                            Serial:
+                                                            <strong>{{ $historyMaintenance->otherPeripheral->servicetag }}</strong>
                                                             <br>
                                                             Placa corporativa:
-                                                            <strong>{{ $historyMaintenance->computer->license_plate }}</strong>
+                                                            <strong>{{ $historyMaintenance->otherPeripheral->license_plate }}</strong>
 
                                                         </p>
                                                     </div>
@@ -274,7 +281,7 @@
                                             </div>
                                         </div>
                                         <div class="col-auto">
-                                            <i class="fas fa-laptop fa-2x text-gray-300">
+                                            <i class="fas fa-asterisk fa-2x text-gray-300">
                                             </i>
                                         </div>
                                     </div>

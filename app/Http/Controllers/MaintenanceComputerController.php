@@ -48,7 +48,6 @@ class MaintenanceComputerController extends Controller
      */
     public function create(Computer $computer)
     {   
-        
         return view('maintenances.maintenance-of-computers.create', compact('computer'));
     }
 
@@ -123,10 +122,8 @@ class MaintenanceComputerController extends Controller
      */
     public function edit(MaintenanceComputer $historyMaintenance)
     {
-        
         // dd($historyMaintenance);
         return view('maintenances.maintenance-of-computers.edit', compact('historyMaintenance'));
-
     }
 
     /**

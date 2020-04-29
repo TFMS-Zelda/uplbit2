@@ -12,6 +12,8 @@ use Auth;
 use App\Comment;
 use App\Services\ProviderOrArticle;;
 use App\Http\Requests\StoreOtherPeripheralsRequest;
+use App\Http\Requests\UpdateOtherPeripheralsRequest;
+
 
 class OtherPeripheralController extends Controller
 {
@@ -26,7 +28,6 @@ class OtherPeripheralController extends Controller
         ->paginate(10);
 
         return view('peripherals.other-peripherals.index', compact('otherPeripherals'));
-
     }
 
     /**
@@ -67,7 +68,6 @@ class OtherPeripheralController extends Controller
           ",'error')->persistent('Close');
             
             return redirect()->route('peripherals.other-peripherals.index');
-        
         }
     }
 
@@ -121,7 +121,15 @@ class OtherPeripheralController extends Controller
      */
     public function edit(OtherPeripheral $otherPeripheral)
     {
-        //
+        // Nota: este es un servicio
+        $providers = app(ProviderOrArticle::class)->getProviders();
+        $commentsOtherPeripherals = OtherPeripheral::find($otherPeripheral)->pluck('comments')->collapse();
+
+        return view('peripherals.other-peripherals.edit', [
+            'otherPeripheral' => $otherPeripheral,
+            'commentsOtherPeripherals' => $commentsOtherPeripherals,
+            'providers' => $providers,
+        ]);
     }
 
     /**
@@ -131,9 +139,24 @@ class OtherPeripheralController extends Controller
      * @param  \App\OtherPeripheral  $otherPeripheral
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, OtherPeripheral $otherPeripheral)
+    public function update(UpdateOtherPeripheralsRequest $request, OtherPeripheral $otherPeripheral)
     {
-        //
+        $otherPeripheral->update($request->all());
+          
+        $sessionIdUser = Auth::id();
+
+        $comment = new Comment();
+        $comment->user_id = $sessionIdUser;
+        $comment->commentable_id = $otherPeripheral->id;
+    
+        $comment->body =  $request->body;
+        // dd($comment);
+
+        $otherPeripheral->comments()->save($comment);
+
+        Alert::success('Success!', 'Perisferico' . $otherPeripheral->license_plate . 'Actualizado correctamente en el sistema');
+
+        return redirect()->route('peripherals.other-peripherals.index');
     }
 
     /**
@@ -144,6 +167,41 @@ class OtherPeripheralController extends Controller
      */
     public function destroy(OtherPeripheral $otherPeripheral)
     {
-        //
+        
+          try {
+
+              if ($otherPeripheral->status  === 'Retirado - Baja de Activo' ) {
+                  $updateStatusPostDelete = 'Retirado - Baja de Activo';
+                  $whenUserDeleteOtherPeripheral = Auth::id();
+                  OtherPeripheral::where('id','=', $otherPeripheral->id)->update(['status' => $updateStatusPostDelete, 'user_id' => $whenUserDeleteOtherPeripheral ]);
+                //   $monitor->delete();
+                  alert()->info('Atención','El equipo de computo' . ' ' . $otherPeripheral->license_plate . ' ' . 'a sido eliminado
+                  correctamente del sistema');
+                  
+                  return redirect()->route('peripherals.monitors.remove-&-disabled-monitors');
+
+              } else {
+
+                  Alert::error('Error, Eliminar Perisferico', 'No puede eliminar este perisferico porque contiene un estado'
+                . ' ' . $monitor->status)->persistent('Close');
+                  return redirect()->route('peripherals.other-peripherals.remove-&-disabled-other-peripherals');
+              }
+              
+        } catch (\Illuminate\Database\QueryException $e){
+            
+            return alert()->error('Error','se presento un error al momento de eliminar el siguiente perisferico del sistema' + $e);
+
+        }
+    }
+
+    public function removeDisabledOtherPeripheral()
+    {
+        $otherPeripheralRemoveInventary = DB::table('other_peripherals')->where('status', 'like', '%Retirado - Baja de Activo%')->get();
+        $peripheralRemove = DB::table('other_peripherals')->where('status', 'like', '%Retirado - Baja de Activo%')->count();
+
+        return view('peripherals.other-peripherals.remove-&-disabled-other-peripherals', [
+            'otherPeripheralRemoveInventary' => $otherPeripheralRemoveInventary,
+            'peripheralRemove' => $peripheralRemove
+        ]);
     }
 }

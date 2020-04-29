@@ -145,5 +145,5 @@
         document.onsubmit = function () {
           return confirm('Atencion: {{ Auth::user()->name }}, ¿Esta seguro de eliminar la siguiente compañia del sistema?');
       }
-  </script>
+</script>
 @endpush

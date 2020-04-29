@@ -19,7 +19,7 @@
                                     Total de Mantenimientos Registrados
                                 </div>
                                 <div class="h4 mb-0 font-weight-bold">
-                                    {{ $totalMaintenanceComputer + $totalMaintenancePrinter }} 
+                                    {{ $totalMaintenanceComputer + $totalMaintenancePrinter }}
                                 </div>
                             </div>
                             <div class="col-auto">
@@ -124,15 +124,15 @@
                 @endcan
 
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="{{ route('information-&-technologies.dashboard') }}" >
+                <a class="dropdown-item" href="{{ route('information-&-technologies.dashboard') }}">
                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                    Regresar a information & technologies 
+                    Regresar a information & technologies
                 </a>
             </div>
         </div>
         <!-- end split maintenances.computers -->
 
-        
+
         <!-- split  maintenances.printers  -->
         <div class="btn-group dropright">
             <button type="button" class="btn btn-ligth">
@@ -165,13 +165,54 @@
                 @endcan
 
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="{{ route('information-&-technologies.dashboard') }}" >
+                <a class="dropdown-item" href="{{ route('information-&-technologies.dashboard') }}">
                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                    Regresar a information & technologies 
+                    Regresar a information & technologies
                 </a>
             </div>
         </div>
         <!-- end split maintenances.printers -->
+
+        <!-- split  maintenances.other-peripherals  -->
+        <div class="btn-group dropright">
+            <button type="button" class="btn btn-ligth">
+                <h1 class="h6 mb-1 text-gray-800">Mantenimiento</h1>
+                <small class="text-muted">
+                    <p class="text-right">
+                        *Perisfericos
+                        <i class="fas fa-asterisk"></i>
+                    </p>
+                </small>
+            </button>
+            <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">
+                <span class="sr-only">Toggle Dropright</span>
+            </button>
+            <div class="dropdown-menu">
+
+                @can('permission:maintenances.maintenance-of-computers.index')
+                <a class="dropdown-item" href="{{ route('maintenances.maintenance-of-other-peripherals.index') }} ">
+                    <i class="fas fa-laptop  fa-sm fa-fw mr-2 text-gray-600"></i>
+                    Reporte & Mantenimientos
+                </a>
+                @endcan
+
+                <div class="dropdown-divider"></div>
+                @can('permission:maintenances.maintenance-of-computers.history')
+                <a class="dropdown-item" href="{{ route('maintenances.maintenance-of-computers.history') }} ">
+                    <i class="fas fa-history  fa-sm fa-fw mr-2 text-gray-600"></i>
+                    Historial de Mantenimientos
+                </a>
+                @endcan
+
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="{{ route('information-&-technologies.dashboard') }}">
+                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                    Regresar a information & technologies
+                </a>
+            </div>
+        </div>
+        <!-- end split maintenances.other-peripherals -->
 
     </div>
 </section>

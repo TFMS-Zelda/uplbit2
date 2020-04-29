@@ -44,6 +44,31 @@
         {{-- table other-peripherals --}}
         <div class="card mb-4 py-3 border-left-primary">
             <div class="card-body">
+
+                @can('permission:peripherals.other-peripherals.remove-&-disabled-other-peripherals')
+                <!-- split remove peripherals.monitors   -->
+                <div class="btn-group dropright">
+                    <button type="button" class="btn btn-ligth">
+                        <h1 class="h6 mb-1 text-gray-800">Otros Perisfericos</h1>
+                        <small class="text-muted">
+                            <p class="text-right">Record & History</p>
+                        </small>
+                    </button>
+                    <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <span class="sr-only">Toggle Dropright</span>
+                    </button>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item"
+                            href="{{ route('peripherals.other-peripherals.remove-&-disabled-other-peripherals') }} ">
+                            <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                            * Otros Perisfericos retirados del inventario
+                        </a>
+                    </div>
+                </div>
+                <!-- end split remove peripherals.monitors -->
+                @endcan
+
                 <div class="table-responsive">
                     <table class="table table-sm table-striped table-light table-hover table-fixed"
                         id="table-other-peripherals">
@@ -118,21 +143,22 @@
                                 <td>
 
                                     @can('permission:peripherals.other-peripherals.show')
-                                    <a href="{{ route('peripherals.monitors.show', $otherPeripheral->id) }}"
+                                    <a href="{{ route('peripherals.other-peripherals.show', $otherPeripheral->id) }}"
                                         class="btn btn-success btn-circle btn-sm">
                                         <i class="fas fa-info-circle"></i>
                                     </a>
                                     @endcan
 
                                     @can('permission:peripherals.other-peripherals.edit')
-                                    <a href="{{ route('peripherals.monitors.edit', $otherPeripheral->id)}}"
+                                    <a href="{{ route('peripherals.other-peripherals.edit', $otherPeripheral->id)}}"
                                         class="btn btn-warning btn-circle btn-sm">
                                         <i class="fas fa-exclamation-triangle"></i>
                                     </a>
                                     @endcan
 
                                     @can('permission:peripherals.other-peripherals.destroy')
-                                    <form action="{{ route('peripherals.monitors.destroy', $otherPeripheral->id) }}"
+                                    <form
+                                        action="{{ route('peripherals.other-peripherals.destroy', $otherPeripheral->id) }}"
                                         method="POST">
                                         @csrf
                                         @method('DELETE')
