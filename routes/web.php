@@ -159,6 +159,9 @@ Route::middleware(['auth'])->group(function () {
 		->middleware('can:permission:managers.employees.destroy');
 	Route::get('managers.employees/{employee}/edit', 'EmployeeController@edit')->name('managers.employees.edit')
 		->middleware('can:permission:managers.employees.edit');
+	// maintenances history computers
+	Route::get('managers.employees.remove-&-disabled-employees', 'EmployeeController@removeDisabledEmployees')->name('managers.employees.remove-&-disabled-employees')
+	->middleware('can:permission:managers.employees.remove-&-disabled-employees');
 
 	// monitors
 	Route::post('peripherals.monitors/store', 'MonitorController@store')->name('peripherals.monitors.store')

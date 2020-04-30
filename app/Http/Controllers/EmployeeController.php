@@ -10,7 +10,8 @@ use RealRashid\SweetAlert\Facades\Alert;
 use DB;
 //Intervention Image
 use Image;
-
+use Storage;
+use Auth;
 
 
 class EmployeeController extends Controller
@@ -129,45 +130,52 @@ class EmployeeController extends Controller
             'creation_date' => 'required|date',
             'company_id' => 'required|numeric',
             'user_id' => 'required|numeric',
-            'profile_avatar' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:1024',
+            'profile_avatar' => 'image|mimes:jpeg,png,jpg,gif,svg|max:1024',
 
         ]);
 
-    
-       
-        if ($request->hasFile('profile_avatar')) {
-            $employee->name = $request->name;
-            $employee->citizenship_card = $request->citizenship_card;
-            $employee->email_corporate = $request->email_corporate;
-            $employee->job_title = $request->job_title;
-            $employee->employee_type = $request->employee_type;
-            $employee->ugdn = $request->ugdn;
-            $employee->status = $request->status;
-            $employee->work_area = $request->work_area;
-            $employee->country = $request->country;
-            $employee->city = $request->city;
-            $employee->phone = $request->phone;
-            $employee->creation_date = $request->creation_date;
-            $employee->company_id = $request->company_id;
-            $employee->user_id = $request->user_id;
-    
-            # code...
-            $slugNameEmployee = $request->name;
-            $avatarProfile = Image::make($request->profile_avatar)->fit(273, 270)
-            ->save( public_path('/core/image/EmployeesAvatar/' .$slugNameEmployee . '.' . $request->profile_avatar->extension()));
+          $employee->name = $request->name;
+          $employee->citizenship_card = $request->citizenship_card;
+          $employee->email_corporate = $request->email_corporate;
+          $employee->job_title = $request->job_title;
+          $employee->employee_type = $request->employee_type;
+          $employee->ugdn = $request->ugdn;
+          $employee->status = $request->status;
+          $employee->work_area = $request->work_area;
+          $employee->country = $request->country;
+          $employee->city = $request->city;
+          $employee->phone = $request->phone;
+          $employee->creation_date = $request->creation_date;
+          $employee->company_id = $request->company_id;
+          $employee->user_id = $request->user_id;
+
+         // File -> Upload Update Profile Avatae 
+         if ($request->hasFile('profile_avatar')) {
+            Storage::delete('public/Employees-avatar/'.$employee->profile_avatar);
+            // $file = $request->hasFile('profile_avatar');
+            $nombre = $request->profile_avatar->getClientOriginalName();
+            $file = $request->profile_avatar->storeAs('public/Employees-avatar', $nombre);
+            $employee->profile_avatar= $nombre;
+            $employee->update();
             
+            Alert::success('Success!', 'Empleado' . ' '. $employee->name . ' ' . 'UGDN°' . ' ' . $employee->ugdn . ' ' .
+            'Actualizado correctamente en el sistema')
+            ->persistent('Close');
+            
+            return redirect()->route('managers.employees.index');
+        
+        } else {
 
-            $employee->profile_avatar = '/core/image/EmployeesAvatar/' . $slugNameEmployee . '.' . $request->profile_avatar->extension();
+            $employee->update();
 
-            $employee->save();
-
-            Alert::success('Success!', 'Empleado' . $employee->name . 'Actualizado correctamente en el sistema');
+            Alert::success('Success!', 'El Empleado' . ' '. $employee->name . ' ' . ' con UGDN' . ' ' . $employee->ugdn . ' ' .
+            'a sido actualizado con exito, el avatar no a sido actualido por el usuario')
+            ->persistent('Close');
             return redirect()->route('managers.employees.index');
 
-        } else {
-            return 'error';
         }
-        
+
+         
     }
 
     /**
@@ -176,23 +184,37 @@ class EmployeeController extends Controller
      * @param  \App\Employee  $employee
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Employee $employee)
     {
         try {
+            if ($employee->status  === 'Inactivo' ) {
+                $updateStatusPostDelete = 'Inactivo';
+                $whenUserDeleteEmployee = Auth::id();
+                Employee::where('id','=', $employee->id)->update(['status' => $updateStatusPostDelete, 'user_id' => $whenUserDeleteEmployee ]);
+                $employee->delete();
+                alert()->info('Atención','El empleado' . ' ' . $employee->license_plate . ' ' . 'a sido inhabilitado
+                correctamente del sistema');
+                return redirect()->route('managers.employees.remove-&-disabled-employees');
+            } else {
 
-            $employee = Employee::findOrFail($id);
-       
-            alert()->info('Empleado Eliminado','
-                El empleado' . ' ' . $employee->name . ' a sido eliminado correctamente del sistema
-            ');
+                Alert::error('Error, Inhabilitar Empleado', 'No puede inhabilitar este empleado del sistema porque el estado actual es'
+                . ' ' . $employee->status)->persistent('Close');
 
-            return redirect()->route('managers.employees.index');
-        
-        } catch (\Illuminate\Database\QueryException $e){
-            
-            return alert()->error('Error Empleado No Eliminado', 'se a presentado un error al momento de eliminar el empleado' + $e);
-
+                return redirect()->route('managers.employees.index');
+                }
+            } catch (\Illuminate\Database\QueryException $e) {
+                return alert()->error('Error','se presento un error al momento de inhabilitar este empleado del sistema' + $e);
         }
-       
+    }
+
+     public function removeDisabledEmployees()
+    {
+        $employeeRemoveInventary = DB::table('employees')->where('status', 'like', '%Inactivo%')->get();
+        $employeesRemove = DB::table('employees')->where('status', 'like', '%Inactivo%')->count();
+
+        return view('managers.employees.remove-&-disabled-employees', [
+            'employeeRemoveInventary' => $employeeRemoveInventary,
+            'employeesRemove' => $employeesRemove
+        ]);
     }
 }

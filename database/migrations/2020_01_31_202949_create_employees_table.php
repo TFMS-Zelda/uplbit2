@@ -29,7 +29,7 @@ class CreateEmployeesTable extends Migration
             $table->string('country', 64);
             $table->string('city', 64);
             $table->string('phone', 10)->unique();
-            $table->string('profile_avatar')->default('/core/image/EmployeesAvatar/employee-avatar-default.svg');
+            $table->string('profile_avatar')->default('employee-avatar-default.svg');
             $table->date('creation_date');
 
             $table->bigInteger('company_id')->unsigned()->nullable();

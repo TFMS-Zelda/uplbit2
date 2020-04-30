@@ -13,7 +13,6 @@
     textarea {
         background-color: #E9EFF7;
     }
-
 </style>
 
 <section class="content">
@@ -183,6 +182,7 @@
                     </div>
                 </div>
             </div>
+
             <label>Update Profile Image</label>
             <input type="file" name="avatar" required>
             <br>
@@ -193,11 +193,13 @@
                     <div class="form-row">
                         <div class="form-group col-md-4">
                             <label>*Nombre:</label>
-                            <input type="text" class="form-control" maxlength="128" value="{{ $user->name }}" name="name" required />
+                            <input type="text" class="form-control" maxlength="128" value="{{ $user->name }}"
+                                name="name" required />
                         </div>
                         <div class="form-group col-md-4">
                             <label>*Email:</label>
-                            <input type="email" class="form-control" maxlength="128" value="{{ $user->email }}" name="email" required />
+                            <input type="email" class="form-control" maxlength="128" value="{{ $user->email }}"
+                                name="email" required />
                             <small class="form-text text-success">
                                 The Email field cannot be duplicated
                             </small>
@@ -211,11 +213,13 @@
                     <div class="form-row">
                         <div class="form-group col-md-4">
                             <label>*Cargo:</label>
-                            <input type="text" class="form-control" maxlength="128" value="{{ $user->job_title  }}" name="job_title" required />
+                            <input type="text" class="form-control" maxlength="128" value="{{ $user->job_title  }}"
+                                name="job_title" required />
                         </div>
                         <div class="form-group col-md-2">
                             <label>*UGDN:</label>
-                            <input type="email" class="form-control selectValidationNumber" maxlength="128" value="{{ $user->ugdn }}" name="ugdn" required />
+                            <input type="email" class="form-control selectValidationNumber" maxlength="128"
+                                value="{{ $user->ugdn }}" name="ugdn" required />
                             <small class="form-text text-success">
                                 The UGDN field cannot be duplicated
                             </small>
@@ -250,22 +254,23 @@
             </div>
             <p class="h4 mb-1 text-gray-800">Lista de Roles</p>
 
-            
+
             <div class="row">
                 <div class="col-md-12">
                     <div class="form-row">
-                     <ul class="list-unstyled">
-                         @foreach($roles as $role)
+                        <ul class="list-unstyled">
+                            @foreach($roles as $role)
                             <li>
                                 <label>
                                     {{ Form::checkbox('roles[]', $role->id, null) }}
-                                    {{ $role->name }} 
-                                    <i class="fas fa-angle-right"></i> <em>{{ $role->description ? : 'Sin descripción' }}</em>
+                                    {{ $role->name }}
+                                    <i class="fas fa-angle-right"></i>
+                                    <em>{{ $role->description ? : 'Sin descripción' }}</em>
 
                                 </label>
                             </li>
-                         @endforeach
-                     </ul>
+                            @endforeach
+                        </ul>
                     </div>
                 </div>
             </div>

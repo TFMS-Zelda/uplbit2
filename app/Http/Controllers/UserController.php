@@ -42,7 +42,6 @@ class UserController extends Controller
         permisos del sistema');
 
         return \view ('managers.users.edit', compact('user', 'roles'));
-
     }
 
     public function update(UpdateUserRequest $request, $id)
@@ -56,4 +55,6 @@ class UserController extends Controller
         return redirect()->route('managers.index');
     
     }
+
+
 }
