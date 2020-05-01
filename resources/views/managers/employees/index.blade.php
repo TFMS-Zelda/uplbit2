@@ -67,7 +67,7 @@
                                 <th>Nombre:</th>
                                 <th>UGDN:</th>
                                 <th>Área:</th>
-                                <th>Localización:</th>
+                                <th>Ubicación:</th>
                                 <th>Acciones:</th>
                             </tr>
                         </thead>
@@ -97,9 +97,15 @@
                                         <i class="fa fa-fingerprint"></i>
                                         <br>
                                         {{ $employee->ugdn }} <br>
-                                        <small class="is-primary">{{ $employee->citizenship_card }} </small>
+                                        CC: {{ $employee->citizenship_card }}
                                         @if ( $employee->status === 'Activo')
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="mb-0 font-weight-bold text-gray-600">
+                                        {{ $employee->work_area }}
                                         <br>
+                                        {{ $employee->employee_type }} <br>
                                         <span class="badge badge-success">{{ $employee->status }} </span>
                                         @else
                                         <span class="badge badge-danger">{{ $employee->status }} </span>
@@ -108,16 +114,10 @@
                                 </td>
                                 <td>
                                     <div class="mb-0 font-weight-bold text-gray-600">
-                                        {{ $employee->work_area }}
+                                        <i class="fa fa-map-marker-alt" aria-hidden="true"></i>
                                         <br>
-                                        <small> <i class="fas fa-phone"></i> {{ $employee->phone }} <br>
-                                        </small>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="mb-0 font-weight-bold text-gray-600">
-                                        <small> {{ $employee->country }} / {{ $employee->city }}</small>
-
+                                        {{ $employee->country }} / {{ $employee->city }} <br>
+                                        <i class="fas fa-phone"></i> {{ $employee->phone }}
                                     </div>
                                 </td>
                                 <td>

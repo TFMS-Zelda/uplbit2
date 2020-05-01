@@ -15,83 +15,101 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <!-- Styles -->
-    <link href="{{ asset('css/root.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <style>
 
     </style>
 
 </head>
 
-<body id="page-top">
+<body>
+
     <!-- Page Wrapper -->
     <div id="wrapper">
+
         <!-- Sidebar -->
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center"
-                href="{{ route('information-&-technologies.dashboard') }}">
-                <div class="fa-2x">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+                <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-cog fa-spin"></i>
                 </div>
-                <div class="sidebar-brand-text mx-3">UPLBIT <sup>2</sup></div>
+                <div class="sidebar-brand-text mx-3">Upl~Bit <sup>2</sup></div>
             </a>
 
             <!-- Divider -->
             <hr class="sidebar-divider my-0">
 
             <!-- Nav Item - Dashboard -->
-            <li class="nav-item active">
-                <a class="nav-link text-center">
-                    <h4>CMDB</h4>
-                </a>
+            <li class="nav-item">
+                <a class="nav-link" href="index.html">
+                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <span>Dashboard</span></a>
             </li>
 
             <!-- Divider -->
             <hr class="sidebar-divider">
+
+            <!-- Heading -->
+            <div class="sidebar-heading">
+                Interface
+            </div>
+
             <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item active">
+            <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
                     aria-expanded="true" aria-controls="collapseTwo">
                     <i class="fas fa-fw fa-cog"></i>
-                    <span>Organizational Unit:</span>
+                    <span>Components</span>
                 </a>
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-
-                        @can('companies.index')
-                        <a class="collapse-item" href="{{ route('companies.index') }}">Compañias</a>
-                        @endcan
-
+                        <h6 class="collapse-header">Custom Components:</h6>
+                        <a class="collapse-item" href="buttons.html">Buttons</a>
                         <a class="collapse-item" href="cards.html">Cards</a>
                     </div>
                 </div>
             </li>
 
             <!-- Nav Item - Utilities Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
+            <li class="nav-item active">
+                <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapseUtilities"
                     aria-expanded="true" aria-controls="collapseUtilities">
                     <i class="fas fa-fw fa-wrench"></i>
-                    <span>Perisféricos:</span>
+                    <span>Configuration Item</span>
                 </a>
-                <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
+                <div id="collapseUtilities" class="collapse show" aria-labelledby="headingUtilities"
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Custom Ci:</h6>
 
-                        @can('permission:peripherals.monitors.index')
-                        <a class="collapse-item" href="{{ route('peripherals.monitors.index') }} "><i
-                                class="fas fa-tv"></i> Monitores</a>
-                        @endcan
+                        <a class="collapse-item" href="{{ route('computers.index') }}">
+                            <i class="fas fa-laptop"></i>
+                            Computers
+                        </a>
 
-                        @can('permission:peripherals.printers.index')
-                        <a class="collapse-item" href="{{ route('peripherals.printers.index') }} "><i
-                                class="fas fa-print"></i> Impresoras</a>
-                        @endcan
+                        <a class="collapse-item" href="{{ route('computers.index') }}">
+                            <i class="fas fa-tablet"></i>
+                            Tablets
+                        </a>
 
-                        @can('permission:peripherals.other-peripherals.index')
-                        <a class="collapse-item" href="{{ route('peripherals.other-peripherals.index') }}"><i
-                                class="fas fa-asterisk"></i> Otros Perisféricos</a>
-                        @endcan
+                        <a class="collapse-item" href="{{ route('computers.index') }}">
+                            <i class="fas fa-print"></i>
+                            Impresoras
+                        </a>
+
+                        <a class="collapse-item" href="{{ route('computers.index') }}">
+                            <i class="fas fa-tv"></i>
+                            Monitores
+                        </a>
+                        <hr>
+
+                        <a class="collapse-item" href="{{ route('computers.index') }}">
+                            <i class="fas fa-asterisk"></i>
+                            Otros Perisfericos
+                        </a>
+
 
                     </div>
                 </div>
@@ -110,15 +128,13 @@
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
                     aria-expanded="true" aria-controls="collapsePages">
                     <i class="fas fa-fw fa-folder"></i>
-                    <span>Configuration Item</span>
+                    <span>Pages</span>
                 </a>
                 <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header"> Elementos (CI):</h6>
-                        <a class="collapse-item" href="{{ route('computers.index') }} "><i class="fas fa-laptop"></i>
-                            Equipos de Computo </a>
-                        <a class="collapse-item" href="{{ route('tablets.index') }} "><i class="fas fa-tablet"></i>
-                            Tablets Corporativas </a>
+                        <h6 class="collapse-header">Login Screens:</h6>
+                        <a class="collapse-item" href="login.html">Login</a>
+                        <a class="collapse-item" href="register.html">Register</a>
                         <a class="collapse-item" href="forgot-password.html">Forgot Password</a>
                         <div class="collapse-divider"></div>
                         <h6 class="collapse-header">Other Pages:</h6>
@@ -128,28 +144,19 @@
                 </div>
             </li>
 
+            <!-- Nav Item - Charts -->
             <li class="nav-item">
-                <a class="nav-link" href="#">
-                    <i class="fas fa-book"></i>
-                    <span>Operating Agreement</span></a>
+                <a class="nav-link" href="charts.html">
+                    <i class="fas fa-fw fa-chart-area"></i>
+                    <span>Charts</span></a>
             </li>
 
             <!-- Nav Item - Tables -->
-            <li class="nav-item">
-                <a class="nav-link" href="tables.html">
-                    <i class="fas fa-fw fa-table"></i>
-                    <span>Tables</span></a>
-            </li>
-
-
-            <!-- Nav Item - Manager System -->
-            @can('managers.index')
             <li class="nav-item active">
-                <a class="nav-link" href="{{route('managers.index')}}">
-                    <i class="fas fa-fw fa-atom"></i>
-                    <span>Manager System</span></a>
+                <a class="nav-link" href="{{ route('managers.index') }}">
+                    <i class="fas fa-users"></i>
+                    <span>Access Management</span></a>
             </li>
-            @endcan
 
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
@@ -409,8 +416,8 @@
                     </ul>
                 </nav>
                 <!-- End of Topbar -->
-                <!-- Begin Page Content -->
-                <div class="container-fluid">
+
+                <div class="container-fluid" id='app'>
 
                     <div class="card mb-4 py-3 border-bottom-primary">
                         <div class="row">
@@ -449,10 +456,7 @@
         <!-- End of Content Wrapper -->
     </div>
     <!-- End of Page Wrapper -->
-    <!-- Scroll to Top Button-->
-    <a class="scroll-to-top rounded" href="#page-top">
-        <i class="fas fa-angle-up"></i>
-    </a>
+
     <!-- Logout Modal-->
     <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
@@ -474,7 +478,7 @@
     </div>
     <!-- Custom scripts for all pages-->
     <!-- Scripts -->
-    <script src="{{ asset('js/root.js') }}"></script>
+    <script src="{{ asset('js/app.js') }}"></script>
     @stack('scripts')
 </body>
 
