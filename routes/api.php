@@ -18,3 +18,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::get('/getAllArticlesByIdProvider/{id}', 'Api\ArticleController@getAllArticlesByIdProvider');
+Route::get('/employees', 'Api\EmployeeController@index');
+Route::get('/computers', 'Api\ComputerController@index');

@@ -1,4 +1,7 @@
 const mix = require('laravel-mix');
+mix.autoload({
+   jquery: ['$', 'global.jQuery', "jQuery", "global.$", "jquery", "global.jquery"]
+});
 
 /*
  |--------------------------------------------------------------------------

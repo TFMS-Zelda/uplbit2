@@ -98,7 +98,6 @@
                                         <br>
                                         {{ $employee->ugdn }} <br>
                                         CC: {{ $employee->citizenship_card }}
-                                        @if ( $employee->status === 'Activo')
                                     </div>
                                 </td>
                                 <td>

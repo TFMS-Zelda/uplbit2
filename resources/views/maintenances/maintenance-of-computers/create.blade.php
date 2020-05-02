@@ -5,6 +5,7 @@
 
 @section('titlePosition', 'maintenances.maintenance-of-computers/create')
 
+@push('sass')
 <style>
     input[type="text"],
     input[type="email"],
@@ -24,7 +25,7 @@
         background-color: #cccccc;
     }
 </style>
-
+@endpush
 <section class="content">
 
     <div class="text-center">
@@ -68,7 +69,8 @@
     <!-- close import -->
 
     <!-- start form maintances.maintance.create -->
-    <form action="{{ route('maintenances.maintenance-of-computers.store') }}" method="POST" enctype="multipart/form-data">
+    <form action="{{ route('maintenances.maintenance-of-computers.store') }}" method="POST"
+        enctype="multipart/form-data">
         @csrf
 
         <p class="h4 mb-1 text-gray-800"><i class="fas fa-wrench"></i> Maintance Resume</p>
@@ -260,7 +262,7 @@
                                                             <strong>{{ $computer->servicetag }}</strong> <br>
                                                             Placa corporativa:
                                                             <strong>{{ $computer->license_plate }}</strong>
-                                                        
+
                                                         </p>
                                                     </div>
                                                 </p>
@@ -291,17 +293,12 @@
 @push('scripts')
 <!-- Ckeditor plugin  -->
 <script src="{{ asset('/core/plugins/ckeditor/ckeditor.js') }}"></script>
-
 <script>
-    $(document).ready(function () {
-          $('#table-computers').DataTable({});
-      });
-      
-      // CkEditor
+    // CkEditor
       CKEDITOR.config.heigth = 400;
       CKEDITOR.config.width = 'auto';
       CKEDITOR.replace('maintenance_description');
       CKEDITOR.replace('observations');
-
+    
 </script>
 @endpush

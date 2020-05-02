@@ -142,7 +142,7 @@ Route::middleware(['auth'])->group(function () {
 	->middleware('can:permission:tablets.edit');
 	// remove tablets
 	Route::get('tablets.remove-&-disabled-tablets', 'TabletController@removeDisabledTablets')->name('tablets.remove-&-disabled-tablets')
-	->middleware('can:permission:tablets.remove-&-disabled-tablets');
+		->middleware('can:permission:tablets.remove-&-disabled-tablets');
 
 	// employees
 	Route::post('managers.employees/store', 'EmployeeController@store')->name('managers.employees.store')
@@ -161,7 +161,7 @@ Route::middleware(['auth'])->group(function () {
 		->middleware('can:permission:managers.employees.edit');
 	// maintenances history computers
 	Route::get('managers.employees.remove-&-disabled-employees', 'EmployeeController@removeDisabledEmployees')->name('managers.employees.remove-&-disabled-employees')
-	->middleware('can:permission:managers.employees.remove-&-disabled-employees');
+		->middleware('can:permission:managers.employees.remove-&-disabled-employees');
 
 	// monitors
 	Route::post('peripherals.monitors/store', 'MonitorController@store')->name('peripherals.monitors.store')
@@ -215,14 +215,14 @@ Route::middleware(['auth'])->group(function () {
 	Route::delete('peripherals.other-peripherals/{otherPeripheral}', 'OtherPeripheralController@destroy')->name('peripherals.other-peripherals.destroy')
 		->middleware('can:permission:peripherals.other-peripherals.destroy');
 	Route::get('peripherals.other-peripherals/{otherPeripheral}/edit', 'OtherPeripheralController@edit')->name('peripherals.other-peripherals.edit')
-	->middleware('can:permission:peripherals.other-peripherals.edit');
+		->middleware('can:permission:peripherals.other-peripherals.edit');
 	// remove other-peripherals
 	Route::get('peripherals.other-peripherals.remove-&-disabled-other-peripherals', 'OtherPeripheralController@removeDisabledOtherPeripheral')->name('peripherals.other-peripherals.remove-&-disabled-other-peripherals')
 		->middleware('can:permission:peripherals.other-peripherals.remove-&-disabled-other-peripherals');
 
 	// maintenances
 	Route::get('maintenances', 'MaintenanceController@index')->name('maintenances.index')
-	->middleware('can:permission:maintenances.index');
+		->middleware('can:permission:maintenances.index');
 
 	// maintenances computers
 	Route::post('maintenances.maintenance-of-computers/store', 'MaintenanceComputerController@store')->name('maintenances.maintenance-of-computers.store')
@@ -241,7 +241,7 @@ Route::middleware(['auth'])->group(function () {
 		->middleware('can:permission:maintenances.maintenance-of-computers.edit');
 	// maintenances history computers
 	Route::get('maintenances.maintenance-of-computers.history', 'MaintenanceComputerController@historyMaintenances')->name('maintenances.maintenance-of-computers.history')
-	->middleware('can:permission:maintenances.maintenance-of-computers.history');
+		->middleware('can:permission:maintenances.maintenance-of-computers.history');
 
 	// maintenances printers
 	Route::post('maintenances.maintenance-of-printers/store', 'MaintenancePrinterController@store')->name('maintenances.maintenance-of-printers.store')
@@ -260,7 +260,7 @@ Route::middleware(['auth'])->group(function () {
 		->middleware('can:permission:maintenances.maintenance-of-printers.edit');
 	// maintenances history printers
 	Route::get('maintenances.maintenance-of-printers.history', 'MaintenancePrinterController@historyMaintenances')->name('maintenances.maintenance-of-printers.history')
-	->middleware('can:permission:maintenances.maintenance-of-printers.history');
+		->middleware('can:permission:maintenances.maintenance-of-printers.history');
 
 		// maintenances other-peripherals
 	Route::post('maintenances.maintenance-of-other-peripherals/store', 'MaintenanceOtherPeripheralController@store')->name('maintenances.maintenance-of-other-peripherals.store')
@@ -279,14 +279,22 @@ Route::middleware(['auth'])->group(function () {
 		->middleware('can:permission:maintenances.maintenance-of-other-peripherals.edit');
 	// maintenances history printers
 	Route::get('maintenances.maintenance-of-other-peripherals.history', 'MaintenanceOtherPeripheralController@historyMaintenances')->name('maintenances.maintenance-of-other-peripherals.history')
-	->middleware('can:permission:maintenances.maintenance-of-other-peripherals.history');
+		->middleware('can:permission:maintenances.maintenance-of-other-peripherals.history');
 
 	// Ruta reports maintenances computers
 	Route::get('reports.maintenance-of-computers/{historyMaintenance}/report', 'ReportController@downloadReportMaintenanceComputer')->name('reports.maintenance-of-computers.download')
-		->middleware('can:permission:reports.maintenance-of-computers.download');;
+		->middleware('can:permission:reports.maintenance-of-computers.download');
 
 	// Ruta reports maintenances computers
 	Route::get('reports.maintenance-of-printers/{historyMaintenance}/report', 'ReportController@downloadReportMaintenancePrinter')->name('reports.maintenance-of-printers.download')
-		->middleware('can:permission:reports.maintenance-of-printers.download');;
+		->middleware('can:permission:reports.maintenance-of-printers.download');
+		
+		
+
+
+
+	Route::get('relationship-&-configurations', 'RelationshipConfigurationController@index')->name('relationship-&-configurations.index')
+		->middleware('can:permission:relationship-&-configurations.index');
+
 
 	});

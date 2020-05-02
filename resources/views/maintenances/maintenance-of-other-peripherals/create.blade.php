@@ -5,6 +5,7 @@
 
 @section('titlePosition', 'maintenances.maintenance-of-other-peripherals/create')
 
+@push('sass')
 <style>
     input[type="text"],
     input[type="email"],
@@ -24,6 +25,7 @@
         background-color: #cccccc;
     }
 </style>
+@endpush
 
 <section class="content">
 

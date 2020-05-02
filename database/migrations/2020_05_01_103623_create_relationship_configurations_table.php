@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateRelationMasterFixedAssetsTable extends Migration
+class CreateRelationshipConfigurationsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,19 +13,22 @@ class CreateRelationMasterFixedAssetsTable extends Migration
      */
     public function up()
     {
-        Schema::create('relation_master_fixed_assets', function (Blueprint $table) {
+        Schema::create('relationship_configurations', function (Blueprint $table) {
             $table->bigIncrements('id');
-            
-            //Relation 1 a 1 , Table users
+    
             $table->bigInteger('user_id')->unsigned()->nullable();
-             //Llave Foreign  Tabla users
             $table->foreign('user_id')->references('id')->on('users')
+            ->onUpdate('cascade');
+
+            $table->bigInteger('employee_id')->unsigned()->nullable();
+            $table->foreign('employee_id')->references('id')->on('employees')
             ->onUpdate('cascade')
             ->onDelete('set null');
 
-          
-            $table->morphs('commentable');
-              $table->text('body');
+            $table->morphs('assignable');
+            $table->date('assignment_date')
+            $table->text('body');
+
             $table->timestamps();
         });
     }
@@ -37,6 +40,6 @@ class CreateRelationMasterFixedAssetsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('relation_master_fixed_assets');
+        Schema::dropIfExists('relationship_configurations');
     }
 }

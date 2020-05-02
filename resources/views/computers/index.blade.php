@@ -3,7 +3,8 @@
 @section('title', 'information-&-technologies')
 
 @section('content')
-@section('titlePosition', 'companies')
+@section('titlePosition', 'computers')
+
 <section class="content">
     <div class="container-fluid">
         <h1 class="h3 mb-1 text-gray-800">Equipos de Computo</h1>
@@ -13,6 +14,7 @@
             acceso privado para usuarios directamente autentificados en el sistema.
             En este sitio encontrara el listado de las equipos de computo registrados en el sistema.
         </p>
+
 
         <div class="row">
             <div class="col-xl-3 col-md-6 mb-4">
@@ -175,6 +177,7 @@
         </div>
     </div>
 </section>
+
 @endsection
 @push('scripts')
 <script src="{{ asset('/core/plugins/DataTables/datatables.min.js') }}"></script>

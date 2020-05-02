@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\RelationMasterFixedAssets;
+use App\RelationshipConfiguration;
 use Illuminate\Http\Request;
 
-class RelationMasterFixedAssetsController extends Controller
+class RelationshipConfigurationController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +14,7 @@ class RelationMasterFixedAssetsController extends Controller
      */
     public function index()
     {
-        //
+        return view('relationship-&-configurations.index');
     }
 
     /**
@@ -41,10 +41,10 @@ class RelationMasterFixedAssetsController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\RelationMasterFixedAssets  $relationMasterFixedAssets
+     * @param  \App\RelationshipConfiguration  $relationshipConfiguration
      * @return \Illuminate\Http\Response
      */
-    public function show(RelationMasterFixedAssets $relationMasterFixedAssets)
+    public function show(RelationshipConfiguration $relationshipConfiguration)
     {
         //
     }
@@ -52,10 +52,10 @@ class RelationMasterFixedAssetsController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\RelationMasterFixedAssets  $relationMasterFixedAssets
+     * @param  \App\RelationshipConfiguration  $relationshipConfiguration
      * @return \Illuminate\Http\Response
      */
-    public function edit(RelationMasterFixedAssets $relationMasterFixedAssets)
+    public function edit(RelationshipConfiguration $relationshipConfiguration)
     {
         //
     }
@@ -64,10 +64,10 @@ class RelationMasterFixedAssetsController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\RelationMasterFixedAssets  $relationMasterFixedAssets
+     * @param  \App\RelationshipConfiguration  $relationshipConfiguration
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, RelationMasterFixedAssets $relationMasterFixedAssets)
+    public function update(Request $request, RelationshipConfiguration $relationshipConfiguration)
     {
         //
     }
@@ -75,10 +75,10 @@ class RelationMasterFixedAssetsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\RelationMasterFixedAssets  $relationMasterFixedAssets
+     * @param  \App\RelationshipConfiguration  $relationshipConfiguration
      * @return \Illuminate\Http\Response
      */
-    public function destroy(RelationMasterFixedAssets $relationMasterFixedAssets)
+    public function destroy(RelationshipConfiguration $relationshipConfiguration)
     {
         //
     }

@@ -1,7 +1,6 @@
 <?php
 
 use App\Provider;
-use App\Article;
 
 namespace App\Services;
 

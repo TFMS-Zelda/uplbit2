@@ -5,13 +5,6 @@
 @section('content')
 @section('titlePosition', 'printers/create')
 
-<style>
-    input[type="text"],
-    input[type="email"] textarea {
-        background-color: #E9EFF7;
-    }
-</style>
-
 <section class="content">
     <div class="container-fluid">
         <h1 class="h3 mb-1 text-gray-800">Agregar Impresora</h1>

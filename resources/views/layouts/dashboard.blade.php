@@ -16,9 +16,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <style>
-
-    </style>
+    @stack('sass')
 
 </head>
 
@@ -151,15 +149,22 @@
                     <span>Charts</span></a>
             </li>
 
-            <!-- Nav Item - Tables -->
             <li class="nav-item active">
                 <a class="nav-link" href="{{ route('managers.index') }}">
                     <i class="fas fa-users"></i>
                     <span>Access Management</span></a>
             </li>
 
+            <li class="nav-item active">
+                <a class="nav-link" href="{{ route('relationship-&-configurations.index') }}">
+                    <i class="fas fa-balance-scale-left"></i>
+                    <span>Relationship Configuration</span></a>
+            </li>
+
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
+
+
 
             <!-- Sidebar Toggler (Sidebar) -->
             <div class="text-center d-none d-md-inline">
@@ -177,26 +182,6 @@
 
                 <!-- Topbar -->
                 <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-
-                    <!-- Sidebar Toggle (Topbar) -->
-                    <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
-                        <i class="fa fa-bars"></i>
-                    </button>
-
-                    <!-- Topbar Search -->
-                    <form
-                        class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-                        <div class="input-group">
-                            <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
-                                aria-label="Search" aria-describedby="basic-addon2">
-                            <div class="input-group-append">
-                                <button class="btn btn-primary" type="button">
-                                    <i class="fas fa-search fa-sm"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </form>
-
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
 
@@ -417,7 +402,13 @@
                 </nav>
                 <!-- End of Topbar -->
 
-                <div class="container-fluid" id='app'>
+                <div class="container-fluid">
+                    <!-- Page Heading -->
+                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                        <a href="{{ route('information-&-technologies.dashboard') }}"
+                            class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+                                class="fas fa-arrow-left fa-sm text-white-50"></i> information-&-technologies</a>
+                    </div>
 
                     <div class="card mb-4 py-3 border-bottom-primary">
                         <div class="row">
@@ -433,8 +424,12 @@
                             </h1>
                         </div>
                     </div>
-                    @yield('content')
-                    @include('sweetalert::alert')
+
+
+                    <main id='app'>
+                        @yield('content')
+                    </main>
+
 
                 </div>
                 <!-- /.container-fluid -->
@@ -479,6 +474,7 @@
     <!-- Custom scripts for all pages-->
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
+    @include('sweetalert::alert')
     @stack('scripts')
 </body>
 

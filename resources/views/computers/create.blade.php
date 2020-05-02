@@ -2,15 +2,6 @@
 @section('title', 'information-&-technologies')
 @section('content')
 @section('titlePosition', 'computers/create')
-<link rel="stylesheet" href="{{ asset('/core/plugins/DataTables/datatables.css') }}">
-
-<style>
-    input[type="text"],
-    input[type="email"],
-    textarea {
-        background - color: #E9EFF7;
-    }
-</style>
 
 <section class="content">
     <div class="container-fluid">
@@ -388,8 +379,6 @@
                     </div>
                 </div>
             </div>
-
-            <p class="h4 mb-1 text-gray-800">Informacion Corporativa</p>
 
             <p class="h4 mb-1 text-gray-800">Comentarios</p>
             <div class="row">

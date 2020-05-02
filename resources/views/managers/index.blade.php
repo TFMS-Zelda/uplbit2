@@ -161,8 +161,8 @@
         <!-- end split administración employes -->
 
         @can('permission:managers.roles.index')
-         <!-- split administración roles   -->
-         <div class="btn-group dropright">
+        <!-- split administración roles   -->
+        <div class="btn-group dropright">
             <button type="button" class="btn btn-ligth">
                 <h1 class="h6 mb-1 text-gray-800">Administración</h1>
                 <small class="text-muted">
@@ -189,10 +189,5 @@
 
 
 </section>
-<script>
-    $(document).ready(function () {
-        $('#table-computers').DataTable();
-    });
 
-</script>
 @endsection

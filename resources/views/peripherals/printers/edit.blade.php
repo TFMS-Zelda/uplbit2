@@ -6,13 +6,6 @@
 
 @section('titlePosition', 'printers/edit')
 
-<style>
-    input[type="text"],
-    input[type="email"],
-    textarea {
-        background-color: #E9EFF7;
-    }
-</style>
 
 <section class="content">
     <div class="container-fluid">
