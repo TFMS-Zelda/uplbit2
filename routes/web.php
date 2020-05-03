@@ -18,6 +18,7 @@ Route::get('/', function () {
 
 Auth::routes();
 
+
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::middleware(['auth'])->group(function () {
@@ -278,7 +279,7 @@ Route::middleware(['auth'])->group(function () {
 	Route::get('maintenances.maintenance-of-other-peripherals/{historyMaintenance}/edit', 'MaintenanceOtherPeripheralController@edit')->name('maintenances.maintenance-of-other-peripherals.edit')
 		->middleware('can:permission:maintenances.maintenance-of-other-peripherals.edit');
 	// maintenances history printers
-	Route::get('maintenances.maintenance-of-other-peripherals.history', 'MaintenanceOtherPeripheralController@historyMaintenances')->name('maintenances.maintenance-of-other-peripherals.history')
+	Route::get('maintenances/maintenance-of-other-peripherals/history', 'MaintenanceOtherPeripheralController@historyMaintenances')->name('maintenances.maintenance-of-other-peripherals.history')
 		->middleware('can:permission:maintenances.maintenance-of-other-peripherals.history');
 
 	// Ruta reports maintenances computers
@@ -289,12 +290,13 @@ Route::middleware(['auth'])->group(function () {
 	Route::get('reports.maintenance-of-printers/{historyMaintenance}/report', 'ReportController@downloadReportMaintenancePrinter')->name('reports.maintenance-of-printers.download')
 		->middleware('can:permission:reports.maintenance-of-printers.download');
 		
-		
-
-
-
-	Route::get('relationship-&-configurations', 'RelationshipConfigurationController@index')->name('relationship-&-configurations.index')
-		->middleware('can:permission:relationship-&-configurations.index');
-
+	
 
 	});
+
+	Route::get('relationship-&-configurations', 'RelationshipConfigurationController@index')->name('relationship-&-configurations.index');
+	Route::get('relationship-&-configurations/create', 'RelationshipConfigurationController@create')->name('relationship-&-configurations.create');
+	Route::get('relationship-&-configurations/{employee}/assign', 'RelationshipConfigurationController@assign')->name('relationship-&-configurations.assign');
+	Route::get('relationship-&-configurations/assignments/computers', 'RelationshipConfigurationController@assignmentsComputersIndex')->name('relationship-&-configurations.assignments.computers');
+	Route::delete('relationship-&-configurations/assignments/computers/{relationshipConfiguration}', 'RelationshipConfigurationController@destroyAssignmentComputer')->name('relationship-&-configurations.assignments.destroy.assignment.computer');
+

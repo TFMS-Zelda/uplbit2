@@ -89,7 +89,6 @@ class ComputerController extends Controller
     public function store(StoreComputerRequest $request)
     {
         $computer = new \App\Computer;
-
         $computer->create($request->all());
 
         // se obtiene el ultimo computer creado

@@ -33,7 +33,7 @@
                 src="{{ asset('/core/undraw/employee-hire.svg') }}">
         </div>
 
-        <!-- table computers -->
+        <!-- table employees -->
         <div class="card mb-4 py-3 border-left-secondary">
             <div class="card-body">
                 <div class="table-responsive">
@@ -105,10 +105,7 @@
                                         {{ $employee->work_area }}
                                         <br>
                                         {{ $employee->employee_type }} <br>
-                                        <span class="badge badge-success">{{ $employee->status }} </span>
-                                        @else
-                                        <span class="badge badge-danger">{{ $employee->status }} </span>
-                                        @endif
+
                                     </div>
                                 </td>
                                 <td>
@@ -162,7 +159,7 @@
 
             </div>
         </div>
-        <!-- end table computers -->
+        <!-- end table employees -->
     </div>
 </section>
 @endsection

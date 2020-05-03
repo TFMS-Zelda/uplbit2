@@ -26,7 +26,7 @@ class CreateRelationshipConfigurationsTable extends Migration
             ->onDelete('set null');
 
             $table->morphs('assignable');
-            $table->date('assignment_date')
+            $table->date('assignment_date');
             $table->text('body');
 
             $table->timestamps();

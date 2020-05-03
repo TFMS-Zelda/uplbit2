@@ -157,7 +157,7 @@
 
             <li class="nav-item active">
                 <a class="nav-link" href="{{ route('relationship-&-configurations.index') }}">
-                    <i class="fas fa-balance-scale-left"></i>
+                    <i class="fas fa-location-arrow"></i>
                     <span>Relationship Configuration</span></a>
             </li>
 
@@ -404,12 +404,6 @@
 
                 <div class="container-fluid">
                     <!-- Page Heading -->
-                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <a href="{{ route('information-&-technologies.dashboard') }}"
-                            class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
-                                class="fas fa-arrow-left fa-sm text-white-50"></i> information-&-technologies</a>
-                    </div>
-
                     <div class="card mb-4 py-3 border-bottom-primary">
                         <div class="row">
                             <div class="col">
@@ -424,13 +418,9 @@
                             </h1>
                         </div>
                     </div>
-
-
                     <main id='app'>
                         @yield('content')
                     </main>
-
-
                 </div>
                 <!-- /.container-fluid -->
             </div>

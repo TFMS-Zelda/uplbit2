@@ -83,7 +83,6 @@
                         <tbody>
                             @foreach($monitors as $monitor)
                             <tr class="text-center">
-
                                 <td>
                                     <div class="col-auto text-center">
                                         <i class="fas fa-tv fa-2x"></i>

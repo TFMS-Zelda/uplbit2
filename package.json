@@ -30,6 +30,7 @@
         "autonumeric": "^4.5.10",
         "datatables.net": "^1.10.20",
         "datatables.net-bs4": "^1.10.20",
-        "datatables.net-buttons": "^1.6.1"
+        "datatables.net-buttons": "^1.6.1",
+        "sweetalert2": "^9.10.12"
     }
 }

@@ -52,6 +52,11 @@ class User extends Authenticatable
         return $this->morphMany(Comment::class, 'commentable');
     }
 
+    public function assignments()
+    {
+        return $this->morphMany(RelationshipConfiguration::class, 'assignable');
+    }
+
     
 
 }

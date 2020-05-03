@@ -381,16 +381,11 @@
         </form>
     </div>
 </section>
-
+@endsection
+@push('scripts')
 <script>
-    // Validacion: Solo permite escribir caracteres numericos
     $('.selectValidationNumber').on('input', function () {
         this.value = this.value.replace(/[^0-9]/g, '');
     });
-
-    $(document).ready(function () {
-        $('#table-articles').DataTable();
-    });
-
 </script>
-@endsection
+@endpush
