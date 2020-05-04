@@ -26,9 +26,11 @@ const Toast = Swal.mixin({
 window.Toast = Toast;
 
 import AssignmentsComputersComponent from "./components/AssignmentsComputersComponent.vue";
+import AssignComputerComponent from "./components/AssignComputerComponent.vue";
 const app = new Vue({
     components: {
         'assignments-computers': AssignmentsComputersComponent,
+        'assign-computer': AssignComputerComponent,
     },
 
     el: '#app',

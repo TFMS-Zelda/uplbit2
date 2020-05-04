@@ -21,11 +21,10 @@
             <!-- Card Content - Collapse -->
             <div class="collapse show" id="collapseCardExample">
                 <div class="card-body">
-                    ¿Que Cí desea asignar?
+                    ¿Que Cí desea Asignar?
                     <br />
-                    <computers-component :id_user="{{ json_encode($id_user) }}"
+                    <assign-computer :id_user="{{ json_encode($id_user) }}"
                         :id_employee="{{ json_encode($id_employee) }}" />
-
                 </div>
             </div>
         </div>

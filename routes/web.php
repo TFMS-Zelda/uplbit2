@@ -297,6 +297,8 @@ Route::middleware(['auth'])->group(function () {
 	Route::get('relationship-&-configurations', 'RelationshipConfigurationController@index')->name('relationship-&-configurations.index');
 	Route::get('relationship-&-configurations/create', 'RelationshipConfigurationController@create')->name('relationship-&-configurations.create');
 	Route::get('relationship-&-configurations/{employee}/assign', 'RelationshipConfigurationController@assign')->name('relationship-&-configurations.assign');
+	
 	Route::get('relationship-&-configurations/assignments/computers', 'RelationshipConfigurationController@assignmentsComputersIndex')->name('relationship-&-configurations.assignments.computers');
-	Route::delete('relationship-&-configurations/assignments/computers/{relationshipConfiguration}', 'RelationshipConfigurationController@destroyAssignmentComputer')->name('relationship-&-configurations.assignments.destroy.assignment.computer');
+	Route::post('relationship-&-configurations/assignments/computers/store', 'RelationshipConfigurationController@storeRelationComputers');
+	Route::delete('relationship-&-configurations/assignments/computers/{relationshipConfiguration}', 'RelationshipConfigurationController@destroyAssignmentComputer');
 

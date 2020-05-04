@@ -15,7 +15,7 @@
             <h1 class="h3 mb-1 text-gray-800">Relationship & Configuration </h1>
             <a href="{{ route('relationship-&-configurations.create') }}"
                 class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
-                    class="fas fa-atom fa-spin fa-sm text-white-50"></i>
+                    class="fas fa-location-arrow fa-sm text-white-50"></i>
                 Create Relation Ci
             </a>
         </div>

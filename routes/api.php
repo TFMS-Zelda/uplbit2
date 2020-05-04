@@ -20,3 +20,4 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::get('/getAllArticlesByIdProvider/{id}', 'Api\ArticleController@getAllArticlesByIdProvider');
 Route::resource('/relationship-&-configurations', 'Api\RelationshipConfigurationController');
 Route::get('/assignments/computers', 'Api\RelationshipConfigurationController@getComputers');
+Route::get('computers', 'Api\RelationshipConfigurationController@allComputersByAssign');

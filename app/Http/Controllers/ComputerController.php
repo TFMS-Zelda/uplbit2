@@ -106,7 +106,6 @@ class ComputerController extends Controller
         $computer->comments()->save($comment);
 
         Alert::success('Success!', 'Equipo de Computo' . $computer->license_plate . 'Registrado correctamente en el sistema');
-
         return redirect()->route('computers.index');
 
     }

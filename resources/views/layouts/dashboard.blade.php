@@ -108,7 +108,6 @@
                             Otros Perisfericos
                         </a>
 
-
                     </div>
                 </div>
             </li>
@@ -163,8 +162,6 @@
 
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
-
-
 
             <!-- Sidebar Toggler (Sidebar) -->
             <div class="text-center d-none d-md-inline">
@@ -249,6 +246,7 @@
                                         </span>
                                     </div>
                                 </a>
+
                                 <a class="dropdown-item d-flex align-items-center" href="#">
                                     <div class="mr-3">
                                         <div class="icon-circle bg-warning">
@@ -260,8 +258,10 @@
                                         <span class="font-weight-bold">Vacio!</span>
                                     </div>
                                 </a>
-                                <a class="dropdown-item text-center small text-gray-500"
-                                    href="{{ route('home') }} ">Home</a>
+
+                                <a class="dropdown-item text-center small text-gray-500" href="{{ route('home') }} ">
+                                    Home
+                                </a>
                             </div>
                         </li>
 
@@ -286,11 +286,13 @@
                                             <i class="fas fa-book text-white"></i>
                                         </div>
                                     </div>
+
                                     <div>
                                         <div class="small text-gray-500">Maintenance Element Configuration</div>
                                         <i class="fa fa-file-contract" aria-hidden="true"></i>
                                         <span>Bitacora de Mantenimientos!</span>
                                     </div>
+
                                 </a>
                                 @endcan
 

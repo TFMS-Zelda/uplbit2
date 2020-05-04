@@ -40,5 +40,11 @@ class RelationshipConfigurationController extends Controller
          return $computers;
     }
 
+    // Ruta para obtener los computers disponibles para ser asignados
+    public function allComputersByAssign(){
+        $computers = DB::table('computers')->where('status', '=', 'Inactivo - No Asignado')->get();
+        return $computers;
+    }
+
 
 }
