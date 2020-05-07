@@ -192,7 +192,7 @@ class ComputerController extends Controller
                 Alert::error('Error, Eliminar Computer', 'No puede eliminar este equipo de computo porque el estado actual es'
                 . ' ' . $computer->status)->persistent('Close');
 
-                  return redirect()->route('computers.index');
+                return redirect()->route('computers.index');
                 }
             } catch (\Illuminate\Database\QueryException $e) {
                 return alert()->error('Error','se presento un error al momento de eliminar el siguiente equipo de computo del sistema' + $e);

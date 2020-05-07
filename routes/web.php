@@ -302,3 +302,7 @@ Route::middleware(['auth'])->group(function () {
 	Route::post('relationship-&-configurations/assignments/computers/store', 'RelationshipConfigurationController@storeRelationComputers');
 	Route::delete('relationship-&-configurations/assignments/computers/{relationshipConfiguration}', 'RelationshipConfigurationController@destroyAssignmentComputer');
 
+
+	Route::get('relationship-&-configurations/assignments/tablets', 'RelationshipConfigurationController@assignmentsTabletsIndex')->name('relationship-&-configurations.assignments.tablets');
+	Route::post('relationship-&-configurations/assignments/tablets/store', 'RelationshipConfigurationController@storeRelationTablets');
+	Route::delete('relationship-&-configurations/assignments/tablets/{relationshipConfiguration}', 'RelationshipConfigurationController@destroyAssignmentTablet');

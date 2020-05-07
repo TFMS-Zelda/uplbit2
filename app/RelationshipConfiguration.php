@@ -13,7 +13,7 @@ class RelationshipConfiguration extends Model
         return $this->morphTo();
     }
 
-     public function user()
+    public function user()
     {
         return $this->belongsTo('App\User');
     }
@@ -27,6 +27,11 @@ class RelationshipConfiguration extends Model
     public function employee()
     {
         return $this->belongsTo('App\Employee');
+    }
+
+    public function tablet()
+    {
+        return $this->belongsTo('App\Tablet');
     }
 
 }

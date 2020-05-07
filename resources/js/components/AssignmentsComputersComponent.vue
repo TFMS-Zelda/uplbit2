@@ -70,9 +70,6 @@
             </div>
           </td>
           <td>
-            <button class="btn btn-warning btn-circle btn-sm">
-              <i class="fas fa-exclamation-triangle"></i>
-            </button>
             <button class="btn btn-success btn-circle btn-sm">
               <i class="fas fa-info-circle"></i>
             </button>
@@ -118,12 +115,12 @@ export default {
       try {
         Swal.fire({
           title: "¿Esta seguro?",
-          text: "Eliminara la siguiente asignación!",
+          text: "Eliminara la siguiente Asignación!",
           icon: "warning",
           showCancelButton: true,
           confirmButtonColor: "#3085d6",
           cancelButtonColor: "#d33",
-          confirmButtonText: "Yes, delete it!"
+          confirmButtonText: "Si, Eliminar"
         }).then(result => {
           if (result.value) {
             Swal.fire(

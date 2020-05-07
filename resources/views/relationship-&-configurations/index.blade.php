@@ -109,7 +109,8 @@
                 class="btn btn-outline-secondary btn-lg">
                 <i class="fas fa-laptop"></i>
             </a>
-            <a href="" class="btn btn-outline-secondary btn-lg">
+            <a href="{{ route('relationship-&-configurations.assignments.tablets') }}"
+                class="btn btn-outline-secondary btn-lg">
                 <i class="fas fa-tablet"></i>
             </a>
             <a href="" class="btn btn-outline-secondary btn-lg">

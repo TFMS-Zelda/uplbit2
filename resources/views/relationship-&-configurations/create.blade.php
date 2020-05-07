@@ -8,9 +8,11 @@
 
 <section class="content">
     <div class="container-fluid">
-
+        <p>
+            Seleccione a un empleado:
+        </p>
         <table class="table table-sm table-striped table-light table-hover table-fixed" id="table-employees">
-            <thead class="thead-dark">
+            <thead class="thead-primary">
                 <tr class="bg-gradient-primary text-white text-center">
                     <th>ID:</th>
                     <th>Nombre:</th>
@@ -25,7 +27,10 @@
                 <tr class="text-center">
                     <td>
                         <div class="col-auto text-center">
-                            <div class="mb-0 font-weight-bold text-gray-700">{{ $employee->id }} </div>
+                            <i class="fas fa-sort-numeric-down-alt"></i><br>
+                            <i class="fas fa-user"></i>
+                            <br>
+                            <div class="h5 mb-0 font-weight-bold text-muted">{{ $employee->id }} </div>
                         </div>
                     </td>
                     <td>
@@ -66,8 +71,8 @@
                     </td>
                     <td>
                         <a href="{{ route('relationship-&-configurations.assign', $employee->id)}}"
-                            class="btn btn-warning btn-circle btn-sm">
-                            <i class="fas fa-exclamation-triangle"></i>
+                            class="btn btn-primary btn-sm">
+                            <i class="fas fa-puzzle-piece"></i>
                         </a>
                     </td>
                 </tr>

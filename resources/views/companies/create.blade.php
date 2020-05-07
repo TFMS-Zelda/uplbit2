@@ -32,7 +32,9 @@
 
             <p class="h4 mb-1 text-gray-800">
                 Resume Company
+
             </p>
+            
 
             <div class="row">
                 <div class="col-md-12">

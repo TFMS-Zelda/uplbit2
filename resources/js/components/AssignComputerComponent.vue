@@ -1,12 +1,19 @@
 <template>
   <div>
-    <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#exampleModal">
-      <i class="fas fa-laptop text-white"></i>
+    <!-- Button trigger modal -->
+    <button
+      type="button"
+      class="btn btn-primary btn-circle btn-lg"
+      data-toggle="modal"
+      data-target="#modalComputer"
+    >
+      <i class="fas fa-laptop"></i>
     </button>
+
     <!-- Modal -->
     <div
       class="modal fade"
-      id="exampleModal"
+      id="modalComputer"
       tabindex="-1"
       role="dialog"
       aria-labelledby="exampleModalLabel"
@@ -15,104 +22,127 @@
       <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel"></h5>
-
+            <h5 class="modal-title" id="exampleModalLabel">Asignar Equipo de computo</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">
-                  <i class="fa fa-times text-danger" aria-hidden="true"></i>
-                </span>
-              </button>
+              <span aria-hidden="true">&times;</span>
             </button>
           </div>
           <div class="modal-body">
-            <div class="card-body">
-              <div class="btn-group dropright">
-                <button type="button" class="btn btn-ligth">
-                  <h1 class="h6 mb-1 text-gray-800">Computers</h1>
-                  <small class="text-muted">
-                    <p class="text-right">Record & History</p>
-                  </small>
+            <!-- split remove computers   -->
+            <div class="btn-group dropright" v-if="!stateButton">
+              <button type="button" class="btn btn-ligth">
+                <h1 class="h6 mb-1 text-gray-800">Computers</h1>
+                <small class="text-muted">
+                  <p class="text-right">Record & Stock</p>
+                </small>
+              </button>
+              <button
+                type="button"
+                class="btn btn-primary dropdown-toggle dropdown-toggle-split"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
+              >
+                <span class="sr-only">Toggle Dropright</span>
+              </button>
+              <div class="dropdown-menu">
+                <button @click="getComputers" class="dropdown-item">
+                  <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                  Equipos de computo en stock
                 </button>
-                <button
-                  type="button"
-                  class="btn btn-primary dropdown-toggle dropdown-toggle-split"
-                  data-toggle="dropdown"
-                  aria-haspopup="true"
-                  aria-expanded="false"
-                >
-                  <span class="sr-only">Toggle Dropright</span>
-                </button>
-                <div class="dropdown-menu">
-                  <a v-on:click.prevent="getComputers" class="dropdown-item btn btn-ligth">
-                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                    Equipos de computo en stock del inventario
-                  </a>
-                </div>
               </div>
-
-              <p class="h4 mb-1 text-gray-800">Computer & Assign</p>
-              <div class="row">
+            </div>
+            <!-- end split  computers -->
+            <form @submit.prevent="createAssignComputer" method="post">
+              <!-- select computer -->
+              <p class="h4 mb-1 text-gray-800">Equipos de computo:</p>
+              <div class="row" v-show="!validateArrayComputers">
                 <div class="col-md-12">
                   <div class="form-row">
                     <div class="form-group col-md-12">
-                      <label>*Equipo de computo:</label>
                       <select
                         class="form-control"
-                        v-model="selectComputer"
-                        name="selectComputer"
+                        name="selectTable"
+                        v-model="form.selectComputer"
                         required
-                        autofocus
                       >
-                        <option value>Escoger...</option>
+                        <option value>Seleccione...</option>
                         <option
                           v-bind:value="computer.id"
                           v-for="(computer, index) in computers"
                           :key="index"
                         >
-                          {{ computer.brand }} ~ {{ computer.model }} ~ {{ computer.servicetag }},
-                          Placa Corporativa: {{ computer.license_plate }}
+                          {{ computer.brand }} ~ {{ computer.model }} ~ Serial: {{ computer.serial }}
+                          ~ Placa: {{ computer.license_plate }}
                         </option>
                       </select>
+                      <has-error :form="form" field="selectComputer"></has-error>
                     </div>
                   </div>
                 </div>
               </div>
-              <input type="hidden" v-model="user_id" name="user_id" />
-              <input type="hidden" v-model="employee_id" name="employee_id" />
+
+              <div class="alert alert-danger" v-show="stateButton && validateArrayComputers">
+                <strong>
+                  <h4>
+                    <i class="fas fa-exclamation-circle"></i> Sin Stock!
+                  </h4>
+                  <p>
+                    No cuenta en este momento con Equipos de computo suficientes para ser asignadas.
+                    Agrege una nuevo Equipo de computo al inventario.
+                  </p>
+                </strong>
+              </div>
+
+              <!-- select date -->
+              <p class="h4 mb-1 text-gray-800">Fecha de Asignación:</p>
               <div class="row">
                 <div class="col-md-12">
                   <div class="form-row">
                     <div class="form-group col-md-4">
-                      <label>*Fecha de Asignación:</label>
                       <input
                         type="date"
                         class="form-control"
-                        v-model="assignment_date"
+                        v-model="form.assignment_date"
                         name="assignment_date"
                         required
-                        autofocus
                       />
+                      <has-error :form="form" field="assignment_date"></has-error>
                     </div>
                   </div>
                 </div>
               </div>
-              <p class="h4 mb-1 text-gray-800">Comentarios</p>
+
+              <!-- select comentarios -->
+              <p class="h4 mb-1 text-gray-800">Comentarios & Observaciones:</p>
               <div class="row">
                 <div class="col-md-12">
                   <div class="form-row">
                     <div class="form-group col-md-12">
-                      <textarea name="body" v-model="body" class="form-control" required autofocus></textarea>
-                      <small class="form-text text-gray-600">Ingrese algun comentario u observación</small>
+                      <textarea
+                        name="body"
+                        class="form-control"
+                        placeholder="Ingrese sus comentarios y observaciones"
+                        cols="20"
+                        rows="5"
+                        v-model="form.body"
+                        minlength="4"
+                        maxlength="512"
+                      ></textarea>
+                      <has-error :form="form" field="body"></has-error>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-danger" data-dismiss="modal">Salir</button>
-            <button type="button" class="btn btn-success" v-on:click="createAssignComputer">Asignar</button>
+              <input type="hidden" v-show="false" name="user_id" />
+              <input type="hidden" v-show="false" name="employee_id" />
+              <button
+                type="submit"
+                class="btn btn-outline-primary"
+                :disabled="!stateButton || validateArrayComputers === true"
+              >Asignar</button>
+              <button type="button" class="btn btn-danger" data-dismiss="modal">Salir</button>
+            </form>
           </div>
         </div>
       </div>
@@ -129,24 +159,31 @@ export default {
     },
     id_employee: {
       type: Number,
-      required: true
+      required: false
     }
   },
   data() {
     return {
+      form: new Form({
+        selectComputer: "",
+        assignment_date: "",
+        body: "",
+        user_id: this.id_user,
+        employee_id: this.id_employee
+      }),
+
       computers: [],
-      selectComputer: "",
-      assignment_date: "",
-      user_id: this.id_user,
-      employee_id: this.id_employee,
-      body: ""
+
+      stateButton: false
     };
   },
+
   methods: {
     getComputers() {
       const url = "/api/computers";
       axios.get(url).then(response => {
         this.computers = response.data;
+        this.stateButton = true;
       });
       try {
       } catch (error) {
@@ -154,10 +191,11 @@ export default {
       }
     },
 
-    createAssignComputer() {
+    createAssignComputer(event) {
       const urlStore =
         "/relationship-&-configurations/assignments/computers/store";
-      axios
+
+      this.form
         .post(urlStore, {
           selectComputer: this.selectComputer,
           assignment_date: this.assignment_date,
@@ -167,7 +205,11 @@ export default {
         })
         .then(response => {
           this.getComputers();
-          $("#exampleModal").modal("hide");
+          $("#modalComputer").modal("hide");
+          this.form.selectComputer = this.form.assignment_date = this.form.body =
+            "";
+          event.target.reset();
+
           Swal.fire({
             position: "top-end",
             icon: "success",
@@ -176,6 +218,16 @@ export default {
             timer: 1500
           });
         });
+    }
+  },
+
+  computed: {
+    validateArrayComputers() {
+      if (this.computers.length === 0) {
+        return true;
+      } else {
+        return false;
+      }
     }
   }
 };

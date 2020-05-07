@@ -7,6 +7,7 @@ use App\Comment;
 
 use Illuminate\Http\Request;
 use App\Computer;
+use App\Tablet;
 use App\Employee;
 use DB;
 use Auth;
@@ -92,50 +93,99 @@ class RelationshipConfigurationController extends Controller
         $comment->commentable_id = $computer->id;
         $comment->body =  $request->body;
 
-       
-
         $computer->comments()->save($comment);
         $computer->assignments()->save($computersAssigns);
-         DB::table('relationship_configurations')
+        DB::table('relationship_configurations')
         ->join('computers', 'relationship_configurations.assignable_id', '=', 'computers.id')
         ->where('relationship_configurations.assignable_id', '=', $computer->id)
         ->update(['status' => 'Activo - Asignado']);
-
+        
+        return $request->all();
     
     }
+
+    public function storeRelationTablets(Request $request)
+    {
+        $this->validate($request, [
+            'body' => 'required|min:4|max:512',
+            'assignment_date' => 'required|date',
+            'user_id' => 'required|numeric',
+            'employee_id' => 'required|numeric',
+            'selectTablet' => 'required|numeric',
+        ]);
+
+        $tabletsAssigns = new \App\RelationshipConfiguration;
+        
+        $tabletsAssigns->user_id = $request->user_id;
+        $tabletsAssigns->employee_id = $request->employee_id;
+        $tabletsAssigns->body = $request->body;
+        $tabletsAssigns->assignment_date = $request->assignment_date;
+
+        // obtener el id del computer 
+        $idTablet = $request->selectTablet;
+        $tablet = Tablet::find($idTablet);
     
+        $tabletsAssigns->assignable_id = $tablet->id;
+
+        // añadir el comentario en la tabla comments
+        $comment = new Comment();
+        $comment->user_id = Auth::id();
+        $comment->commentable_id = $tablet->id;
+        $comment->body =  $request->body;
+
+        $tablet->comments()->save($comment);
+        $tablet->assignments()->save($tabletsAssigns);
+        DB::table('relationship_configurations')
+        ->join('tablets', 'relationship_configurations.assignable_id', '=', 'tablets.id')
+        ->where('relationship_configurations.assignable_id', '=', $tablet->id)
+        ->update(['status' => 'Activo - Asignado']);
+        
+        return $request->all();
+    
+    }
 
     public function assignmentsComputersIndex()
     {
-        $computer = DB::table('relationship_configurations')->where('assignable_type', '=', 'App\Comouter')->count('id');
-        $computers = Computer::all()->count();
-        if ($computers >= 1) {
-            return view('relationship-&-configurations.assignments.computers');
-        } else {
-             alert()->html('<i>No hay equipos de computo asignados</i>',"
+        $computers = DB::table('relationship_configurations')->where('assignable_type', '=', 'App\Computer')->count('id');
         
-            <div role='alert' class='alert alert-danger alert-dismissible'>
-                <button aria-label='Close' data-dismiss='alert' class='close' type='button'><span
-                aria-hidden='true'>×</span></button>
-            <h2 class='alert-heading'>Error!</h2>
-            <p>Actualmente no existen asignaciones de equipos de computo registradas en el sistema!</p>
-            <hr>
+        // dd($computer);
+        if ($computers >= 1) {
+            # code...
+            return view('relationship-&-configurations.assignments.computers', [
+                'computers' => $computers,
+            ]);
 
-            <p><h4>Actualmente tiene registrado " . ' ' . $computers . ' ' ." equipos de computo:</h4>
-           
-            </p>
-            <hr> 
-            </div>
-          ",'error')->persistent('Close');
-            
+        } else {
+            # code...
+            alert()->info('Info','No tiene equipos de computo asignados en este momento')->persistent('Close');
+
             return redirect()->route('relationship-&-configurations.index');
-            
+
         }
         
+
     }
 
-    
+    public function assignmentsTabletsIndex()
+    {
+        $tablets = DB::table('relationship_configurations')->where('assignable_type', '=', 'App\Tablet')->count('id');
+         // dd($computer);
+        if ($tablets >= 1) {
+            # code...
+            return view('relationship-&-configurations.assignments.tablets', [
+                'tablets' => $tablets,
+            ]);
 
+        } else {
+            # code...
+            alert()->info('Info','No tiene Tablets corporativas asignadas en este momento')->persistent('Close');
+
+            return redirect()->route('relationship-&-configurations.index');
+
+        }
+
+        
+    }
 
     public function destroyAssignmentComputer(RelationshipConfiguration $relationshipConfiguration)
     { 
@@ -155,4 +205,15 @@ class RelationshipConfigurationController extends Controller
         ->update(['status' => 'Inactivo - No Asignado']);
         $relationshipConfiguration->delete();
     }
+
+    
+    public function destroyAssignmentTablet(RelationshipConfiguration $relationshipConfiguration)
+    { 
+        DB::table('relationship_configurations')
+        ->join('tablets', 'relationship_configurations.assignable_id', '=', 'tablets.id')
+        ->where('relationship_configurations.assignable_id', '=', $relationshipConfiguration->assignable_id)
+        ->update(['status' => 'Inactivo - No Asignado']);
+        $relationshipConfiguration->delete();
+    }
+
 }

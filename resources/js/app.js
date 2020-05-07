@@ -12,6 +12,11 @@ import Axios from 'axios';
 import Swal from 'sweetalert2'
 window.Swal = Swal;
 
+import { Form, HasError, AlertError } from 'vform'
+window.Form = Form;
+Vue.component(HasError.name, HasError)
+Vue.component(AlertError.name, AlertError)
+
 const Toast = Swal.mixin({
     toast: true,
     position: 'top-end',
@@ -27,10 +32,15 @@ window.Toast = Toast;
 
 import AssignmentsComputersComponent from "./components/AssignmentsComputersComponent.vue";
 import AssignComputerComponent from "./components/AssignComputerComponent.vue";
+import AssignTabletComponent from "./components/AssignTabletComponent.vue";
+import AssignmentsTabletsComponent from "./components/AssignmentsTabletsComponent.vue";
+
 const app = new Vue({
     components: {
         'assignments-computers': AssignmentsComputersComponent,
         'assign-computer': AssignComputerComponent,
+        'assign-tablet': AssignTabletComponent,
+        'assignments-tablets': AssignmentsTabletsComponent
     },
 
     el: '#app',

@@ -18,6 +18,13 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::get('/getAllArticlesByIdProvider/{id}', 'Api\ArticleController@getAllArticlesByIdProvider');
-Route::resource('/relationship-&-configurations', 'Api\RelationshipConfigurationController');
+
+// assigns computer vue.js
 Route::get('/assignments/computers', 'Api\RelationshipConfigurationController@getComputers');
 Route::get('computers', 'Api\RelationshipConfigurationController@allComputersByAssign');
+
+// assigns tablets vue.js
+Route::get('/assignments/tablets', 'Api\RelationshipConfigurationController@getTablets');
+Route::get('tablets', 'Api\RelationshipConfigurationController@allTabletsByAssign');
+
+

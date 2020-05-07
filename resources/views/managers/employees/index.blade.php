@@ -34,7 +34,7 @@
         </div>
 
         <!-- table employees -->
-        <div class="card mb-4 py-3 border-left-secondary">
+        <div class="card mb-4 py-3 border-left-primary">
             <div class="card-body">
                 <div class="table-responsive">
                     <!-- split history users   -->
@@ -45,7 +45,7 @@
                                 <p class="text-right"><i class="fa fa-history" aria-hidden="true"></i></p>
                             </small>
                         </button>
-                        <button type="button" class="btn btn-secondary dropdown-toggle dropdown-toggle-split"
+                        <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split"
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 
                         </button>
@@ -61,7 +61,7 @@
                     <!-- end split hisotry users -->
                     <table class="table table-sm table-striped table-light table-hover table-fixed"
                         id="table-employees">
-                        <thead class="thead-dark">
+                        <thead class="thead-primary">
                             <tr class="bg-gradient-primary text-white text-center">
                                 <th>ID:</th>
                                 <th>Nombre:</th>
@@ -76,7 +76,11 @@
                             <tr class="text-center">
                                 <td>
                                     <div class="col-auto text-center">
-                                        <div class="mb-0 font-weight-bold text-gray-700">{{ $employee->id }} </div>
+                                        <i class="fas fa-sort-numeric-down-alt"></i><br>
+                                        <i class="fas fa-user"></i>
+                                        <br>
+                                        <div class="h5 mb-0 font-weight-bold text-muted">{{ $employee->id }} </div>
+
                                     </div>
                                 </td>
                                 <td>

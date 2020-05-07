@@ -122,7 +122,6 @@
             @csrf
             @method('PUT')
             <div class="row">
-
                 <div class="col-md-12">
                     <div class="card border-left-secondary shadow h-100 py-2">
                         <div class="card-body">
