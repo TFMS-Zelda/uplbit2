@@ -301,13 +301,17 @@
                 </div>
             </div>
 
-            <div class="alert alert-primary">
-                <p class="h4 mb-1 text-gray-800">Provider & Article Relation</p>
+            <div class="alert alert-success">
+                <p class="h4 mb-1 text-gray-800"></p>
+                <i class="fa fa-link" aria-hidden="true"></i>
+
+                <h2>Provider & Article Relation!</h2>
+                <p>Seleccione un Provedor para obtener los articulos registrados y relacionados...</p>
                 <div class="row">
                     <div class="col-md-12">
                         <div class="form-row">
                             <div class="form-group col-md-4">
-                                <label for="provider">*Seleccione un Provedor:</label>
+                                <h4>*Seleccione un Provedor:</h4>
                                 <select class="form-control" name="provider" id="provider">
                                     <option value="">Select Provider</option>
                                     @foreach ($providers as $key => $value)
@@ -317,7 +321,7 @@
                             </div>
 
                             <div class="form-group col-md-4">
-                                <label for="provider">*Seleccione un Articulo:</label>
+                                <h4>*Seleccione un Articulo:</h4>
                                 <select class="form-control" name="article_id" id="article">
                                     <option value="">Please Select Provider</option>
                                 </select>

@@ -6,12 +6,12 @@
 @section('titlePosition', 'tablets')
 <section class="content">
     <div class="container-fluid">
-        <h1 class="h3 mb-1 text-gray-800">Tablets cooporativas</h1>
+        <h1 class="h3 mb-1 text-gray-800">Tablets Corporativas</h1>
         <p class="mb-4 text-justify">
             La siguiente información se almacena, organiza, mantiene y difunde de manera digital. Esta información es
             de
             acceso privado para usuarios directamente autentificados en el sistema.
-            En este sitio encontrara el listado de las tablets cooporativas registrados en el sistema.
+            En este sitio encontrara el listado de las tablets corporativas registradas en el sistema.
         </p>
 
         <div class="row">
@@ -63,7 +63,7 @@
                         @can('permission:tablets.remove-&-disabled-tablets')
                         <a class="dropdown-item" href="{{ route('tablets.remove-&-disabled-tablets') }} ">
                             <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                            Tablets coorporativas retiradas del inventario
+                            Tablets corporativas retiradas del inventario
                         </a>
                         @endcan
 
@@ -199,8 +199,8 @@
 
 <script>
     $(document).ready(function () {
-          $('#table-tablets').DataTable({});
-      });
+        $('#table-tablets').DataTable({});
+    });
     
     document.onsubmit = function () {
         return confirm('Atencion: {{ Auth::user()->name }}, ¿Esta seguro de eliminar el siguiente equipo de computo del sistema?');}

@@ -178,38 +178,90 @@ class ComputerController extends Controller
 
     public function destroy(Computer $computer)
     {
+        $exists = $computer->assignments()->where('assignable_id', $computer->id)->exists();
+ 
         try {
-            if ($computer->status  === 'Retirado - Baja de Activo' ) {
-                $updateStatusPostDelete = 'Retirado - Baja de Activo';
-                $whenUserDeleteComputer = Auth::id();
-                Computer::where('id','=', $computer->id)->update(['status' => $updateStatusPostDelete, 'user_id' => $whenUserDeleteComputer ]);
-                $computer->delete();
-                alert()->info('Atención','El equipo de computo' . ' ' . $computer->license_plate . ' ' . 'a sido eliminado
-                correctamente del sistema');
-                return redirect()->route('computers.remove-&-disabled-computers');
-            } else {
-
-                Alert::error('Error, Eliminar Computer', 'No puede eliminar este equipo de computo porque el estado actual es'
-                . ' ' . $computer->status)->persistent('Close');
+            if ($exists === true) {
+                # code...
+                // return 'No puede eliminarse porque esta asignado';
+                alert()->error('Error!','No puede Eliminar este Equipo de Computo porque esta asignado a un empleado en este momento')->persistent('Close');
 
                 return redirect()->route('computers.index');
+
+            } else {
+                # code...
+                if ($computer->status  === 'Inactivo - No Asignado' ) {
+                    # code...
+                    // return 'se puede eliminar porque contiene el status';
+                    alert()->success('Nota','El Equipo de Computo' . ' ' . $computer->license_plate . ' ' . 'a sido eliminado 
+                    correctamente del sistema');
+
+                    $updateStatusPostDelete = 'Eliminado - Baja de Activo';
+                    $whenUserDeleteComputer = Auth::id();
+                    Computer::where('id','=', $computer->id)->update(['status' => $updateStatusPostDelete, 'user_id' => $whenUserDeleteComputer]);
+
+                    $computer->delete();
+
+                    return redirect()->route('computers.index');
+
+                } else {
+                    # code...
+                    // return 'no se puede eliminar porque no contiene el status';
+                    alert()->error('Error!','No puede Eliminar este Equipo de Computo, porque el estado actual es'
+                    . ' ' . $computer->status)->persistent('Close');
+
+                    return redirect()->route('computers.index');
+
                 }
-            } catch (\Illuminate\Database\QueryException $e) {
-                return alert()->error('Error','se presento un error al momento de eliminar el siguiente equipo de computo del sistema' + $e);
+                
+            }
+            
+            
+        } catch (\Throwable $th) {
+            //throw $th;
         }
     }
 
     public function removeDisabledComputers()
     {
-        $computersRemoveInventary = DB::table('computers')->where('status', 'like', '%Retirado - Baja de Activo%')->get();
-        $computersRemove = DB::table('computers')->where('status', 'like', '%Retirado - Baja de Activo%')->count();
+        $computersRemoveInventary = DB::table('computers')->where('status', '=', 'Eliminado - Baja de Activo')->get();
+        $computersRemove = DB::table('computers')->where('status', '=', 'Eliminado - Baja de Activo')->count();
 
         return view('computers.remove-&-disabled-computers', [
             'computersRemoveInventary' => $computersRemoveInventary,
             'computersRemove' => $computersRemove
         ]);
-    }
-
-   
-
+    }  
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+//  try {
+//             if ($computer->status  === 'Retirado - Baja de Activo' ) {
+//                 $updateStatusPostDelete = 'Retirado - Baja de Activo';
+//                 $whenUserDeleteComputer = Auth::id();
+//                 Computer::where('id','=', $computer->id)->update(['status' => $updateStatusPostDelete, 'user_id' => $whenUserDeleteComputer ]);
+//                 $computer->delete();
+//                 alert()->info('Atención','El equipo de computo' . ' ' . $computer->license_plate . ' ' . 'a sido eliminado
+//                 correctamente del sistema');
+//                 return redirect()->route('computers.remove-&-disabled-computers');
+//             } else {
+
+//                 Alert::error('Error, Eliminar Computer', 'No puede eliminar este equipo de computo porque el estado actual es'
+//                 . ' ' . $computer->status)->persistent('Close');
+
+//                 return redirect()->route('computers.index');
+//                 }
+//             } catch (\Illuminate\Database\QueryException $e) {
+//                 return alert()->error('Error','se presento un error al momento de eliminar el siguiente equipo de computo del sistema' + $e);
+//         }

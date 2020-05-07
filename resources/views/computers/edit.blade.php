@@ -385,20 +385,24 @@
                 </div>
             </div>
 
-            <div class="alert alert-primary">
-                <p class="h4 mb-1 text-gray-800">Provider & Article Relation</p>
+            <div class="alert alert-success">
+                <p class="h4 mb-1 text-gray-800"></p>
+                <i class="fa fa-link" aria-hidden="true"></i>
+
+                <h2>Provider & Article Relation!</h2>
+                <p>Seleccione un Provedor para obtener los articulos registrados y relacionados...</p>
                 <div class="row">
                     <div class="col-md-12">
                         <div class="form-row">
                             <div class="form-group col-md-4">
-                                <label for="provider">*Seleccione un Provedor:</label>
-                                <select class="form-control" id="provider">
+                                <h4>*Seleccione un Provedor:</h4>
+                                <select class="form-control" name="provider" id="provider">
                                     <option value="" @if (old($computer->
                                         article->provider->id) == '{{ $computer->article->provider->id }}' )
                                         selected="selected" @endif>
                                         {{ $computer->article->provider->name }}
                                     </option>
-                                    <option style="font-size: 2pt; background-color: #E9EFF7;" disabled>&nbsp;</option>
+                                    <option style="font-size: 2pt; background-color: #E9EFF7;" disabled>;</option>
 
                                     @foreach ($providers as $key => $value)
                                     <option value="{{ $key }}">{{ $value }} </option>
@@ -407,7 +411,7 @@
                             </div>
 
                             <div class="form-group col-md-4">
-                                <label for="provider">*Seleccione un Articulo:</label>
+                                <h4>*Seleccione un Articulo:</h4>
                                 <select class="form-control" name="article_id" id="article">
                                     <option value="{{ $computer->article_id }} " @if (old($computer->
                                         article_id) == '{{ $computer->article_id }}' )
@@ -474,21 +478,10 @@
                                     Inactivo - No Asignado
                                 </option>
 
-                                <option value="En Mantenimiento"
-                                    {{ old('status', $computer->status) == 'En Mantenimiento' ? 'selected' : ''}}>
-                                    En Mantenimiento
+                                <option value="Dañado - Reportado"
+                                    {{ old('status', $computer->status) == 'Dañado - Reportado' ? 'selected' : ''}}>
+                                    Dañado - Reportado
                                 </option>
-
-                                <option value="Dañado"
-                                    {{ old('status', $computer->status) == 'Dañado' ? 'selected' : ''}}>
-                                    Dañado
-                                </option>
-
-                                <option value="Retirado - Baja de Activo"
-                                    {{ old('status', $computer->status) == 'Retirado - Baja de Activo' ? 'selected' : ''}}>
-                                    Retirado - Baja de Activo
-                                </option>
-
                             </select>
                         </div>
                     </div>

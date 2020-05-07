@@ -41,6 +41,7 @@
                 src="{{ asset('/core/undraw/laptop-index.svg') }}">
         </div>
 
+
         <div class="card mb-4 py-3 border-left-primary">
             <div class="card-body">
 

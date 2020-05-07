@@ -120,7 +120,7 @@ export default {
           showCancelButton: true,
           confirmButtonColor: "#3085d6",
           cancelButtonColor: "#d33",
-          confirmButtonText: "Si, Eliminar"
+          confirmButtonText: "Eliminar"
         }).then(result => {
           if (result.value) {
             Swal.fire(

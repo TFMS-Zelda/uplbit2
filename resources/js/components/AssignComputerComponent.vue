@@ -22,7 +22,7 @@
       <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Asignar Equipo de computo</h5>
+            <h5 class="modal-title" id="exampleModalLabel">Asignar Equipo de Computo</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
@@ -55,7 +55,7 @@
             <!-- end split  computers -->
             <form @submit.prevent="createAssignComputer" method="post">
               <!-- select computer -->
-              <p class="h4 mb-1 text-gray-800">Equipos de computo:</p>
+              <p class="h4 mb-1 text-gray-800">Equipos de Computo:</p>
               <div class="row" v-show="!validateArrayComputers">
                 <div class="col-md-12">
                   <div class="form-row">
@@ -87,11 +87,13 @@
                   <h4>
                     <i class="fas fa-exclamation-circle"></i> Sin Stock!
                   </h4>
-                  <p>
-                    No cuenta en este momento con Equipos de computo suficientes para ser asignadas.
-                    Agrege una nuevo Equipo de computo al inventario.
-                  </p>
                 </strong>
+
+                <p>
+                  No cuenta en este momento con
+                  <strong>Equipos de Computo</strong> suficientes para ser asignados.
+                  Agrege una nuevo Equipo de Computo al inventario.
+                </p>
               </div>
 
               <!-- select date -->

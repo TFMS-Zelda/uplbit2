@@ -41,10 +41,15 @@
                 src="{{ asset('/core/undraw/laptop-index.svg') }}">
         </div>
 
+        <a class="text-dark" href="{{ route('computers.index') }}"><i class='fas fa-hand-point-left'></i>
+            Regresar
+            Inventario
+            Equipos de computo</a>
+
         <div class="card mb-4 py-3 border-left-primary">
             <div class="card-body">
-
                 <div class="table-responsive">
+
                     <table class="table table-light  table-striped table-bordered table-sm  table-hover"
                         id="table-computers" width="100%" cellspacing="0">
                         <thead>

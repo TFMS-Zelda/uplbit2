@@ -11,7 +11,7 @@
             La siguiente información se almacena, organiza, mantiene y difunde de manera digital. Esta información es
             de
             acceso privado para usuarios directamente autentificados en el sistema.
-            En este sitio encontrara el listado de las tablets cooporativas retiradas del inventario en el sistema.
+            En este sitio encontrara el listado de las tablets corporativas retiradas del inventario en el sistema.
         </p>
 
         <div class="row">
@@ -21,7 +21,7 @@
                         <div class="row no-gutters align-items-center">
                             <div class="col mr-2">
                                 <div class="text-xs font-weight-bold text-white text-uppercase mb-1">
-                                    Tablets cooporativas retiradas
+                                    Tablets corporativas retiradas
                                 </div>
                                 <div class="h5 mb-0 font-weight-bold text-white">
                                     {{ $tabletsRetiradas }}
@@ -41,6 +41,11 @@
                 src="{{ asset('/core/undraw/laptop-index.svg') }}">
         </div>
 
+
+        <a class="text-dark" href="{{ route('tablets.index') }}"><i class='fas fa-hand-point-left'></i>
+            Regresar
+            Inventario
+            Tablets corporativas</a>
         <div class="card mb-4 py-3 border-left-primary">
             <div class="card-body">
 

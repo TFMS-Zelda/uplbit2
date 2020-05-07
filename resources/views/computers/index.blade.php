@@ -127,13 +127,10 @@
                                     <h5><span class="badge badge-success">{{ $computer->status }} </span></h5>
 
                                     @elseif($computer->status === 'Inactivo - No Asignado')
-                                    <h5><span class="badge badge-primary">{{ $computer->status }} </span></h5>
+                                    <h5><span class="badge badge-danger">{{ $computer->status }} </span></h5>
 
-                                    @elseif($computer->status === 'Reportado por Hurto')
+                                    @elseif($computer->status === 'Dañado - Reportado')
                                     <h5><span class="badge badge-dark">{{ $computer->status }} </span></h5>
-
-                                    @elseif($computer->status === 'Retirado - Baja de Activo')
-                                    <h5><span class="badge badge-warning">{{ $computer->status }} </span></h5>
                                     @endif
                                 </td>
                                 <td>

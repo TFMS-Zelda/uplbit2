@@ -9,7 +9,7 @@
 
 <section class="content">
     <div class="container-fluid">
-        <h1 class="h3 mb-1 text-gray-800">Editar Tablet coorporativa</h1>
+        <h1 class="h3 mb-1 text-gray-800">Editar Tablet corporativa</h1>
         <p class="mb-4 text-justify">
             Complete el siguiente formulario, recuerde que los campos marcados con <strong>*</strong> son de caracter
             obligatorio.
@@ -403,7 +403,7 @@
                                         selected="selected" @endif>
                                         {{ $tablet->article->provider->name }}
                                     </option>
-                                    <option style="font-size: 2pt; background-color: #E9EFF7;" disabled>&nbsp;</option>
+                                    <option style="font-size: 2pt; background-color: #E9EFF7;" disabled>;</option>
 
                                     @foreach ($providers as $key => $value)
                                     <option value="{{ $key }}">{{ $value }} </option>
@@ -556,7 +556,7 @@
                                         <div class="row no-gutters align-items-center">
                                             <div class="col mr-2">
                                                 <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                                    ¿Editar Tablet coorporativa?
+                                                    ¿Editar Tablet corporativa?
                                                 </div>
                                                 <div class="p mb-0 font-weight text-gray-800">
                                                     <p>
