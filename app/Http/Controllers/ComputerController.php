@@ -29,7 +29,7 @@ class ComputerController extends Controller
     {
         $totalComputerInStock = Computer::count();
         $computers = \App\Computer::orderBy('id', 'DESC')
-        ->paginate(10);
+        ->get();
 
         //Consulta cantidad de computers status = 'No Asignado'
         $computersNoAsignados = DB::table('computers')->where('status', 'like', '%No Asignado%')->count('id');
@@ -179,7 +179,6 @@ class ComputerController extends Controller
     public function destroy(Computer $computer)
     {
         $exists = $computer->assignments()->where('assignable_id', $computer->id)->exists();
- 
         try {
             if ($exists === true) {
                 # code...
@@ -211,11 +210,9 @@ class ComputerController extends Controller
                     . ' ' . $computer->status)->persistent('Close');
 
                     return redirect()->route('computers.index');
-
                 }
-                
+
             }
-            
             
         } catch (\Throwable $th) {
             //throw $th;

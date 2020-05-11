@@ -43,15 +43,34 @@
         <p>
             Seleccione el tipo de ci que asignara al empleado {{ $employee->name }}.
         </p>
-        <ul>
-            <li>
-                <assign-computer :id_user="{{ json_encode($id_user) }}"
-                    :id_employee="{{ json_encode($id_employee) }}" />
-            </li>
-            <li>
-                <assign-tablet :id_user="{{ json_encode($id_user) }}" :id_employee="{{ json_encode($id_employee) }}" />
-            </li>
-        </ul>
+
+        <a class="text-dark" href="{{ route('relationship-&-configurations.create') }}"><i
+                class='fas fa-hand-point-left'></i>
+            Asignar ci a otro empleado</a>
+        <nav class="navbar navbar-primary bg-primary">
+            <!-- Navbar content -->
+            <ul class="nav justify-content-center">
+                <li class="nav-item">
+                    <assign-computer class='nav-link' :id_user="{{ json_encode($id_user) }}"
+                        :id_employee="{{ json_encode($id_employee) }}" />
+                </li>
+
+                <li class="nav-item">
+                    <assign-tablet class='nav-link' :id_user="{{ json_encode($id_user) }}"
+                        :id_employee="{{ json_encode($id_employee) }}" />
+                </li>
+                <li class="nav-item">
+                    <assign-monitor class='nav-link' :id_user="{{ json_encode($id_user) }}"
+                        :id_employee="{{ json_encode($id_employee) }}" />
+                </li>
+                <li class="nav-item">
+                    <assign-peripheral class='nav-link' :id_user="{{ json_encode($id_user) }}"
+                        :id_employee="{{ json_encode($id_employee) }}" />
+                </li>
+            </ul>
+        </nav>
+
+
 
 
 </section>

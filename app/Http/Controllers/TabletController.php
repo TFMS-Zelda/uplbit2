@@ -176,28 +176,49 @@ class TabletController extends Controller
      */
     public function destroy(Tablet $tablet)
     {
-         try {
+        $exists = $tablet->assignments()->where('assignable_id', $tablet->id)->exists();
+        try {
+            if ($exists === true) {
+                # code...
+                // return 'No puede eliminarse porque esta asignado';
+                alert()->error('Error!','No puede Eliminar esta Tablet Corporativa porque esta asignada a un empleado en este momento')->persistent('Close');
 
-            $updateStatusPostDelete = 'Eliminado del Inventario';
-            $whenUserDeleteComputer = Auth::id();
-            \App\Tablet::where('id','=', $tablet->id)->update(['status' => $updateStatusPostDelete, 'user_id' => $whenUserDeleteComputer ]);
-            $tablet->delete();
-          
-            alert()->info('Atención','La tablet cooporativa' . ' ' . $tablet->license_plate . ' ' . 'a sido eliminada
-            correctamente del sistema');
-    
-            return redirect()->route('tablets.index');
+                return redirect()->route('tablets.index');
 
-        } catch (\Illuminate\Database\QueryException $e){
+            } else {
+                # code...
+                if ($tablet->status  === 'Inactivo - No Asignado' ) {
+                    # code...
+                    // return 'se puede eliminar porque contiene el status';
+                    alert()->success('Nota','La Tablet Corporativa' . ' ' . $tablet->license_plate . ' ' . 'a sido eliminada 
+                    correctamente del sistema');
+
+                    $updateStatusPostDelete = 'Eliminado - Baja de Activo';
+                    $whenUserDeleteTablet = Auth::id();
+                    \App\Tablet::where('id','=', $tablet->id)->update(['status' => $updateStatusPostDelete, 'user_id' => $whenUserDeleteTablet]);
+
+                    $tablet->delete();
+
+                    return redirect()->route('tablets.index');
+
+                } else {
+                    # code...
+                    // return 'no se puede eliminar porque no contiene el status';
+                    alert()->error('Error!','No puede Eliminar esta Tablet Corporativa, porque el estado actual es'
+                    . ' ' . $tablet->status)->persistent('Close');
+
+                    return redirect()->route('tablets.index');
+                }
+            }
             
-            return alert()->error('Error','se presento un error al momento de eliminar la tablet cooporativa' + $e);
-
+        } catch (\Throwable $th) {
+            //throw $th;
         }
     }
 
     public function removeDisabledTablets(){
-        $tabletsRetiradas = DB::table('tablets')->where('status', 'like', '%Eliminado del Inventario%')->count();
-        $tabletsRemoveInventary = DB::table('tablets')->where('status', 'like', '%Eliminado del Inventario%')->get();
+        $tabletsRetiradas = DB::table('tablets')->where('status', '=', 'Eliminado - Baja de Activo')->count();
+        $tabletsRemoveInventary = DB::table('tablets')->where('status', '=', 'Eliminado - Baja de Activo')->get();
 
         return view('tablets.remove-&-disabled-tablets', [
             'tabletsRemoveInventary' => $tabletsRemoveInventary,

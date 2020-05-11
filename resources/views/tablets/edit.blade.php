@@ -354,16 +354,22 @@
                     <div class="form-row">
                         <div class="form-group col-md-4">
                             <label>*Estado:</label>
-                            <select class="form-control" name="status" required autofocus>
+                            <select class="form-control" name="status" v required>
+                                <option value="Activo - Asignado"
+                                    {{ old('status', $tablet->status) == 'Activo - Asignado' ? 'selected' : ''}}>
+                                    Activo - Asignado
+                                </option>
+
                                 <option value="Inactivo - No Asignado"
                                     {{ old('status', $tablet->status) == 'Inactivo - No Asignado' ? 'selected' : ''}}>
                                     Inactivo - No Asignado
                                 </option>
 
+                                <option value="Dañado - Reportado"
+                                    {{ old('status', $tablet->status) == 'Dañado - Reportado' ? 'selected' : ''}}>
+                                    Dañado - Reportado
+                                </option>
                             </select>
-                            <small>
-                                Este Estado es predefinido por el sistema
-                            </small>
                         </div>
                     </div>
                 </div>

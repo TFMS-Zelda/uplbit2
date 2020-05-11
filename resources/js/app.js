@@ -30,17 +30,31 @@ const Toast = Swal.mixin({
 })
 window.Toast = Toast;
 
-import AssignmentsComputersComponent from "./components/AssignmentsComputersComponent.vue";
+Vue.component('pagination', require('laravel-vue-pagination'));
+
+
+import AssignmentsComputersComponent from "./components/assignments/AssignmentsComputersComponent.vue";
 import AssignComputerComponent from "./components/AssignComputerComponent.vue";
 import AssignTabletComponent from "./components/AssignTabletComponent.vue";
-import AssignmentsTabletsComponent from "./components/AssignmentsTabletsComponent.vue";
+import AssignmentsTabletsComponent from "./components/assignments/AssignmentsTabletsComponent.vue";
+import AssignMonitorComponent from "./components/AssignMonitorComponent.vue";
+import AssignmentsMonitorsComponent from "./components/assignments/AssignmentsMonitorsComponent.vue";
+import AssignOtherPeripheralsComponent from "./components/AssignOtherPeripheralsComponent.vue";
+import AssignmentsPeripheralsComponent from "./components/assignments/AssignmentsPeripheralsComponent.vue";
+
+
 
 const app = new Vue({
     components: {
         'assignments-computers': AssignmentsComputersComponent,
         'assign-computer': AssignComputerComponent,
         'assign-tablet': AssignTabletComponent,
-        'assignments-tablets': AssignmentsTabletsComponent
+        'assignments-tablets': AssignmentsTabletsComponent,
+        'assign-monitor': AssignMonitorComponent,
+        'assignments-monitors': AssignmentsMonitorsComponent,
+        'assign-peripheral': AssignOtherPeripheralsComponent,
+        'assignments-peripherals': AssignmentsPeripheralsComponent,
+
     },
 
     el: '#app',

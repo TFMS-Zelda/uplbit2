@@ -24,7 +24,7 @@
                                     Monitores Retirados
                                 </div>
                                 <div class="h5 mb-0 font-weight-bold text-white">
-                                    12
+                                    {{ $monitorsRemove }}
                                 </div>
                             </div>
                             <div class="col-auto">
@@ -41,6 +41,10 @@
                 src="{{ asset('/core/undraw/laptop-index.svg') }}">
         </div>
 
+        <a class="text-dark" href="{{ route('peripherals.monitors.index') }}"><i class='fas fa-hand-point-left'></i>
+            Regresar
+            Inventario
+            de Monitores</a>
 
         <div class="card mb-4 py-3 border-left-primary">
             <div class="card-body">

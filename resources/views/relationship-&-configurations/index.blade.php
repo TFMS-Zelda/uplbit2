@@ -113,21 +113,15 @@
                 class="btn btn-outline-secondary btn-lg">
                 <i class="fas fa-tablet"></i>
             </a>
-            <a href="" class="btn btn-outline-secondary btn-lg">
-                <i class="fas fa-print"></i>
-            </a>
-            <a href="" class="btn btn-outline-secondary btn-lg">
+            <a href="{{ route('relationship-&-configurations.assignments.monitors') }}"
+                class="btn btn-outline-secondary btn-lg">
                 <i class="fas fa-tv"></i>
             </a>
-            <a href="" class="btn btn-outline-secondary btn-lg">
+            <a href="{{ route('relationship-&-configurations.assignments.other-peripherals') }}"
+                class="btn btn-outline-secondary btn-lg">
                 <i class="fas fa-asterisk"></i>
             </a>
         </div>
-
-
-
-
-
     </div>
 
 </section>

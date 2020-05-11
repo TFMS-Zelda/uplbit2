@@ -122,23 +122,15 @@
                                     </div>
                                 </td>
                                 <td>
-
                                     @if ($otherPeripheral->status === 'Activo - Asignado')
-                                    <i class='fas fa-award'></i> {{ $otherPeripheral->status }}
+                                    <h5><span class="badge badge-success">{{ $otherPeripheral->status }} </span></h5>
 
                                     @elseif($otherPeripheral->status === 'Inactivo - No Asignado')
                                     <h5><span class="badge badge-danger">{{ $otherPeripheral->status }} </span></h5>
 
-                                    @elseif($otherPeripheral->status === 'Reportado por Hurto')
-                                    <i class='fas fa-ban' style='color: #e7330d'></i>
-                                    <div class="alert alert-dark" role="alert">
-                                        A simple dark alert—check it out!
-                                    </div>
-
-                                    @elseif($otherPeripheral->status === 'Retirado - Baja de Activo')
-                                    <h5><span class="badge badge-black">{{ $otherPeripheral->status }} </span></h5>
+                                    @elseif($otherPeripheral->status === 'Dañado - Reportado')
+                                    <h5><span class="badge badge-dark">{{ $otherPeripheral->status }} </span></h5>
                                     @endif
-
                                 </td>
                                 <td>
 

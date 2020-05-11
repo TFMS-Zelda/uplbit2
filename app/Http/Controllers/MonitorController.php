@@ -145,7 +145,7 @@ class MonitorController extends Controller
     public function update(UpdateMonitorRequest $request, Monitor $monitor)
     {
         $monitor->update($request->all());
-          
+        
         $sessionIdUser = Auth::id();
 
         $comment = new Comment();
@@ -170,37 +170,54 @@ class MonitorController extends Controller
      */
     public function destroy(Monitor $monitor)
     {
-          try {
+        $exists = $monitor->assignments()->where('assignable_id', $monitor->id)->exists();
+        try {
+            if ($exists === true) {
+                # code...
+                // return 'No puede eliminarse porque esta asignado';
+                alert()->error('Error!','No puede Eliminar este Monitor porque esta asignado a un empleado en este momento')->persistent('Close');
 
-              if ($monitor->status  === 'Retirado - Baja de Activo' ) {
-                  $updateStatusPostDelete = 'Retirado - Baja de Activo';
-                  $whenUserDeleteMonitor = Auth::id();
-                  Monitor::where('id','=', $monitor->id)->update(['status' => $updateStatusPostDelete, 'user_id' => $whenUserDeleteMonitor ]);
-                //   $monitor->delete();
-                  alert()->info('Atención','El equipo de computo' . ' ' . $monitor->license_plate . ' ' . 'a sido eliminado
-                  correctamente del sistema');
-                  
-                  return redirect()->route('peripherals.monitors.remove-&-disabled-monitors');
+                return redirect()->route('peripherals.monitors.index');
 
-              } else {
+            } else {
+                # code...
+                if ($monitor->status  === 'Inactivo - No Asignado' ) {
+                    # code...
+                    // return 'se puede eliminar porque contiene el status';
+                    alert()->success('Nota','El Monitor' . ' ' . $monitor->license_plate . ' ' . 'a sido eliminado 
+                    correctamente del sistema');
 
-                  Alert::error('Error, Eliminar Monitor', 'No puede eliminar este perisferico porque contiene un estado'
-                . ' ' . $monitor->status)->persistent('Close');
-                  return redirect()->route('peripherals.monitors.index');
-              }
-              
-        } catch (\Illuminate\Database\QueryException $e){
+                    $updateStatusPostDelete = 'Eliminado - Baja de Activo';
+                    $whenUserDeleteMonitor = Auth::id();
+                    \App\Monitor::where('id','=', $monitor->id)->update(['status' => $updateStatusPostDelete, 'user_id' => $whenUserDeleteMonitor]);
+
+                    $monitor->delete();
+
+                    return redirect()->route('peripherals.monitors.remove-&-disabled-monitors');
+
+                } else {
+                    # code...
+                    // return 'no se puede eliminar porque no contiene el status';
+                    alert()->error('Error!','No puede Eliminar este Monitor, porque el estado actual es'
+                    . ' ' . $monitor->status)->persistent('Close');
+
+                    return redirect()->route('peripherals.monitors.index');
+                }
+            }
             
-            return alert()->error('Error','se presento un error al momento de eliminar el siguiente monitor del sistema' + $e);
-
+        } catch (\Throwable $th) {
+            //throw $th;
         }
     }
 
     public function removeDisabledMonitors()
     {
-        $monitorsRemoveInventary = DB::table('monitors')->where('status', 'like', '%Retirado - Baja de Activo%')->get();
+        $monitorsRemoveInventary = DB::table('monitors')->where('status', '=', 'Eliminado - Baja de Activo')->get();
+        $monitorsRemove = DB::table('monitors')->where('status', '=', 'Eliminado - Baja de Activo')->count();
+
         return view('peripherals.monitors.remove-&-disabled-monitors', [
-            'monitorsRemoveInventary' => $monitorsRemoveInventary
+            'monitorsRemoveInventary' => $monitorsRemoveInventary,
+            'monitorsRemove' => $monitorsRemove
         ]);
     }
 

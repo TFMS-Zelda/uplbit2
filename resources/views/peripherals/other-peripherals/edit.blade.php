@@ -184,21 +184,10 @@
                                     Inactivo - No Asignado
                                 </option>
 
-                                <option value="En Mantenimiento"
-                                    {{ old('status', $otherPeripheral->status) == 'En Mantenimiento' ? 'selected' : ''}}>
-                                    En Mantenimiento
+                                <option value="Dañado - Reportado"
+                                    {{ old('status', $otherPeripheral->status) == 'Dañado - Reportado' ? 'selected' : ''}}>
+                                    Dañado - Reportado
                                 </option>
-
-                                <option value="Dañado"
-                                    {{ old('status', $otherPeripheral->status) == 'Dañado' ? 'selected' : ''}}>
-                                    Dañado
-                                </option>
-
-                                <option value="Retirado - Baja de Activo"
-                                    {{ old('status', $otherPeripheral->status) == 'Retirado - Baja de Activo' ? 'selected' : ''}}>
-                                    Retirado - Baja de Activo
-                                </option>
-
                             </select>
                         </div>
                     </div>

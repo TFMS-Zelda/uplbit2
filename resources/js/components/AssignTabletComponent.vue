@@ -22,7 +22,11 @@
       <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Asignar Tablet Cooporativa</h5>
+            <h2>
+              <i class="fas fa-tablet"></i>
+            </h2>
+            <h5 class="modal-title" id="exampleModalLabel">&nbsp;Asignar Tablet Corporativa</h5>
+
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
@@ -128,6 +132,7 @@
                         v-model="form.body"
                         minlength="4"
                         maxlength="512"
+                        required
                       ></textarea>
                       <has-error :form="form" field="body"></has-error>
                     </div>
@@ -211,7 +216,7 @@ export default {
           Swal.fire({
             position: "top-end",
             icon: "success",
-            title: "Asignación de Tablet corporativa realizada correctamente!",
+            title: "Asignación de Tablet Corporativa realizada correctamente!",
             showConfirmButton: false,
             timer: 1500
           });

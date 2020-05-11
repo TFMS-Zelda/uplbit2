@@ -23,7 +23,7 @@ class CreateOtherPeripheralsTable extends Migration
             $table->string('type_other_peripherals', 128);
             $table->string('brand', 128);
             $table->string('model', 128);
-          
+            
             $table->string('serial', 128)->unique();
             $table->string('license_plate', 7)->nullable();
             $table->string('location', 128);

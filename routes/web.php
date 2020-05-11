@@ -278,7 +278,8 @@ Route::middleware(['auth'])->group(function () {
 		->middleware('can:permission:maintenances.maintenance-of-other-peripherals.destroy');
 	Route::get('maintenances.maintenance-of-other-peripherals/{historyMaintenance}/edit', 'MaintenanceOtherPeripheralController@edit')->name('maintenances.maintenance-of-other-peripherals.edit')
 		->middleware('can:permission:maintenances.maintenance-of-other-peripherals.edit');
-	// maintenances history printers
+
+		// maintenances history printers
 	Route::get('maintenances/maintenance-of-other-peripherals/history', 'MaintenanceOtherPeripheralController@historyMaintenances')->name('maintenances.maintenance-of-other-peripherals.history')
 		->middleware('can:permission:maintenances.maintenance-of-other-peripherals.history');
 
@@ -289,10 +290,21 @@ Route::middleware(['auth'])->group(function () {
 	// Ruta reports maintenances computers
 	Route::get('reports.maintenance-of-printers/{historyMaintenance}/report', 'ReportController@downloadReportMaintenancePrinter')->name('reports.maintenance-of-printers.download')
 		->middleware('can:permission:reports.maintenance-of-printers.download');
-		
-	
+
+	// listas de checkeo
+	Route::get('checklists', 'CheckListController@index')->name('checklists.index')
+		->middleware('can:permission:checklists.index');
 
 	});
+
+
+
+
+
+
+
+
+
 
 	Route::get('relationship-&-configurations', 'RelationshipConfigurationController@index')->name('relationship-&-configurations.index');
 	Route::get('relationship-&-configurations/create', 'RelationshipConfigurationController@create')->name('relationship-&-configurations.create');
@@ -302,7 +314,17 @@ Route::middleware(['auth'])->group(function () {
 	Route::post('relationship-&-configurations/assignments/computers/store', 'RelationshipConfigurationController@storeRelationComputers');
 	Route::delete('relationship-&-configurations/assignments/computers/{relationshipConfiguration}', 'RelationshipConfigurationController@destroyAssignmentComputer');
 
-
 	Route::get('relationship-&-configurations/assignments/tablets', 'RelationshipConfigurationController@assignmentsTabletsIndex')->name('relationship-&-configurations.assignments.tablets');
 	Route::post('relationship-&-configurations/assignments/tablets/store', 'RelationshipConfigurationController@storeRelationTablets');
 	Route::delete('relationship-&-configurations/assignments/tablets/{relationshipConfiguration}', 'RelationshipConfigurationController@destroyAssignmentTablet');
+
+	Route::get('relationship-&-configurations/assignments/monitors', 'RelationshipConfigurationController@assignmentsMonitorsIndex')->name('relationship-&-configurations.assignments.monitors');
+	Route::post('relationship-&-configurations/assignments/monitors/store', 'RelationshipConfigurationController@storeRelationMonitors');
+	Route::delete('relationship-&-configurations/assignments/monitors/{relationshipConfiguration}', 'RelationshipConfigurationController@destroyAssignmentMonitor');
+
+	Route::get('relationship-&-configurations/assignments/other-peripherals', 'RelationshipConfigurationController@assignmentsOtherPeripheralsIndex')->name('relationship-&-configurations.assignments.other-peripherals');
+	Route::post('relationship-&-configurations/assignments/other-peripherals/store', 'RelationshipConfigurationController@storeRelationOtherPeripherals');
+	Route::delete('relationship-&-configurations/assignments/other-peripherals/{relationshipConfiguration}', 'RelationshipConfigurationController@destroyAssignmentOtherPeripheral');
+
+
+

@@ -167,37 +167,52 @@ class OtherPeripheralController extends Controller
      */
     public function destroy(OtherPeripheral $otherPeripheral)
     {
-        
-          try {
+        $exists = $otherPeripheral->assignments()->where('assignable_id', $otherPeripheral->id)->exists();
+        try {
+            if ($exists === true) {
+                # code...
+                // return 'No puede eliminarse porque esta asignado';
+                alert()->error('Error!','No puede Eliminar este Perisférico porque esta asignado a un empleado en este momento')->persistent('Close');
 
-              if ($otherPeripheral->status  === 'Retirado - Baja de Activo' ) {
-                  $updateStatusPostDelete = 'Retirado - Baja de Activo';
-                  $whenUserDeleteOtherPeripheral = Auth::id();
-                  OtherPeripheral::where('id','=', $otherPeripheral->id)->update(['status' => $updateStatusPostDelete, 'user_id' => $whenUserDeleteOtherPeripheral ]);
-                //   $monitor->delete();
-                  alert()->info('Atención','El equipo de computo' . ' ' . $otherPeripheral->license_plate . ' ' . 'a sido eliminado
-                  correctamente del sistema');
-                  
-                  return redirect()->route('peripherals.monitors.remove-&-disabled-monitors');
+                return redirect()->route('peripherals.other-peripherals.index');
 
-              } else {
+            } else {
+                # code...
+                if ($otherPeripheral->status  === 'Inactivo - No Asignado' ) {
+                    # code...
+                    // return 'se puede eliminar porque contiene el status';
+                    alert()->success('Nota','El Perisférico' . ' ' . $otherPeripheral->license_plate . ' ' . 'a sido eliminado 
+                    correctamente del sistema');
 
-                  Alert::error('Error, Eliminar Perisferico', 'No puede eliminar este perisferico porque contiene un estado'
-                . ' ' . $monitor->status)->persistent('Close');
-                  return redirect()->route('peripherals.other-peripherals.remove-&-disabled-other-peripherals');
-              }
-              
-        } catch (\Illuminate\Database\QueryException $e){
+                    $updateStatusPostDelete = 'Eliminado - Baja de Activo';
+                    $whenUserDeletePeripheral = Auth::id();
+                    OtherPeripheral::where('id','=', $otherPeripheral->id)->update(['status' => $updateStatusPostDelete, 'user_id' => $whenUserDeletePeripheral]);
+
+                    $computer->delete();
+
+                    return redirect()->route('peripherals.other-peripherals.index');
+
+                } else {
+                    # code...
+                    // return 'no se puede eliminar porque no contiene el status';
+                    alert()->error('Error!','No puede Eliminar este Perisférico, porque el estado actual es'
+                    . ' ' . $otherPeripheral->status)->persistent('Close');
+
+                    return redirect()->route('peripherals.other-peripherals.index');
+                }
+
+            }
             
-            return alert()->error('Error','se presento un error al momento de eliminar el siguiente perisferico del sistema' + $e);
-
+        } catch (\Throwable $th) {
+            //throw $th;
         }
     }
+    
 
     public function removeDisabledOtherPeripheral()
     {
-        $otherPeripheralRemoveInventary = DB::table('other_peripherals')->where('status', 'like', '%Retirado - Baja de Activo%')->get();
-        $peripheralRemove = DB::table('other_peripherals')->where('status', 'like', '%Retirado - Baja de Activo%')->count();
+        $otherPeripheralRemoveInventary = DB::table('other_peripherals')->where('status', '=', 'Eliminado - Baja de Activo')->get();
+        $peripheralRemove = DB::table('other_peripherals')->where('status', '=', 'Eliminado - Baja de Activo')->count();
 
         return view('peripherals.other-peripherals.remove-&-disabled-other-peripherals', [
             'otherPeripheralRemoveInventary' => $otherPeripheralRemoveInventary,

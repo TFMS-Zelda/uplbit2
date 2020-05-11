@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use DB;
 use App\Computer;
 use App\Tablet;
+use App\OtherPeripheral;
 
 
 class RelationshipConfigurationController extends Controller
@@ -34,22 +35,42 @@ class RelationshipConfigurationController extends Controller
         //  return $games;
     }
 
-    // ruta para obtener todos los computers asignados
+    // ruta para obtener todos los computers asignados en vuejs
     public function getComputers()
     {
-        $computers = RelationshipConfiguration::with(['assignable', 'user', 'employee'])
-        ->where('relationship_configurations.assignable_type', '=', 'App\Computer')
-        ->get();
+        $computers = RelationshipConfiguration::with(['assignable', 'employee'])
+        ->where('relationship_configurations.assignable_type', '=', 'App\Computer')->paginate(5);
+  
+
         return $computers;
     }
 
-    // ruta para obtener todos las tablets asignados
+    // ruta para obtener todos las tablets asignados en vuejs
     public function getTablets()
     {
-        $tablets = RelationshipConfiguration::with(['assignable', 'user', 'employee'])
+        $tablets = RelationshipConfiguration::with(['assignable', 'employee'])
         ->where('relationship_configurations.assignable_type', '=', 'App\Tablet')
         ->get();
         return $tablets;
+    }
+
+    
+    // ruta para obtener todos los monitores asignados en vue js
+    public function getMonitors()
+    {
+        $monitors = RelationshipConfiguration::with(['assignable', 'employee'])
+        ->where('relationship_configurations.assignable_type', '=', 'App\Monitor')
+        ->get();
+        return $monitors;
+    }
+
+     // ruta para obtener todos los perisfericos asignados en vue js
+    public function getOtherPeripherals()
+    {
+        $peripherals = RelationshipConfiguration::with(['assignable', 'employee'])
+        ->where('relationship_configurations.assignable_type', '=', 'App\OtherPeripheral')
+        ->get();
+        return $peripherals;
     }
 
     // Ruta para obtener los computers disponibles para ser asignados
@@ -64,6 +85,16 @@ class RelationshipConfigurationController extends Controller
         return $tablets;
     }
 
+    // Ruta para obtener los monitores disponibles para ser asignados
+    public function allMonitorsByAssign(){
+        $monitors = DB::table('monitors')->where('status', '=', 'Inactivo - No Asignado')->get();
+        return $monitors;
+    }
 
-
+    // Ruta para obtener los perisfericos disponibles para ser asignados
+    public function allOtherPeripheralsByAssign(){
+        $peripherals = DB::table('other_peripherals')->where('status', '=', 'Inactivo - No Asignado')->get();
+        return $peripherals;
+    }
+    
 }

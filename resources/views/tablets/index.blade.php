@@ -129,27 +129,12 @@
                                 <td>
                                     @if ($tablet->status === 'Activo - Asignado')
                                     <h5><span class="badge badge-success">{{ $tablet->status }} </span></h5>
-                                    <div class="h6 mb-0 font-weight-bold text-muted">
-                                        <i class="fa fa-phone" aria-hidden="true"></i> {{ $tablet->phone_number }}
-                                    </div>
 
                                     @elseif($tablet->status === 'Inactivo - No Asignado')
-                                    <h5><span class="badge badge-primary">{{ $tablet->status }} </span></h5>
-                                    <div class="h6 mb-0 font-weight-bold text-muted">
-                                        <i class="fa fa-phone" aria-hidden="true"></i> {{ $tablet->phone_number }}
-                                    </div>
+                                    <h5><span class="badge badge-danger">{{ $tablet->status }} </span></h5>
 
-                                    @elseif($tablet->status === 'Reportado por Hurto')
+                                    @elseif($tablet->status === 'Dañado - Reportado')
                                     <h5><span class="badge badge-dark">{{ $tablet->status }} </span></h5>
-                                    <div class="h6 mb-0 font-weight-bold text-muted">
-                                        <i class="fa fa-phone" aria-hidden="true"></i> {{ $tablet->phone_number }}
-                                    </div>
-
-                                    @elseif($tablet->status === 'Retirado - Baja de Activo')
-                                    <h5><span class="badge badge-warning">{{ $tablet->status }} </span></h5>
-                                    <div class="h6 mb-0 font-weight-bold text-muted">
-                                        <i class="fa fa-phone" aria-hidden="true"></i> {{ $tablet->phone_number }}
-                                    </div>
                                     @endif
                                 </td>
                                 <td>

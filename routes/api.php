@@ -27,4 +27,12 @@ Route::get('computers', 'Api\RelationshipConfigurationController@allComputersByA
 Route::get('/assignments/tablets', 'Api\RelationshipConfigurationController@getTablets');
 Route::get('tablets', 'Api\RelationshipConfigurationController@allTabletsByAssign');
 
+// assigns monitors vue.js
+Route::get('/assignments/monitors', 'Api\RelationshipConfigurationController@getMonitors');
+Route::get('monitors', 'Api\RelationshipConfigurationController@allMonitorsByAssign');
+
+// assigns perisfericos vue.js
+Route::get('/assignments/other-peripherals', 'Api\RelationshipConfigurationController@getOtherPeripherals');
+Route::get('other-peripherals', 'Api\RelationshipConfigurationController@allOtherPeripheralsByAssign');
+
 

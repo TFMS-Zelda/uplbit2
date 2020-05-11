@@ -335,34 +335,21 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="form-row">
-                        <div class="form-group col-md-6">
+                        <div class="form-group col-md-4">
                             <label>*Estado del Monitor:</label>
                             <select class="form-control" name="status" v required>
                                 <option value="Activo - Asignado"
                                     {{ old('status', $monitor->status) == 'Activo - Asignado' ? 'selected' : ''}}>
                                     Activo - Asignado
                                 </option>
-
                                 <option value="Inactivo - No Asignado"
                                     {{ old('status', $monitor->status) == 'Inactivo - No Asignado' ? 'selected' : ''}}>
                                     Inactivo - No Asignado
                                 </option>
-
-                                <option value="En Mantenimiento"
-                                    {{ old('status', $monitor->status) == 'En Mantenimiento' ? 'selected' : ''}}>
-                                    En Mantenimiento
-                                </option>
-
                                 <option value="Dañado"
                                     {{ old('status', $monitor->status) == 'Dañado' ? 'selected' : ''}}>
-                                    Dañado
+                                    Dañado - Reportado
                                 </option>
-
-                                <option value="Retirado - Baja de Activo"
-                                    {{ old('status', $monitor->status) == 'Retirado - Baja de Activo' ? 'selected' : ''}}>
-                                    Retirado - Baja de Activo
-                                </option>
-
                             </select>
                         </div>
                     </div>

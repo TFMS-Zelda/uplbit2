@@ -21,7 +21,7 @@
                         <div class="row no-gutters align-items-center">
                             <div class="col mr-2">
                                 <div class="text-xs font-weight-bold text-white text-uppercase mb-1">
-                                    Tablets corporativas retiradas
+                                    Tablets Corporativas retiradas
                                 </div>
                                 <div class="h5 mb-0 font-weight-bold text-white">
                                     {{ $tabletsRetiradas }}
@@ -45,7 +45,7 @@
         <a class="text-dark" href="{{ route('tablets.index') }}"><i class='fas fa-hand-point-left'></i>
             Regresar
             Inventario
-            Tablets corporativas</a>
+            Tablets Corporativas</a>
         <div class="card mb-4 py-3 border-left-primary">
             <div class="card-body">
 
@@ -104,33 +104,17 @@
                                     </div>
                                 </td>
                                 <td>
-                                    @if ($tablet->status === 'Activo - Asignado')
-                                    <h5><span class="badge badge-success">{{ $tablet->status }} </span></h5>
                                     <div class="h6 mb-0 font-weight-bold text-muted">
-                                        <i class="fa fa-phone" aria-hidden="true"></i> {{ $tablet->phone_number }}
+                                        <h5><span class="badge badge-danger">{{ $tablet->status }}
+                                            </span></h5>
+                                        Eliminado: {{ $tablet->deleted_at }} -
+                                        {{ Carbon\Carbon::parse($tablet->deleted_at)->format('l jS \\of F Y ') }}
                                     </div>
-
-                                    @elseif($tablet->status === 'Inactivo - No Asignado')
-                                    <h5><span class="badge badge-primary">{{ $tablet->status }} </span></h5>
-                                    <div class="h6 mb-0 font-weight-bold text-muted">
-                                        <i class="fa fa-phone" aria-hidden="true"></i> {{ $tablet->phone_number }}
-                                    </div>
-
-                                    @elseif($tablet->status === 'Reportado por Hurto')
-                                    <h5><span class="badge badge-dark">{{ $tablet->status }} </span></h5>
-                                    <div class="h6 mb-0 font-weight-bold text-muted">
-                                        <i class="fa fa-phone" aria-hidden="true"></i> {{ $tablet->phone_number }}
-                                    </div>
-
-                                    @elseif($tablet->status === 'Retirado - Baja de Activo')
-                                    <h5><span class="badge badge-warning">{{ $tablet->status }} </span></h5>
-                                    <div class="h6 mb-0 font-weight-bold text-muted">
-                                        <i class="fa fa-phone" aria-hidden="true"></i> {{ $tablet->phone_number }}
-                                    </div>
-                                    @endif
                                 </td>
                                 <td>
-                                    <a href="" class="btn btn-primary">Re-Asignar Inventarios</a>
+                                    <a href="" class="btn btn-secondary btn-circle btn-sm">
+                                        <i class='fas fa-arrow-alt-circle-left'></i>
+                                    </a>
                                 </td>
                             </tr>
                             @endforeach
