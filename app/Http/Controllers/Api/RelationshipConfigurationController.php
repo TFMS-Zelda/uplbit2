@@ -9,6 +9,7 @@ use DB;
 use App\Computer;
 use App\Tablet;
 use App\OtherPeripheral;
+use App\Employee;
 
 
 class RelationshipConfigurationController extends Controller
@@ -95,6 +96,6 @@ class RelationshipConfigurationController extends Controller
     public function allOtherPeripheralsByAssign(){
         $peripherals = DB::table('other_peripherals')->where('status', '=', 'Inactivo - No Asignado')->get();
         return $peripherals;
-    }
-    
+}
+
 }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Employee;
 use App\Company;
+use App\RelationshipConfiguration;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreEmployeeRequest;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -35,7 +36,6 @@ class EmployeeController extends Controller
         return view('managers.employees.index', [
             'employees' => $employees,
             'totalEmployeesActivos' => $totalEmployeesActivos,
-         
         ]);
     }
 
@@ -186,28 +186,52 @@ class EmployeeController extends Controller
      */
     public function destroy(Employee $employee)
     {
+        // $exists = $employee->assignments()->where('assignable_id', $employee->id)->exists();
+        $exists = \App\RelationshipConfiguration::where('employee_id', '=',  $employee->id)->exists();
         try {
-            if ($employee->status  === 'Inactivo' ) {
-                $updateStatusPostDelete = 'Inactivo';
-                $whenUserDeleteEmployee = Auth::id();
-                Employee::where('id','=', $employee->id)->update(['status' => $updateStatusPostDelete, 'user_id' => $whenUserDeleteEmployee ]);
-                $employee->delete();
-                alert()->info('Atención','El empleado' . ' ' . $employee->license_plate . ' ' . 'a sido inhabilitado
-                correctamente del sistema');
-                return redirect()->route('managers.employees.remove-&-disabled-employees');
-            } else {
-
-                Alert::error('Error, Inhabilitar Empleado', 'No puede inhabilitar este empleado del sistema porque el estado actual es'
-                . ' ' . $employee->status)->persistent('Close');
+            if ($exists === true) {
+                # code...
+                // return 'No puede eliminarse porque esta asignado';
+                alert()->error('Error!','No puede eliminar este Empleado, porque tiene CI´s asignados')->persistent('Close');
 
                 return redirect()->route('managers.employees.index');
+
+            } else {
+                # code...
+                if ($employee->status  === 'Inactivo' ) {
+                    # code...
+                    // return 'se puede eliminar porque contiene el status';
+                    alert()->success('Nota','El Empleado' . ' ' . $employee->name . ' ' . $employee->ugdn . ' ' . 'a sido eliminado 
+                    correctamente del sistema');
+
+                    $updateStatusPostDelete = 'Eliminado';
+                    $whenUserDelete = Auth::id();
+                    Employee::where('id','=', $employee->id)->update(['status' => $updateStatusPostDelete, 'user_id' => $whenUserDelete]);
+
+                    $computer->delete();
+
+                    return redirect()->route('managers.employees.index');
+
+                } else {
+                    # code...
+                    // return 'no se puede eliminar porque no contiene el status';
+                    alert()->error('Error!','No puede Eliminar este Empleado, porque el estado actual es'
+                    . ' ' . $employee->status)->persistent('Close');
+
+                    return redirect()->route('managers.employees.index');
                 }
-            } catch (\Illuminate\Database\QueryException $e) {
-                return alert()->error('Error','se presento un error al momento de inhabilitar este empleado del sistema' + $e);
+
+            }
+            
+        } catch (\Throwable $th) {
+            //throw $th;
         }
+
+        
+
     }
 
-     public function removeDisabledEmployees()
+    public function removeDisabledEmployees()
     {
         $employeeRemoveInventary = DB::table('employees')->where('status', 'like', '%Inactivo%')->get();
         $employeesRemove = DB::table('employees')->where('status', 'like', '%Inactivo%')->count();

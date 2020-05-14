@@ -295,6 +295,8 @@ Route::middleware(['auth'])->group(function () {
 	Route::get('checklists', 'CheckListController@index')->name('checklists.index')
 		->middleware('can:permission:checklists.index');
 
+	Route::get('reports.operational-agreements.download/{employee}/report', 'CheckListController@operationalAgreement')->name('reports.operational-agreements.download')
+		->middleware('can:permission:reports.operational-agreements.download');
 	});
 
 

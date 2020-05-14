@@ -68,6 +68,7 @@
                                 <th>UGDN:</th>
                                 <th>Área:</th>
                                 <th>Ubicación:</th>
+                                <th>Status</th>
                                 <th>Acciones:</th>
                             </tr>
                         </thead>
@@ -119,6 +120,14 @@
                                         {{ $employee->country }} / {{ $employee->city }} <br>
                                         <i class="fas fa-phone"></i> {{ $employee->phone }}
                                     </div>
+                                </td>
+                                <td>
+                                    @if ($employee->status === 'Activo')
+                                    <h5><span class="badge badge-success">{{ $employee->status }} </span></h5>
+
+                                    @elseif ($employee->status === 'Inactivo') <h5><span
+                                            class="badge badge-danger">{{ $employee->status }} </span></h5>
+                                    @endif
                                 </td>
                                 <td>
                                     @can('permission:managers.employees.show')

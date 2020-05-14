@@ -231,34 +231,3 @@ class ComputerController extends Controller
     }  
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-//  try {
-//             if ($computer->status  === 'Retirado - Baja de Activo' ) {
-//                 $updateStatusPostDelete = 'Retirado - Baja de Activo';
-//                 $whenUserDeleteComputer = Auth::id();
-//                 Computer::where('id','=', $computer->id)->update(['status' => $updateStatusPostDelete, 'user_id' => $whenUserDeleteComputer ]);
-//                 $computer->delete();
-//                 alert()->info('Atención','El equipo de computo' . ' ' . $computer->license_plate . ' ' . 'a sido eliminado
-//                 correctamente del sistema');
-//                 return redirect()->route('computers.remove-&-disabled-computers');
-//             } else {
-
-//                 Alert::error('Error, Eliminar Computer', 'No puede eliminar este equipo de computo porque el estado actual es'
-//                 . ' ' . $computer->status)->persistent('Close');
-
-//                 return redirect()->route('computers.index');
-//                 }
-//             } catch (\Illuminate\Database\QueryException $e) {
-//                 return alert()->error('Error','se presento un error al momento de eliminar el siguiente equipo de computo del sistema' + $e);
-//         }

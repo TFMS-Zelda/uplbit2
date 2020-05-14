@@ -14,4 +14,9 @@ class Employee extends Model
   'status', 'work_area', 'country', 'city', 'phone', 'profile_avatar', 'creation_date', 'citizenship_card', 'company_id', 'user_id'
 ];
 
+ public function assignments()
+    {
+        return $this->morphMany(RelationshipConfiguration::class, 'assignable');
+    }
+
 }

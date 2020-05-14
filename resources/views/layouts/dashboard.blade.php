@@ -124,7 +124,7 @@
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
                     aria-expanded="true" aria-controls="collapsePages">
                     <i class="fas fa-fw fa-folder"></i>
-                    <span>System Documents</span>
+                    <span>Documents</span>
                 </a>
                 <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
@@ -440,6 +440,7 @@
                                 src="{{ asset('/core/undraw/2020.svg') }}">
                         </div>
                     </div>
+                </div>
             </footer>
             <!-- End of Footer -->
         </div>

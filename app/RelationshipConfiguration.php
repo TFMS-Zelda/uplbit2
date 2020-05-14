@@ -34,6 +34,10 @@ class RelationshipConfiguration extends Model
         return $this->belongsTo('App\Tablet');
     }
 
+    
+
+
+
 
 
 
