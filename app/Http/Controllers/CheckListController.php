@@ -10,19 +10,7 @@ use App;
 
 class CheckListController extends Controller
 {
-    //code...
-    public function index()
-    {
-        // $employee = Employee::find(3);
-        // $computers = DB::table('relationship_configurations')
-        // ->join('computers', 'relationship_configurations.assignable_id', '=', 'computers.id')
-        // ->where('relationship_configurations.employee_id', '=', $employee->id)
-        // ->where('relationship_configurations.assignable_type', '=', 'App\Computer')
-        // ->get();
-        // // return $computers;
-        $employees = \App\Employee::get();
-        return view('checklists.index', compact('employees'));
-    }
+   
 
     public function operationalAgreement(Employee $employee)
     {

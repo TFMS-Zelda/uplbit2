@@ -138,10 +138,13 @@
                                     @endcan
 
                                     @can('permission:peripherals.monitors.edit')
+                                    @if ($monitor->status === 'Activo - Asignado')
+                                    @else
                                     <a href="{{ route('peripherals.monitors.edit', $monitor->id)}}"
-                                        class="btn btn-warning btn-circle btn-sm">
+                                        class="btn btn-warning btn-circle btn-sm" disabled>
                                         <i class="fas fa-exclamation-triangle"></i>
                                     </a>
+                                    @endif
                                     @endcan
 
                                     @can('permission:peripherals.monitors.destroy')

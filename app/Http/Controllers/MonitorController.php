@@ -46,13 +46,13 @@ class MonitorController extends Controller
         $articlesValidation = Article::count();
 
         if ($providersValidation >= 1 && $articlesValidation >= 1 ) {
-             # code...
+            # code...
             // Nota: este es un servicio
             $providers = app(ProviderOrArticle::class)->getProviders();
             return view('peripherals.monitors.create', compact('providers'));
             
         } else {
-           
+        
             alert()->html('<i>Provedor ó Articulo, no registrado en el sistema</i>',"
         
             <div role='alert' class='alert alert-danger alert-dismissible'>
@@ -70,7 +70,7 @@ class MonitorController extends Controller
             <h3>$articlesValidation , Articulos registrados de un provedor</h3>
             <hr> 
             </div>
-          ",'error')->persistent('Close');
+            ",'error')->persistent('Close');
             
             return redirect()->route('peripherals.monitors.index');
         
@@ -124,15 +124,22 @@ class MonitorController extends Controller
      */
     public function edit(Monitor $monitor)
     {
-        // Nota: este es un servicio
-        $providers = app(ProviderOrArticle::class)->getProviders();
-        $commentsTablet = \App\Monitor::find($monitor)->pluck('comments')->collapse();
+        if ($monitor->status != 'Activo - Asignado') {
+            # code...
+             // Nota: este es un servicio
+            $providers = app(ProviderOrArticle::class)->getProviders();
+            $commentsTablet = Monitor::find($monitor)->pluck('comments')->collapse();
 
-        return view('peripherals.monitors.edit', [
-            'monitor' => $monitor,
-            'commentsTablet' => $commentsTablet,
-            'providers' => $providers,
-        ]);
+            return view('peripherals.monitors.edit', [
+                'monitor' => $monitor,
+                'commentsTablet' => $commentsTablet,
+                'providers' => $providers,
+            ]);
+        } else {
+            # code...
+            alert()->error('Nota','No puede editar este Monitor porque esta asignado a un empleado en este momento' );
+            return redirect()->route('peripherals.monitors.index');
+        }
     }
 
     /**

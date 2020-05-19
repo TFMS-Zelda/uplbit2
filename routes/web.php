@@ -292,19 +292,19 @@ Route::middleware(['auth'])->group(function () {
 		->middleware('can:permission:reports.maintenance-of-printers.download');
 
 	// listas de checkeo
-	Route::get('checklists', 'CheckListController@index')->name('checklists.index')
-		->middleware('can:permission:checklists.index');
+	Route::get('documents/checklists', 'DocumentController@checkLists')->name('documents.checklists.index')
+		->middleware('can:permission:documents.checklists.index');
 
-	Route::get('reports.operational-agreements.download/{employee}/report', 'CheckListController@operationalAgreement')->name('reports.operational-agreements.download')
+	Route::get('reports.operational-agreements.download/{employee}/report', 'DocumentController@operationalAgreement')->name('reports.operational-agreements.download')
 		->middleware('can:permission:reports.operational-agreements.download');
+
+	// paz y salvo
+	Route::get('documents/peace-&-saves', 'DocumentController@peaceSaves')->name('documents.peace-&-saves.index')
+		->middleware('can:permission:documents.peace-&-saves.index');
+		
+	Route::get('reports.peace-&-saves.download/{employee}/report', 'DocumentController@downloadPeaceSave')->name('reports.peace-&-save.download')
+		->middleware('can:permission:reports.peace-&-saves.download');
 	});
-
-
-
-
-
-
-
 
 
 

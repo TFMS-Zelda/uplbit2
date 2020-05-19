@@ -130,15 +130,23 @@ class ComputerController extends Controller
      */
     public function edit(Computer $computer)
     {
-          // Nota: este es un servicio
-        $providers = app(ProviderOrArticle::class)->getProviders();
-        $commentsComputer = Computer::find($computer)->pluck('comments')->collapse();
+        if ($computer->status != 'Activo - Asignado') {
+            # code...
+             // Nota: este es un servicio
+            $providers = app(ProviderOrArticle::class)->getProviders();
+            $commentsComputer = Computer::find($computer)->pluck('comments')->collapse();
 
-        return view('computers.edit', [
-            'computer' => $computer,
-            'commentsComputer' => $commentsComputer,
-            'providers' => $providers,
-        ]);
+            return view('computers.edit', [
+                'computer' => $computer,
+                'commentsComputer' => $commentsComputer,
+                'providers' => $providers,
+            ]);
+        } else {
+            # code...
+            alert()->error('Nota','No puede editar este equipo de computo porque esta asignado a un empleado en este momento' );
+            return redirect()->route('computers.index');
+        }
+        
     }
 
     /**
@@ -151,7 +159,7 @@ class ComputerController extends Controller
     public function update(UpdateComputerRequest $request, Computer $computer)
     {
         $computer->update($request->all());
-          
+        
         $sessionIdUser = Auth::id();
 
         $comment = new Comment();
@@ -183,7 +191,7 @@ class ComputerController extends Controller
             if ($exists === true) {
                 # code...
                 // return 'No puede eliminarse porque esta asignado';
-                alert()->error('Error!','No puede Eliminar este Equipo de Computo porque esta asignado a un empleado en este momento')->persistent('Close');
+                alert()->error('Error!','No puede Eliminar este equipo de computo porque esta asignado a un empleado en este momento')->persistent('Close');
 
                 return redirect()->route('computers.index');
 

@@ -112,20 +112,14 @@
                                 </td>
                                 <td>
                                     <div class="h6 mb-0 font-weight-bold text-muted">
-                                        @if ($printer->status === 'Activo - Asignado')
+                                        @if ($printer->status === 'Activo - Operativo')
                                         <h5><span class="badge badge-success">{{ $printer->status }} </span></h5>
 
-                                        @elseif($printer->status === 'Inactivo - No Asignado')
+                                        @elseif($printer->status === 'Inactivo - No Operativo')
                                         <h5><span class="badge badge-danger">{{ $printer->status }} </span></h5>
 
-                                        @elseif($printer->status === 'En Mantenimiento')
-                                        <h5><span class="badge badge-warning">{{ $printer->status }} </span></h5>
-
-                                        @elseif($printer->status === 'Dañado')
-                                        <h5><span class="badge badge-black">{{ $printer->status }} </span></h5>
-
-                                        @elseif($printer->status === 'Retirado - Baja de Activo')
-                                        <h5><span class="badge badge-primary">{{ $printer->status }} </span></h5>
+                                        @elseif($printer->status === 'Dañado - Reportado')
+                                        <h5><span class="badge badge-dark">{{ $computer->status }} </span></h5>
                                         @endif
                                     </div>
                                 </td>

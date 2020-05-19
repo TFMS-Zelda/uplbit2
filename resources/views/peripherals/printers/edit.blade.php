@@ -6,7 +6,6 @@
 
 @section('titlePosition', 'printers/edit')
 
-
 <section class="content">
     <div class="container-fluid">
         <h1 class="h3 mb-1 text-gray-800">Editar Ci Impresora</h1>
@@ -90,16 +89,11 @@
                                     <span class="badge badge-warning">{{ $printer->status }} </span>
 
                                     @elseif($printer->status === 'Dañado')
-                                    <span class="badge badge-black">{{ $printer->status }} </span>
-
-                                    @elseif($printer->status === 'Retirado - Baja de Activo')
-                                    <span class="badge badge-primary">{{ $printer->status }} </span>
+                                    <span class="badge badge-black">{{ $printer->status }} </span </div> </div> <div
+                                        class="col-auto">
+                                    <i class="fas fa-clock fa-2x text-gray-300"></i>
                                     @endif
-
                                 </div>
-                            </div>
-                            <div class="col-auto">
-                                <i class="fas fa-clock fa-2x text-gray-300"></i>
                             </div>
                         </div>
                     </div>
@@ -356,7 +350,7 @@
                         <div class="form-group col-md-4">
                             <label><code>*Mac Address:</code></label>
                             <input type="text" id="inputMacAddress" class="form-control" name="mac_adrress"
-                                maxlength="14" value="{{ old('mac_adrress') }}" placeholder="Enter Mac" required
+                                maxlength="14" value="{{ $printer->mac_adrress }}" placeholder="Enter Mac" required
                                 autofocus onkeyup="javascript:this.value=this.value.toUpperCase();">
                             <small class="form-text text-gray-600">
                                 The Mac Address field cannot be duplicated
@@ -364,8 +358,8 @@
                         </div>
                         <div class="form-group col-md-4">
                             <label><code>*Ip Address:</code></label>
-                            <input type="text" class="form-control" id="ipv4" name="ipv4"
-                                placeholder="xxx.xxx.xxx.xxx" />
+                            <input type="text" class="form-control" value="{{ $printer->ip_address }}" id="ipv4"
+                                name="ip_address" placeholder="xxx.xxx.xxx.xxx" />
                             <small class="form-text text-gray-600">
                                 The Ip Address field cannot be duplicated
                             </small>
@@ -391,7 +385,8 @@
                                         selected="selected" @endif>
                                         {{ $printer->article->provider->name }}
                                     </option>
-                                    <option style="font-size: 2pt; background-color: #E9EFF7;" disabled>&nbsp;</option>
+                                    <option style="font-size: 2pt; background-color: #E9EFF7;" disabled>&nbsp;
+                                    </option>
 
                                     @foreach ($providers as $key => $value)
                                     <option value="{{ $key }}">{{ $value }} </option>
@@ -407,7 +402,8 @@
                                         selected="selected" @endif>
                                         {{ $printer->article->invoice_number }}
                                     </option>
-                                    <option style="font-size: 2pt; background-color: #E9EFF7;" disabled>&nbsp;</option>
+                                    <option style="font-size: 2pt; background-color: #E9EFF7;" disabled>&nbsp;
+                                    </option>
                                 </select>
                             </div>
 

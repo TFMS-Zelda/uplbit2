@@ -9,7 +9,7 @@
 
 <section class="content">
     <div class="container-fluid">
-        <h1 class="h3 mb-1 text-gray-800">Editar Tablet corporativa</h1>
+        <h1 class="h3 mb-1 text-gray-800">Editar Tablet Corporativa</h1>
         <p class="mb-4 text-justify">
             Complete el siguiente formulario, recuerde que los campos marcados con <strong>*</strong> son de caracter
             obligatorio.
@@ -348,28 +348,29 @@
                     </div>
                 </div>
             </div>
+            <div class='alert alert-dark'>
+                <div class="row">
+                    <div class="col-md-12">
+                        <h2>Estado!</h2>
+                        <p>El estado Activo - Asignado solo podra ser aplicado en el Módulo de Asignaciones...
+                        </p>
+                        <div class="form-row">
 
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="form-row">
-                        <div class="form-group col-md-4">
-                            <label>*Estado:</label>
-                            <select class="form-control" name="status" v required>
-                                <option value="Activo - Asignado"
-                                    {{ old('status', $tablet->status) == 'Activo - Asignado' ? 'selected' : ''}}>
-                                    Activo - Asignado
-                                </option>
+                            <div class="form-group col-md-4">
 
-                                <option value="Inactivo - No Asignado"
-                                    {{ old('status', $tablet->status) == 'Inactivo - No Asignado' ? 'selected' : ''}}>
-                                    Inactivo - No Asignado
-                                </option>
+                                <select class="form-control" name="status" v required>
 
-                                <option value="Dañado - Reportado"
-                                    {{ old('status', $tablet->status) == 'Dañado - Reportado' ? 'selected' : ''}}>
-                                    Dañado - Reportado
-                                </option>
-                            </select>
+                                    <option value="Inactivo - No Asignado"
+                                        {{ old('status', $tablet->status) == 'Inactivo - No Asignado' ? 'selected' : ''}}>
+                                        Inactivo - No Asignado
+                                    </option>
+
+                                    <option value="Dañado - Reportado"
+                                        {{ old('status', $tablet->status) == 'Dañado - Reportado' ? 'selected' : ''}}>
+                                        Dañado - Reportado
+                                    </option>
+                                </select>
+                            </div>
                         </div>
                     </div>
                 </div>

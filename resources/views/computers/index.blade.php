@@ -141,10 +141,16 @@
                                     </a>
                                     @endcan
 
+                                    @can('permission:computers.edit')
+                                    @if ($computer->status === 'Activo - Asignado')
+
+                                    @else
                                     <a href="{{ route('computers.edit', $computer->id)}}"
-                                        class="btn btn-warning btn-circle btn-sm">
+                                        class="btn btn-warning btn-circle btn-sm" disabled>
                                         <i class="fas fa-exclamation-triangle"></i>
                                     </a>
+                                    @endif
+                                    @endcan
 
                                     @can('computer.destroy')
                                     <form action="{{ route('computers.destroy', $computer->id) }}" method="POST">

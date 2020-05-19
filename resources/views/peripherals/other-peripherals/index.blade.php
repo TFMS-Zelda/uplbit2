@@ -142,10 +142,14 @@
                                     @endcan
 
                                     @can('permission:peripherals.other-peripherals.edit')
+                                    @if ($otherPeripheral->status === 'Activo - Asignado')
+
+                                    @else
                                     <a href="{{ route('peripherals.other-peripherals.edit', $otherPeripheral->id)}}"
-                                        class="btn btn-warning btn-circle btn-sm">
+                                        class="btn btn-warning btn-circle btn-sm" disabled>
                                         <i class="fas fa-exclamation-triangle"></i>
                                     </a>
+                                    @endif
                                     @endcan
 
                                     @can('permission:peripherals.other-peripherals.destroy')

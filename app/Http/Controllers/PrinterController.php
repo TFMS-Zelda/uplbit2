@@ -184,7 +184,7 @@ class PrinterController extends Controller
                 Alert::error('Error, Eliminar Printer', 'No puede eliminar esta perisferico - impresora porque el estado actual es'
                 . ' ' . $printer->status)->persistent('Close');
 
-                  return redirect()->route('peripherals.printers.index');
+                return redirect()->route('peripherals.printers.index');
                 }
             } catch (\Illuminate\Database\QueryException $e) {
                 return alert()->error('Error','Se presento un error al momento de eliminar la siguiente impresora del sistema' + $e);

@@ -50,6 +50,7 @@
             <div class="card-body">
                 <div class="table-responsive">
 
+
                     <table class="table table-light  table-striped table-bordered table-sm  table-hover"
                         id="table-computers" width="100%" cellspacing="0">
                         <thead>
@@ -117,8 +118,11 @@
                                     </div>
                                 </td>
                                 <td>
-
+                                    <a href="" class="btn btn-secondary btn-circle btn-sm">
+                                        <i class='fas fa-arrow-alt-circle-left'></i>
+                                    </a>
                                 </td>
+
                             </tr>
                             @endforeach
                         </tbody>
@@ -134,7 +138,7 @@
 <script src="{{ asset('/core/plugins/DataTables/datatables.min.js') }}"></script>
 <script>
     $(document).ready(function () {
-          $('#table-computers').DataTable();
-      });
+        $('#table-computers').DataTable();
+        });
 </script>
 @endpush

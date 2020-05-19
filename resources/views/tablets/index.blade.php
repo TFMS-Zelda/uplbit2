@@ -145,10 +145,16 @@
                                     </a>
                                     @endcan
 
+                                    @can('permission:tablets.edit')
+                                    @if ($tablet->status === 'Activo - Asignado')
+
+                                    @else
                                     <a href="{{ route('tablets.edit', $tablet->id)}}"
-                                        class="btn btn-warning btn-circle btn-sm">
+                                        class="btn btn-warning btn-circle btn-sm" disabled>
                                         <i class="fas fa-exclamation-triangle"></i>
                                     </a>
+                                    @endif
+                                    @endcan
 
                                     @can('tablets.destroy')
                                     <form action="{{ route('tablets.destroy', $tablet->id) }}" method="POST">

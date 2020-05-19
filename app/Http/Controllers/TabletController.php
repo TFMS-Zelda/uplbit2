@@ -47,13 +47,13 @@ class TabletController extends Controller
         $articlesValidation = Article::count();
 
         if ($providersValidation >= 1 && $articlesValidation >= 1 ) {
-             # code...
+            # code...
             // Nota: este es un servicio
             $providers = app(ProviderOrArticle::class)->getProviders();
             return view('tablets.create', compact('articles', 'providers'));
             
         } else {
-           
+        
             alert()->html('<i>Provedor ó Articulo, no registrado en el sistema</i>',"
         
             <div role='alert' class='alert alert-danger alert-dismissible'>
@@ -71,7 +71,7 @@ class TabletController extends Controller
             <h3>$articlesValidation , Articulos registrados de un provedor</h3>
             <hr> 
             </div>
-          ",'error')->persistent('Close');
+            ",'error')->persistent('Close');
             
             return redirect()->route('computers.index');
         }
@@ -98,16 +98,16 @@ class TabletController extends Controller
         // se obtiene el id del usuario que esta en la sesion
         $sessionIdUser = Auth::id();
 
-         // se agrega una relacion polimorfica en tabla comments se agrega modelo y se crea un nuevo comentario
-         $comment = new Comment();
-         $comment->user_id = $sessionIdUser;
-         $comment->commentable_id = $tablet->id;
-         
-        $comment->body =  $request->body;
-        $tablet->comments()->save($comment);
+            // se agrega una relacion polimorfica en tabla comments se agrega modelo y se crea un nuevo comentario
+            $comment = new Comment();
+            $comment->user_id = $sessionIdUser;
+            $comment->commentable_id = $tablet->id;
+            
+            $comment->body =  $request->body;
+            $tablet->comments()->save($comment);
 
-        Alert::success('Success!', 'Tablet coorporativa' . ' ' .  $tablet->license_plate . ' ' . 'Registrado correctamente en el sistema');
-        return redirect()->route('tablets.index');
+            Alert::success('Success!', 'Tablet coorporativa' . ' ' .  $tablet->license_plate . ' ' . 'Registrado correctamente en el sistema');
+            return redirect()->route('tablets.index');
 
 
     }
@@ -131,15 +131,23 @@ class TabletController extends Controller
      */
     public function edit(Tablet $tablet)
     {
-        // Nota: este es un servicio
-        $providers = app(ProviderOrArticle::class)->getProviders();
-        $commentsTablet = \App\Tablet::find($tablet)->pluck('comments')->collapse();
+        if ($tablet->status != 'Activo - Asignado') {
+            # code...
+             // Nota: este es un servicio
+            $providers = app(ProviderOrArticle::class)->getProviders();
+            $commentsTablet = \App\Tablet::find($tablet)->pluck('comments')->collapse();
 
-        return view('tablets.edit', [
-            'tablet' => $tablet,
-            'commentsTablet' => $commentsTablet,
-            'providers' => $providers,
-        ]);
+            return view('tablets.edit', [
+                'tablet' => $tablet,
+                'commentsTablet' => $commentsTablet,
+                'providers' => $providers,
+            ]);
+        } else {
+            # code...
+            alert()->error('Nota','No puede editar esta tablet corporativa en este momento porque esta asignada a un
+            empleado en este momento');
+            return redirect()->route('tablets.index');
+        }
     }
 
     /**
@@ -181,7 +189,7 @@ class TabletController extends Controller
             if ($exists === true) {
                 # code...
                 // return 'No puede eliminarse porque esta asignado';
-                alert()->error('Error!','No puede Eliminar esta Tablet Corporativa porque esta asignada a un empleado en este momento')->persistent('Close');
+                alert()->error('Error!','No puede eliminar esta tablet corporativa porque esta asignada a un empleado en este momento')->persistent('Close');
 
                 return redirect()->route('tablets.index');
 

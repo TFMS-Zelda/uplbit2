@@ -13,7 +13,6 @@
     <!-- Custom styles for this template-->
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
-
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     @stack('sass')
@@ -131,10 +130,10 @@
                         <h6 class="collapse-header">Complementos:</h6>
 
                         @can('permission:checklists.index')
-                        <a class="collapse-item" href="{{ route('checklists.index') }}">Check List</a>
+                        <a class="collapse-item" href="{{ route('documents.checklists.index') }}">Check List</a>
                         @endcan
 
-                        <a class="collapse-item" href="register.html">Register</a>
+                        <a class="collapse-item" href="{{ route('documents.peace-&-saves.index') }}">Paz y Salvo</a>
                         <a class="collapse-item" href="forgot-password.html">Forgot Password</a>
                         <div class="collapse-divider"></div>
                         <h6 class="collapse-header">:</h6>

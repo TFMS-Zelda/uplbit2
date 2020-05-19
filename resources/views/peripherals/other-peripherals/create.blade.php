@@ -79,8 +79,9 @@
                     <div class="form-row">
                         <div class="form-group col-md-4">
                             <label><code>*Placa Corporativa:</code></label>
-                            <input type="text" class="form-control" maxlength="7" name="license_plate"
-                                placeholder="Enter 000*" value="{{ old('license_plate') }}" required />
+                            <input type="text" class="form-control selectValidationNumber" maxlength="7"
+                                name="license_plate" placeholder="Enter 000*" value="{{ old('license_plate') }}"
+                                required />
                             <small class="form-text text-gray-600">
                                 <code>The Placa field cannot be duplicated</code>
                             </small>
@@ -271,4 +272,5 @@
     CKEDITOR.config.width = 'auto';
     CKEDITOR.replace('description');
 </script>
+<script src="{{ asset('/core/js/selectValidationNumber.js') }}"></script>
 @endpush

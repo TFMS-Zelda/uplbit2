@@ -20,7 +20,6 @@ class CreatePrintersTable extends Migration
             $table->collation = 'utf8_spanish_ci';
             
             $table->bigIncrements('id');
-
             $table->string('brand', 128);
             $table->string('model', 128);
             $table->string('serial', 128)->unique();            ;
@@ -41,7 +40,7 @@ class CreatePrintersTable extends Migration
             $table->string('status', 128);
             $table->date('warranty_start');
             $table->date('warranty_end');
-           
+        
             $table->bigInteger('article_id')->unsigned();
             $table->foreign('article_id')->references('id')->on('articles')
             ->onDelete('cascade')

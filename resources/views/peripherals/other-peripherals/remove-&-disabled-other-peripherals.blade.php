@@ -41,6 +41,11 @@
                 src="{{ asset('/core/undraw/other-peripherals.svg') }}">
         </div>
 
+        <a class="text-dark" href="{{ route('peripherals.other-peripherals.index') }}"><i
+                class='fas fa-hand-point-left'></i>
+            Regresar
+            Inventario
+            Perisféricos</a>
         <div class="card mb-4 py-3 border-left-primary">
             <div class="card-body">
 
@@ -98,11 +103,17 @@
                                     </div>
                                 </td>
                                 <td>
-
+                                    <div class="h6 mb-0 font-weight-bold text-muted">
+                                        <h5><span class="badge badge-danger">{{ $otherPeripheral->status }}
+                                            </span></h5>
+                                        Eliminado: {{ $otherPeripheral->deleted_at }} -
+                                        {{ Carbon\Carbon::parse($otherPeripheral->deleted_at)->format('l jS \\of F Y ') }}
+                                    </div>
                                 </td>
                                 <td>
-
-
+                                    <a href="" class="btn btn-secondary btn-circle btn-sm">
+                                        <i class='fas fa-arrow-alt-circle-left'></i>
+                                    </a>
                                 </td>
                             </tr>
                             @endforeach

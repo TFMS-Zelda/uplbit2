@@ -5,13 +5,6 @@
 
 @section('titlePosition', 'maintenances.maintenance-of-computers/show')
 
-<style>
-    input[type="text"],
-    input[type="email"],
-    textarea {
-        background - color: #E9EFF7;
-    }
-</style>
 <section class="content">
     <div class="container-fluid">
         <section class="bg-success text-center text-white">
@@ -166,15 +159,10 @@
 <script src="{{ asset('/core/plugins/ckeditor/ckeditor.js') }}"></script>
 
 <script>
-    $(document).ready(function () {
-          $('#table-computers').DataTable({});
-      });
-      
-      // CkEditor
-      CKEDITOR.config.heigth = 400;
-      CKEDITOR.config.width = 'auto';
-      CKEDITOR.replace('maintenance_description');
-      CKEDITOR.replace('observations');
-
+    // CkEditor
+        CKEDITOR.config.heigth = 400;
+        CKEDITOR.config.width = 'auto';
+        CKEDITOR.replace('maintenance_description');
+        CKEDITOR.replace('observations');
 </script>
 @endpush

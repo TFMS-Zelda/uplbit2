@@ -53,7 +53,7 @@ class ProviderController extends Controller
             return view('providers.create', [
                 'companies' => $companies,
             ]);
-          
+        
         } else {
             # code...
             return view('providers.create', [

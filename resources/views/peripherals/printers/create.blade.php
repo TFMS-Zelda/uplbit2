@@ -253,8 +253,8 @@
                         </div>
                         <div class="form-group col-md-4">
                             <label><code>*Ip Address:</code></label>
-                            <input type="text" class="form-control" id="ipv4" name="ipv4"
-                                placeholder="xxx.xxx.xxx.xxx" />
+                            <input type="text" class="form-control" id="ipv4" value="{{ old('ip_address') }}"
+                                name="ip_address" placeholder="xxx.xxx.xxx.xxx" />
                             <small class="form-text text-gray-600">
                                 The Ip Address field cannot be duplicated
                             </small>
@@ -302,10 +302,11 @@
                             <select class="form-control" name="status" required autofocus>
                                 <option value="Inactivo - No Asignado"
                                     {{ old('location') == 'Inactivo - No Asignado' ? 'selected' : ''}}>
-                                    Inactivo - No Asignado</option>
+                                    Activo - Operativo
+                                </option>
                             </select>
                             <small>
-                                El estado Inactivo - No Asignado es seleccionado por el sistema
+                                El estado Activo - Operatio, es seleccionado por el sistema por defecto
                             </small>
                         </div>
                     </div>

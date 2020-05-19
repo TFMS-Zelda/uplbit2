@@ -41,13 +41,13 @@ class OtherPeripheralController extends Controller
         $articlesValidation = Article::count();
 
         if ($providersValidation >= 1 && $articlesValidation >= 1 ) {
-             # code...
+            # code...
             // Nota: este es un servicio
             $providers = app(ProviderOrArticle::class)->getProviders();
             return view('peripherals.other-peripherals.create', compact('providers'));
             
         } else {
-           
+        
             alert()->html('<i>Provedor ó Articulo, no registrado en el sistema</i>',"
         
             <div role='alert' class='alert alert-danger alert-dismissible'>
@@ -65,7 +65,7 @@ class OtherPeripheralController extends Controller
             <h3>$articlesValidation , Articulos registrados de un provedor</h3>
             <hr> 
             </div>
-          ",'error')->persistent('Close');
+            ",'error')->persistent('Close');
             
             return redirect()->route('peripherals.other-peripherals.index');
         }
@@ -119,17 +119,24 @@ class OtherPeripheralController extends Controller
      * @param  \App\OtherPeripheral  $otherPeripheral
      * @return \Illuminate\Http\Response
      */
-    public function edit(OtherPeripheral $otherPeripheral)
+    public function edit(OtherPeripheral $otherPeripheral) 
     {
-        // Nota: este es un servicio
-        $providers = app(ProviderOrArticle::class)->getProviders();
-        $commentsOtherPeripherals = OtherPeripheral::find($otherPeripheral)->pluck('comments')->collapse();
+       if ($otherPeripheral->status != 'Activo - Asignado') {
+            # code...
+             // Nota: este es un servicio
+            $providers = app(ProviderOrArticle::class)->getProviders();
+            $commentsOtherPeripherals = \App\OtherPeripheral::find($otherPeripheral)->pluck('comments')->collapse();
 
-        return view('peripherals.other-peripherals.edit', [
-            'otherPeripheral' => $otherPeripheral,
-            'commentsOtherPeripherals' => $commentsOtherPeripherals,
-            'providers' => $providers,
-        ]);
+            return view('peripherals.other-peripherals.edit', [
+                'otherPeripheral' => $otherPeripheral,
+                'commentsOtherPeripherals' => $commentsOtherPeripherals,
+                'providers' => $providers,
+            ]);
+        } else {
+            # code...
+            alert()->error('Nota','No puede editar este perisferico porque esta asignado a un empleado en este momento' );
+            return redirect()->route('peripherals.other-peripherals.index');
+        }
     }
 
     /**
@@ -172,7 +179,7 @@ class OtherPeripheralController extends Controller
             if ($exists === true) {
                 # code...
                 // return 'No puede eliminarse porque esta asignado';
-                alert()->error('Error!','No puede Eliminar este Perisférico porque esta asignado a un empleado en este momento')->persistent('Close');
+                alert()->error('Error!','No puede Eliminar este perisférico porque esta asignado a un empleado en este momento')->persistent('Close');
 
                 return redirect()->route('peripherals.other-peripherals.index');
 
@@ -188,7 +195,7 @@ class OtherPeripheralController extends Controller
                     $whenUserDeletePeripheral = Auth::id();
                     OtherPeripheral::where('id','=', $otherPeripheral->id)->update(['status' => $updateStatusPostDelete, 'user_id' => $whenUserDeletePeripheral]);
 
-                    $computer->delete();
+                    $otherPeripheral->delete();
 
                     return redirect()->route('peripherals.other-peripherals.index');
 

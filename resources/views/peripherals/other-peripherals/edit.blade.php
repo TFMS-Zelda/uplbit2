@@ -170,25 +170,33 @@
                                     UPL Oficina - Planta Madrid</option>
                             </select>
                         </div>
+                    </div>
+                </div>
+            </div>
 
-                        <div class="form-group col-md-6">
-                            <label>*Estado del Monitor:</label>
-                            <select class="form-control" name="status" v required>
-                                <option value="Activo - Asignado"
-                                    {{ old('status', $otherPeripheral->status) == 'Activo - Asignado' ? 'selected' : ''}}>
-                                    Activo - Asignado
-                                </option>
+            <div class='alert alert-dark'>
+                <div class="row">
+                    <div class="col-md-12">
+                        <h2>Estado!</h2>
+                        <p>El estado Activo - Asignado solo podra ser aplicado en el Módulo de Asignaciones...
+                        </p>
+                        <div class="form-row">
 
-                                <option value="Inactivo - No Asignado"
-                                    {{ old('status', $otherPeripheral->status) == 'Inactivo - No Asignado' ? 'selected' : ''}}>
-                                    Inactivo - No Asignado
-                                </option>
+                            <div class="form-group col-md-4">
 
-                                <option value="Dañado - Reportado"
-                                    {{ old('status', $otherPeripheral->status) == 'Dañado - Reportado' ? 'selected' : ''}}>
-                                    Dañado - Reportado
-                                </option>
-                            </select>
+                                <select class="form-control" name="status" v required>
+
+                                    <option value="Inactivo - No Asignado"
+                                        {{ old('status', $otherPeripheral->status) == 'Inactivo - No Asignado' ? 'selected' : ''}}>
+                                        Inactivo - No Asignado
+                                    </option>
+
+                                    <option value="Dañado - Reportado"
+                                        {{ old('status', $otherPeripheral->status) == 'Dañado - Reportado' ? 'selected' : ''}}>
+                                        Dañado - Reportado
+                                    </option>
+                                </select>
+                            </div>
                         </div>
                     </div>
                 </div>

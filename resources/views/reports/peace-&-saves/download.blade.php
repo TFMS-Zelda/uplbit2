@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="{{public_path('/core/css/bulma.css')}}">
 
     <title>
-        Operational Level Agreement {{ $employee->name }}
+        Paz y Salvo {{ $employee->name }}
     </title>
 </head>
 
@@ -18,7 +18,7 @@
         <div class="hero-body">
             <div class="container">
                 <h1 class="title">
-                    Operational Level Agreement
+                    Paz y Salvo
                 </h1>
                 <h2 class="subtitle">
                     {{ $employee->name }}
@@ -32,19 +32,19 @@
             </div>
         </div>
     </section>
-    <div class="container">
-        <div class="notification">
-            <p class="has-text-black has-text-justified">
-                Por el presente acuerdo se hace constar la entrega que hace
-                <strong>Uniphos Plant Limited</strong> al
-                empleado de los siguientes recursos tecnológicos los cuales son detallados a continuacion:
-            </p>
-        </div>
 
+    @if ($computers->isNotEmpty() || $tablets->isNotEmpty() || $monitors->isNotEmpty() || $perisfericos->isNotEmpty())
+    <div class="notification is-danger is-light">
+        <h1 class="title">Denegado!, No puede generar este Paz y Salvo!</h1>
+        <h2 class="subtitle">Observaciones:</h2>
+        <p>
+            Actualmente se registra en el sistema los siguientes recursos tecnológicos relacionados con el empleado
+            <strong>{{ $employee->name }}</strong>
 
+        </p>
         @if ($computers->isEmpty())
-        <div class="notification is-danger is-light">
-            <strong>No se asigna Equipo de computo...</strong>
+        <div class="notification is-success is-light">
+            <strong> No tiene devoluciones pendientes por recursos de equipos de computo.</strong>
         </div>
         @else
         <div class="notification is-primary is-light">
@@ -96,8 +96,8 @@
         @endif
 
         @if ($tablets->isEmpty())
-        <div class="notification is-danger is-light">
-            <strong>No se asigna Tablet Corporativa</strong>
+        <div class="notification is-success is-light">
+            <strong> No tiene devoluciones pendientes por recursos de tablets corporativas</strong>
         </div>
         @else
         <div class="notification is-link is-light">
@@ -152,8 +152,8 @@
         @endif
 
         @if ($monitors->isEmpty())
-        <div class="notification is-danger is-light">
-            <strong>No se asigna Monitor Corporativo</strong>
+        <div class="notification is-success is-light">
+            <strong> No tiene devoluciones pendientes por monitores corporativos.</strong>
         </div>
         @else
         <div class="notification is-warning is-light">
@@ -209,8 +209,8 @@
         @endif
 
         @if ($perisfericos->isEmpty())
-        <div class="notification is-danger is-light">
-            <strong>No se asigna Perisfericos Corporativos</strong>
+        <div class="notification is-success is-light">
+            <strong> No tiene devoluciones pendientes por recursos de perisféricos.</strong>
         </div>
         @else
         <div class="notification is-black is-light">
@@ -251,37 +251,22 @@
             </table>
         </div>
         @endif
+    </div>
+    @else
+    <div class="notification is-success is-light">
+        <p class="has-text-black has-text-justified">
+            El área de Información y Tecnología de <strong>Uniphos Plant Limited Colombia</strong> certifica que la
+            persona <strong>{{ $employee->name }}</strong> identificada con el número de cedula
+            <strong>{{ $employee->citizenship_card }}</strong> se encuentra a paz y salvo con
+            el área por concepto de asignación de activos fijos y recursos tecnologícos que le fueron proporcionados
+            el día <strong>{{ Carbon\Carbon::parse($employee->created_at)->format('l jS \\of F Y ') }}</strong>,
+            fecha en la cual a sido registrada en el sistema.
+            <br>
+            <br>
 
-        <div class="notification">
-            <p class="has-text-black has-text-justified">
-                La finalidad de los anteriores recursos tecnológicos es para el desarrollo de sus funciones y el
-                cumplimiento de las obligaciones que ha adquirido en virtud del contrato laboral suscrito.
-
-                Los recursos tecnológicos se entregan en perfecto estado de uso y conservación,respondiendo el empleado
-                por la pérdida, daños, sustracciones o averías del mismo, cuando haya sido por negligencia o descuido,
-                para lo cual, con la suscripción del presente acuerdo de nivel operativo, autoriza expresamente y de
-                manera irrevocable a la empresa, para que proceda a descontar de su salario, liquidación y/o
-                prestaciones sociales,
-                el valor de la reparación o sustitución.
-
-                El empleado no podrá usar, gozar o disponer de los recursos tecnológicos de propiedad de la compañía
-                para la realización o ejecución de actividades distintas a las que le corresponden conforme a las
-                funciones que le han sido asignadas en virtud del presente acuerdo. Por lo tanto, durante la vigencia
-                del acuerdo de nivel operativo, la compañía podrá adelantar inspecciones y controles para verificar el
-                cumplimiento de esta obligación.
-
-                El empleado se compromete a realizar la devolución de los recursos tecnológicos a la terminación del
-                contrato laboral, en las mismas condiciones que le fue entregado, salvo el deterioro normal causado por
-                el uso. Es de anotar, que dichos recursos tecnológicos revisará un tercero y el costo de cualquier
-                novedad presentada respecto a la funcionalidad, completitud e integridad
-                en éste, será descontada de su salario, liquidación y/o prestaciones sociales según corresponda.
-
-                Se suscribe en la ciudad de Bogotá en la fecha de creación del empleado <strong>
-                    {{ Carbon\Carbon::parse($employee->created_at)->format('l jS \\of F Y ') }}</strong> registrada en
-                el sistema.
-            </p>
-        </div>
-
+            El presente certificado se expide a solicitud en la ciudad de Bogotá el día
+            <strong>{{ Carbon\Carbon::now()->format('l jS \\of F Y ') }}</strong>.
+        </p>
     </div>
     <section class="hero is-ligth">
         <div class="hero-body">
@@ -305,25 +290,27 @@
         <div class="hero-body">
             <div class="container">
                 <h1 class="title">
-                    Recibe
+                    Entrega
                 </h1>
                 <h2 class="subtitle">
-                    {{ $employee->name }}
+                    Víctor Andres Tuiran
                     <br>
-                    {{ $employee->email_corporate }}
+                    victor.tuiran@upl-ltd.com
                     <br>
-                    {{ $employee->job_title }}
+                    Information Technology/Bogota
                     <br>
-                    {{ $employee->ugdn }}
+                    30010039
                 </h2>
             </div>
         </div>
     </section>
+    @endif
 
     <footer class="footer">
         <div class="content has-text-centered">
             <p>
-                <strong>Uniphos Plant Limited</strong>, <a>Información y Tecnología</a>. Operational Level Agreement,
+                <strong>Uniphos Plant Limited</strong>, <a>Información y Tecnología</a>. Operational Level
+                Agreement,
                 Descargado Digitalmente.
                 <p class="title">2020</p>
             </p>
