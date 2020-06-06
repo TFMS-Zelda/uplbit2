@@ -137,18 +137,7 @@ export default {
     }
   },
 
-  computed: {
-    searchComputer() {
-      return this.computers.filter(computer => {
-        return (
-          computer.employee.name
-            .toLowerCase()
-            .includes(this.search.toLowerCase()) ||
-          computer.assignable.license_plate.includes(this.search)
-        );
-      });
-    }
-  }
+  computed: {}
 };
 </script>
 

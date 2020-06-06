@@ -84,7 +84,7 @@
                     <td>
                         <div class="d-sm-flex align-items-center justify-content-between mb-4">
                             <a href="{{ route('reports.peace-&-save.download', $employee->id) }}"
-                                class="d-none d-sm-inline-block btn btn-sm btn-outline-success shadow-sm"><i
+                                class="d-none d-sm-inline-block btn btn-sm btn-outline-primary shadow-sm"><i
                                     class="fas fa-download fa-sm"></i> Generate Report</a>
                         </div>
                     </td>

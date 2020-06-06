@@ -279,35 +279,39 @@ Route::middleware(['auth'])->group(function () {
 	Route::get('maintenances.maintenance-of-other-peripherals/{historyMaintenance}/edit', 'MaintenanceOtherPeripheralController@edit')->name('maintenances.maintenance-of-other-peripherals.edit')
 		->middleware('can:permission:maintenances.maintenance-of-other-peripherals.edit');
 
-		// maintenances history printers
+	// maintenances history printers
 	Route::get('maintenances/maintenance-of-other-peripherals/history', 'MaintenanceOtherPeripheralController@historyMaintenances')->name('maintenances.maintenance-of-other-peripherals.history')
 		->middleware('can:permission:maintenances.maintenance-of-other-peripherals.history');
 
-	// Ruta reports maintenances computers
+	// Ruta reports maintenances computers PDF
 	Route::get('reports.maintenance-of-computers/{historyMaintenance}/report', 'ReportController@downloadReportMaintenanceComputer')->name('reports.maintenance-of-computers.download')
 		->middleware('can:permission:reports.maintenance-of-computers.download');
 
-	// Ruta reports maintenances computers
+	// Ruta reports maintenances computers PDF
 	Route::get('reports.maintenance-of-printers/{historyMaintenance}/report', 'ReportController@downloadReportMaintenancePrinter')->name('reports.maintenance-of-printers.download')
 		->middleware('can:permission:reports.maintenance-of-printers.download');
 
-	// listas de checkeo
+	// listas de checkeo PDF
 	Route::get('documents/checklists', 'DocumentController@checkLists')->name('documents.checklists.index')
 		->middleware('can:permission:documents.checklists.index');
 
 	Route::get('reports.operational-agreements.download/{employee}/report', 'DocumentController@operationalAgreement')->name('reports.operational-agreements.download')
 		->middleware('can:permission:reports.operational-agreements.download');
 
-	// paz y salvo
+	// paz y salvo PDF
 	Route::get('documents/peace-&-saves', 'DocumentController@peaceSaves')->name('documents.peace-&-saves.index')
 		->middleware('can:permission:documents.peace-&-saves.index');
 		
 	Route::get('reports.peace-&-saves.download/{employee}/report', 'DocumentController@downloadPeaceSave')->name('reports.peace-&-save.download')
 		->middleware('can:permission:reports.peace-&-saves.download');
+	
+	// Reportes en EXCEL
+	Route::get('computers.export/', 'ComputerController@exportExcelComputers')->name('computers.export.excel');
+	Route::get('tablets.export/', 'TabletController@exportExcelTablets')->name('tablets.export.excel');
+	Route::get('tablets.employee.export/', 'TabletController@exportExcelTabletsByEmployee')->name('tablets.employee.export.excel');
+
 	});
-
-
-
+	
 	Route::get('relationship-&-configurations', 'RelationshipConfigurationController@index')->name('relationship-&-configurations.index');
 	Route::get('relationship-&-configurations/create', 'RelationshipConfigurationController@create')->name('relationship-&-configurations.create');
 	Route::get('relationship-&-configurations/{employee}/assign', 'RelationshipConfigurationController@assign')->name('relationship-&-configurations.assign');

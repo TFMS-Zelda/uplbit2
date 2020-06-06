@@ -36,7 +36,7 @@
         <div class="notification">
             <p class="has-text-black has-text-justified">
                 Por el presente acuerdo se hace constar la entrega que hace
-                <strong>Uniphos Plant Limited</strong> al
+                <strong>Uniphos Plant Limited</strong> con Nit <strong>830095854</strong> al
                 empleado de los siguientes recursos tecnológicos los cuales son detallados a continuacion:
             </p>
         </div>
@@ -257,12 +257,28 @@
                 La finalidad de los anteriores recursos tecnológicos es para el desarrollo de sus funciones y el
                 cumplimiento de las obligaciones que ha adquirido en virtud del contrato laboral suscrito.
 
-                Los recursos tecnológicos se entregan en perfecto estado de uso y conservación,respondiendo el empleado
+                <br>
+                <br>
+
+                Además de los recursos tecnológicos descritos anteriormente y concedidos por el área de Información y
+                Tecnología al empleado en virtud del
+                presente acuerdo de nivel operacional, puede verse actualizado en diferentes momentos dado la nesecidad
+                del empleado de suplir u obtener otros recursos tecnológicos en virtud de sus funciones laborales, los
+                cuales
+                le será notificado mediante el correo electronico <strong>{{ $employee->email_corporate }}</strong>
+                registrado en el sistema adjuntando la actualización del acuerdo de nivel operacional.
+
+                <br>
+                <br>
+
+                Los recursos tecnológicos se entregan en perfecto estado de uso y conservación, respondiendo el empleado
                 por la pérdida, daños, sustracciones o averías del mismo, cuando haya sido por negligencia o descuido,
                 para lo cual, con la suscripción del presente acuerdo de nivel operativo, autoriza expresamente y de
                 manera irrevocable a la empresa, para que proceda a descontar de su salario, liquidación y/o
-                prestaciones sociales,
-                el valor de la reparación o sustitución.
+                prestaciones sociales, el valor de la reparación o sustitución.
+
+                <br>
+                <br>
 
                 El empleado no podrá usar, gozar o disponer de los recursos tecnológicos de propiedad de la compañía
                 para la realización o ejecución de actividades distintas a las que le corresponden conforme a las
@@ -270,11 +286,17 @@
                 del acuerdo de nivel operativo, la compañía podrá adelantar inspecciones y controles para verificar el
                 cumplimiento de esta obligación.
 
+                <br>
+                <br>
+
                 El empleado se compromete a realizar la devolución de los recursos tecnológicos a la terminación del
                 contrato laboral, en las mismas condiciones que le fue entregado, salvo el deterioro normal causado por
                 el uso. Es de anotar, que dichos recursos tecnológicos revisará un tercero y el costo de cualquier
                 novedad presentada respecto a la funcionalidad, completitud e integridad
                 en éste, será descontada de su salario, liquidación y/o prestaciones sociales según corresponda.
+
+                <br>
+                <br>
 
                 Se suscribe en la ciudad de Bogotá en la fecha de creación del empleado <strong>
                     {{ Carbon\Carbon::parse($employee->created_at)->format('l jS \\of F Y ') }}</strong> registrada en
@@ -297,6 +319,24 @@
                     Information Technology/Bogota
                     <br>
                     20011781
+                </h2>
+            </div>
+        </div>
+    </section>
+    <section class="hero is-ligth">
+        <div class="hero-body">
+            <div class="container">
+                <h1 class="title">
+                    Entrega
+                </h1>
+                <h2 class="subtitle">
+                    Víctor Andres Tuiran
+                    <br>
+                    victor.tuiran@upl-ltd.com
+                    <br>
+                    Information Technology/Bogota
+                    <br>
+                    30010039
                 </h2>
             </div>
         </div>

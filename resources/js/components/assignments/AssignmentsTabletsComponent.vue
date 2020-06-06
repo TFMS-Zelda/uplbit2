@@ -1,6 +1,9 @@
 <template>
   <div>
-    <table class="table table-sm table-striped table-light table-hover table-fixed">
+    <table
+      class="table table-sm table-striped table-light table-hover table-fixed"
+      id="relationTable"
+    >
       <thead class="thead-primary">
         <tr class="bg-gradient-primary text-white text-center">
           <th>
@@ -81,6 +84,7 @@
 </template>
 
 <script>
+import datatables from "datatables";
 export default {
   created() {
     this.getTablets();
@@ -97,6 +101,7 @@ export default {
         const url = "/api/assignments/tablets";
         const response = await axios.get(url);
         this.tablets = response.data;
+        this.myTable();
       } catch (error) {
         console.log(error);
       }
@@ -130,6 +135,12 @@ export default {
       } catch (error) {
         console.log(error);
       }
+    },
+
+    myTable() {
+      $(document).ready(function() {
+        $("#relationTable").DataTable();
+      });
     }
   }
 };

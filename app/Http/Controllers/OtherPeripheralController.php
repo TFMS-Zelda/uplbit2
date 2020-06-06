@@ -110,7 +110,7 @@ class OtherPeripheralController extends Controller
      */
     public function show(OtherPeripheral $otherPeripheral)
     {
-        //
+        return view('peripherals.other-peripherals.show', compact('otherPeripheral'));
     }
 
     /**
@@ -121,7 +121,7 @@ class OtherPeripheralController extends Controller
      */
     public function edit(OtherPeripheral $otherPeripheral) 
     {
-       if ($otherPeripheral->status != 'Activo - Asignado') {
+        if ($otherPeripheral->status != 'Activo - Asignado') {
             # code...
              // Nota: este es un servicio
             $providers = app(ProviderOrArticle::class)->getProviders();

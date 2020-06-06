@@ -92,8 +92,9 @@
         </div>
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
             <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
-            <a href="{{ route('maintenances.maintenance-of-computers.history') }} " class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
-                    class="fas fa-history fa-sm"></i> Historial de Mantenimientos</a>
+            <a href="{{ route('maintenances.maintenance-of-computers.history') }} "
+                class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-history fa-sm"></i>
+                Historial de Mantenimientos</a>
         </div>
 
         <p class="text-gray-900">
@@ -160,9 +161,9 @@
                             <h5><span class="badge badge-success">{{ $computer->status }} </span></h5>
 
                             @elseif($computer->status === 'Inactivo - No Asignado')
-                            <h5><span class="badge badge-primary">{{ $computer->status }} </span></h5>
+                            <h5><span class="badge badge-danger">{{ $computer->status }} </span></h5>
 
-                            @elseif($computer->status === 'Reportado por Hurto')
+                            @elseif($computer->status === 'Dañado - Reportado')
                             <h5><span class="badge badge-dark">{{ $computer->status }} </span></h5>
 
                             @elseif($computer->status === 'Retirado - Baja de Activo')
@@ -171,14 +172,14 @@
                         </td>
                         <td>
                             <div class="btn-group">
-                                
-                            @can('permission:maintenances.maintenance-of-computers.create')
-                            <a href="{{ route('maintenances.maintenance-of-computers.create', $computer->id) }}"
-                                title="Reportar Mantenimiento"
-                                class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm">
-                                <i class="fas fa-bug fa-sm text-white"></i>
-                            </a>
-                            @endcan                            
+
+                                @can('permission:maintenances.maintenance-of-computers.create')
+                                <a href="{{ route('maintenances.maintenance-of-computers.create', $computer->id) }}"
+                                    title="Reportar Mantenimiento"
+                                    class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm">
+                                    <i class="fas fa-bug fa-sm text-white"></i>
+                                </a>
+                                @endcan
                             </div>
                         </td>
                     </tr>

@@ -178,6 +178,9 @@ return [
         Intervention\Image\ImageServiceProvider::class,
         //SweetAlert
         RealRashid\SweetAlert\SweetAlertServiceProvider::class,
+        
+        Maatwebsite\Excel\ExcelServiceProvider::class,
+
 
     ],
 
@@ -232,6 +235,8 @@ return [
         //SweetAlert
         'Alert' => RealRashid\SweetAlert\Facades\Alert::class,
         'Image' => Intervention\Image\Facades\Image::class,
+        'Excel' => Maatwebsite\Excel\Facades\Excel::class,
+
     ],
 
 ];

@@ -41,7 +41,7 @@ class UpdateTabletRequest extends FormRequest
             'data_plan' => 'required|max:128',
             'sim_card' => "required|max:128|unique:tablets,sim_card,{$this->tablet->id}",
             'pin' => 'required|min:4|max:4',
-            'imei' => "required|digits_between:16,16|unique:tablets,imei,{$this->tablet->id}",
+            'imei' => "required|digits_between:15,15|unique:tablets,imei,{$this->tablet->id}",
             'phone_number' => "required|digits_between:10,10|unique:tablets,phone_number,{$this->tablet->id}",
             'license_plate' => "required|digits_between:7,7|unique:tablets,license_plate,{$this->tablet->id}",
             'location' => 'required|max:128',

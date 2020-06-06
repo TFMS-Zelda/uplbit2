@@ -86,8 +86,10 @@
 <script src="{{ asset('/core/plugins/DataTables/datatables.min.js') }}"></script>
 <script>
     $(document).ready(function () {
-          $('#table-employees').DataTable({});
-      });
+        $('#table-employees').DataTable({
+            order: [ [0, 'desc'] ]
+        });
+    });
 
 </script>
 @endpush

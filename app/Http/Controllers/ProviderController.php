@@ -136,20 +136,24 @@ class ProviderController extends Controller
      */
     public function destroy(Provider $provider)
     {
+        $existRelation = Article::where('provider_id', '=',  $provider->id)->exists();
         try {
+            if ($existRelation === true) {
+                    Alert::error('Provedor No Eliminado',
+                    'No puede eliminar el Provedor' . ' ' . 
+                    $provider->name . ' ' . 'porque contiene registros relacionados
+                    en algunos Articulos registrados en el sistema')->showConfirmButton('Aceptar', '#3085d6');
+                    return redirect()->route('providers.index');
 
-            $provider->delete();
-            alert()->info('Atención','El Provedor' . ' ' . $provider->provider . ' ' . $provider->kind_of_society . ' ' . 'a sido eliminado correctamente del sistema');
-    
-            return redirect()->route('providers.index');
-        
-        } catch (\Illuminate\Database\QueryException $e){
+            } else {
+                return redirect()->route('providers.index');
+            }
             
-            return alert()->error('ErrorAlert','Se ha presentado un error en el sistema al momento de eliminar el Provedor.' . ' ' .  $provider->provider . ' ' . $provider->kind_of_society . $e);
-
+        } catch (\Throwable $th) {
+            //throw $th;
         }
 
-       
+    
     }
 
 }

@@ -23,7 +23,6 @@ class RelationshipConfiguration extends Model
         return $this->belongsTo('App\Computer');
     }
 
-    
     public function employee()
     {
         return $this->belongsTo('App\Employee');
@@ -34,11 +33,9 @@ class RelationshipConfiguration extends Model
         return $this->belongsTo('App\Tablet');
     }
 
-    
-
-
-
-
-
+    public function assignments()
+    {
+        return $this->morphMany(RelationshipConfiguration::class, 'assignable');
+    }
 
 }

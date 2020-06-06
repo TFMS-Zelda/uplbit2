@@ -6,6 +6,12 @@ use App\Article;
 use App\Provider;
 use App\Comment;
 
+use App\Computer;
+use App\Tablet;
+use App\Monitor;
+use App\Printer;
+use App\OtherPeripheral;
+
 use Illuminate\Http\Request;
 use Auth;
 use DB;
@@ -37,7 +43,7 @@ class ArticleController extends Controller
             'articles' => $articles,
             'totalArticlesRegister' => $totalArticlesRegister
 
-            ]);
+        ]);
     }
 
     /**
@@ -51,11 +57,11 @@ class ArticleController extends Controller
         if ($providers->isEmpty()) {
             Alert::error('Error, Crear Articulo', '
             No se encontro un provedor registrado en el sistema.')->persistent('Close');
-           
+        
             return view('articles.create', [
                 'providers' => $providers,
             ]);
-          
+        
         } else {
             # code...
             return view('articles.create', [
@@ -118,14 +124,14 @@ class ArticleController extends Controller
             $article->digital_invoice = $nombre;
         
             $article->save();
-            Alert::success('Success!', 'Articulo con' . ' ' . 'Factura #:' . ' ' . $article->invoice_number . 'Registrado correctamente en el sistema');
+            Alert::success('Success!', 'Articulo y Compra registrada' . ' ' . 'N° de Fatura:' . ' ' . $article->invoice_number . 'Registrado correctamente en el sistema');
             return redirect()->route('articles.index');
     
         } else {
             Alert::danger('Error!', 'Se presentó un error al momento de registrar un articulo en el sistema');
 
         }
-       
+    
     }
 
     /**
@@ -211,7 +217,7 @@ class ArticleController extends Controller
             $article->update();
             Alert::success('Success!', 'Articulo con' . ' ' . 'Factura #:' . ' ' . $article->invoice_number . 'Actualizado correctamente en el sistema');
             return redirect()->route('articles.index');
-           
+        
         } else {
             # code...
             Alert::danger('Error!', 'Se presento un error al momento de actualizar el articulo' . ' ' . $article->invoice_number);
@@ -227,20 +233,32 @@ class ArticleController extends Controller
      */
     public function destroy(Article $article)
     {
+        $existRelComputer = Computer::where('article_id', '=',  $article->id)->exists();
+        $existRelTablet = Tablet::where('article_id', '=',  $article->id)->exists();
+        $existRelMonitor = Monitor::where('article_id', '=',  $article->id)->exists();
+        $existRelPrinter = Printer::where('article_id', '=',  $article->id)->exists();
+        $existRelOtherPeripheral = OtherPeripheral::where('article_id', '=',  $article->id)->exists();
+        // dd($existRelTablet);
         try {
+            if ($existRelComputer || $existRelTablet || $existRelMonitor || $existRelMonitor 
+                ||$existRelPrinter || $existRelOtherPeripheral === true) {
+                    Alert::error('Articulo No Eliminado',
+                    'No puede eliminar este Articulo registrado del Provedor' . ' ' . 
+                    $article->provider->name . ' ' . 'con número de factura' . ' ' .
+                    $article->invoice_number . ' ' . 'porque contiene registros relacionados
+                    en algunos Cí registrados en el sistema')->toToast()->showConfirmButton('Aceptar', '#3085d6');
+                    return redirect()->route('articles.index');
 
-            $article->delete();
-            alert()->info('Atención','El Articulo, con factura #' . ' ' . $article->invoice_number . ' ' . 'a sido eliminado
-            correctamente del provedor' . ' ' . $article->provider->name . ' ' . 'y del sistema');
-    
-            return redirect()->route('articles.index');
-        
-        } catch (\Illuminate\Database\QueryException $e){
+            } else {
+                return redirect()->route('articles.index');
+
+            }
             
-            return alert()->error('ErrorAlert','se presento un error al momento de eliminar el articulo.' + $e);
-
+        } catch (\Throwable $th) {
+            //throw $th;
         }
-       
+
+    
     }
 
 

@@ -41,7 +41,6 @@ class RelationshipConfigurationController extends Controller
     {
         $computers = RelationshipConfiguration::with(['assignable', 'employee'])
         ->where('relationship_configurations.assignable_type', '=', 'App\Computer')->paginate(5);
-  
 
         return $computers;
     }
@@ -96,6 +95,6 @@ class RelationshipConfigurationController extends Controller
     public function allOtherPeripheralsByAssign(){
         $peripherals = DB::table('other_peripherals')->where('status', '=', 'Inactivo - No Asignado')->get();
         return $peripherals;
-}
+    }
 
 }

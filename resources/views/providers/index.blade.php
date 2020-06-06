@@ -53,20 +53,24 @@
                             @foreach($providers as $provider)
                             <tr class="text-center">
                                 <td>
-                                    <i class="fas fa-sort-numeric-down-alt"></i><br>
-                                    <strong>{{ $provider->id }}</strong>
+                                    <div class="h5 mb-0 font-weight-bold text-muted">
+                                        <i class="fas fa-sort-numeric-down-alt"></i><br>
+                                        <strong>{{ $provider->id }}</strong>
+                                    </div>
                                 </td>
                                 <td>
                                     <i class="fa fa-landmark" aria-hidden="true"></i>
                                     <br>
-                                    <small>
+                                    <div class="h6 mb-0 font-weight-bold text-muted">
                                         {{ $provider->name }} {{ $provider->kind_of_society }}
-                                    </small>
+                                    </div>
                                 </td>
                                 <td>
                                     <i class="fa fa-id-card" aria-hidden="true"></i>
                                     <br>
-                                    <small><strong>{{ $provider->nit }}</strong></small>
+                                    <div class="h6 mb-0 font-weight-bold text-muted">
+                                        {{ $provider->nit }}
+                                    </div>
                                 </td>
                                 <td>
                                     <i class="fas fa-map-marker-alt"></i><br>

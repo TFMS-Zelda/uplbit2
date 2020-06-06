@@ -15,6 +15,10 @@ use App\Http\Requests\UpdateTabletRequest;
 use App\Provider;
 use App\Article;
 
+use App\Exports\TabletExport;
+use App\Exports\TabletExportByEmployee;
+use Maatwebsite\Excel\Facades\Excel;
+
 
 class TabletController extends Controller
 {
@@ -25,15 +29,18 @@ class TabletController extends Controller
      */
     public function index()
     {
-        $totalTabletInStock = Tablet::count();
         $tablets = \App\Tablet::orderBy('id', 'DESC')
-        ->paginate(10);
+        ->get();
+        
+        $total = \App\Tablet::all('id')
+        ->count();
 
         //Consulta cantidad de tablets status = 'No Asignado'
-        $tabletsNoAsignados = DB::table('computers')->where('status', 'like', '%No Asignado%')->count('id');
-        $tabletsAsignados = DB::table('computers')->where('status', 'like', '%Asignado%')->count('id');
+        $tabletsNoAsignados = DB::table('tablets')->where('status', '=', 'Inactivo - No Asignado')->count('id');
+        $tabletsAsignados = DB::table('tablets')->where('status', '=', 'Activo - Asignado')->count('id');
 
-        return view('tablets.index', compact('tablets', 'totalTabletInStock', 'tabletsNoAsignados', 'tabletsAsignados'));
+        return view('tablets.index', compact('tablets', 'tabletsNoAsignados', 'tabletsAsignados',
+        'total'));
     }
 
     /**
@@ -120,7 +127,8 @@ class TabletController extends Controller
      */
     public function show(Tablet $tablet)
     {
-        //
+    
+        return view('tablets.show', compact('tablet'));
     }
 
     /**
@@ -233,5 +241,15 @@ class TabletController extends Controller
             'tabletsRetiradas' => $tabletsRetiradas
         ]);
         
+    }
+
+    public function exportExcelTablets()
+    {
+        return Excel::download(new TabletExport, 'tablets.xlsx');
+    }
+
+    public function exportExcelTabletsByEmployee()
+    {
+        return Excel::download(new TabletExportByEmployee, 'tabletsByEmployee.xlsx');
     }
 }

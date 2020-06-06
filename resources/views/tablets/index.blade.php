@@ -21,10 +21,48 @@
                         <div class="row no-gutters align-items-center">
                             <div class="col mr-2">
                                 <div class="text-xs font-weight-bold text-white text-uppercase mb-1">
-                                    Tablets Registradas
+                                    Tablets Corporativas Registradas
+                                </div>
+                                <div class="h5 mb-0 font-weight-bold text-white">
+                                    {{ $total }}
+                                </div>
+                            </div>
+                            <div class="col-auto">
+                                <i class="fas fa-tablet fa-2x text-white"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-md-6 mb-4">
+                <div class="card border-left-primary shadow h-100 py-2 bg-primary">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="text-xs font-weight-bold text-white text-uppercase mb-1">
+                                    Tablets Corporativas Asignadas
                                 </div>
                                 <div class="h5 mb-0 font-weight-bold text-white">
                                     {{ $tabletsAsignados }}
+                                </div>
+                            </div>
+                            <div class="col-auto">
+                                <i class="fas fa-tablet fa-2x text-white"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-md-6 mb-4">
+                <div class="card border-left-warning shadow h-100 py-2 bg-warning">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="text-xs font-weight-bold text-white text-uppercase mb-1">
+                                    Tablets Corporativas No Asignadas
+                                </div>
+                                <div class="h5 mb-0 font-weight-bold text-white">
+                                    {{ $tabletsNoAsignados }}
                                 </div>
                             </div>
                             <div class="col-auto">
@@ -44,6 +82,39 @@
 
         <div class="card mb-4 py-3 border-left-primary">
             <div class="card-body">
+
+                <nav class="navbar navbar-expand navbar-light bg-light mb-4">
+                    <a class="navbar-brand" href="#">Reportes</a>
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Seleccione
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right animated--grow-in"
+                                aria-labelledby="navbarDropdown">
+
+                                <a class="dropdown-item" href="{{ route('tablets.export.excel') }}">
+                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Total de Tablets Corporativas del inventario
+                                </a>
+
+                                <a class="dropdown-item" href="{{ route('tablets.employee.export.excel') }}">
+                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Total de Tablets Corporativas asignadas del inventario
+                                </a>
+                                <a class="dropdown-item" href="#">
+                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Total de Tablets Corporativas sin asignar del inventario
+                                </a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="#"><i class='fas fa-history'></i> Reporte total de
+                                    Tablets Corporativas eliminadas del inventario
+                                </a>
+                            </div>
+                        </li>
+                    </ul>
+                </nav>
 
                 @can('permission:tablets.remove-tablets')
                 <!-- split remove computers   -->
@@ -81,7 +152,7 @@
                                 <th>Marca & Módelo:</th>
                                 <th>Procesador & Memoria:</th>
                                 <th>Características:</th>
-                                <th>Imei & Pin</th>
+                                <th>Imei & Placa</th>
                                 <th>Estado:</th>
                                 <th>Acciones:</th>
                             </tr>
@@ -119,10 +190,14 @@
                                 </td>
                                 <td>
                                     <div class="h6 mb-0 font-weight-bold text-muted">
-                                        <h5><span class="badge badge-secondary">{{ $tablet->imei }} </span>
+                                        <h5><span class="badge badge-primary">{{ $tablet->imei }} </span>
                                         </h5>
                                         <i class="fas fa-barcode"></i>
                                         Pin: {{ $tablet->pin }}
+                                        <div class="h6 mb-0 font-weight-bold text-muted">
+                                            <h5><span class="badge badge-primary">{{ $tablet->license_plate }} </span>
+                                            </h5>
+                                        </div>
 
                                     </div>
                                 </td>
@@ -190,7 +265,9 @@
 
 <script>
     $(document).ready(function () {
-        $('#table-tablets').DataTable({});
+        $('#table-tablets').DataTable({
+            order: [ [0, 'desc'] ]
+        });
     });
     
     document.onsubmit = function () {

@@ -14,6 +14,9 @@ use App\Services\ProviderOrArticle;
 use App\Article;
 use App\Provider;
 
+use App\Exports\ComputersAllExport;
+use Maatwebsite\Excel\Facades\Excel;
+
 class ComputerController extends Controller
 {
     public function __construct(){
@@ -50,13 +53,13 @@ class ComputerController extends Controller
         $articlesValidation = Article::count();
 
         if ($providersValidation >= 1 && $articlesValidation >= 1 ) {
-             # code...
+            # code...
             // Nota: este es un servicio
             $providers = app(ProviderOrArticle::class)->getProviders();
             return view('computers.create', compact('providers'));
             
         } else {
-           
+        
             alert()->html('<i>Provedor ó Articulo, no registrado en el sistema</i>',"
         
             <div role='alert' class='alert alert-danger alert-dismissible'>
@@ -236,6 +239,11 @@ class ComputerController extends Controller
             'computersRemoveInventary' => $computersRemoveInventary,
             'computersRemove' => $computersRemove
         ]);
-    }  
+    }
+
+    public function exportExcelComputers()
+    {
+        return Excel::download(new ComputersAllExport, 'computers.xlsx');
+    }
 }
 

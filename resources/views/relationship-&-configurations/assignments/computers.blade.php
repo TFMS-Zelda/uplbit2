@@ -29,7 +29,9 @@
         <p>
             <h1 class="h3 mb-1 text-gray-800">Equipos de computo asignados </h1>
         </p>
+
         <assignments-computers />
+
     </div>
 </section>
 @endsection

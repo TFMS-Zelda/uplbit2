@@ -267,7 +267,7 @@
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label>*Area:</label>
-                            <select class="form-control" name="work_area">
+                            <select class="form-control" name="work_area" required>
                                 <option value="">Escoger...</option>
                                 <option value="Despachos"
                                     {{ old('work_area', $employee->work_area) == 'Despachos' ? 'selected' : ''}}>
@@ -276,6 +276,10 @@
                                 <option value="Finanzas - Cartera"
                                     {{ old('work_area', $employee->work_area) == 'Finanzas - Cartera' ? 'selected' : ''}}>
                                     Finanzas - Cartera
+                                </option>
+                                <option value="Finanzas - Contabilidad"
+                                    {{ old('work_area', $employee->work_area) == 'Finanzas - Contabilidad' ? 'selected' : ''}}>
+                                    Finanzas - Contabilidad
                                 </option>
                                 <option value="Finanzas - Facturacion"
                                     {{ old('work_area', $employee->work_area) == 'Finanzas - Facturacion' ? 'selected' : ''}}>
@@ -354,12 +358,44 @@
                             <label>*Ciudad:</label>
                             <select class="form-control" name="city" required autofocus>
                                 <option value="">Escoger...</option>
+                                <option value="Antioquia"
+                                    {{ old('city', $employee->city) == 'Antioquia' ? 'selected' : ''}}>
+                                    Antioquia
+                                </option>
                                 <option value="Bogota" {{ old('city', $employee->city) == 'Bogota' ? 'selected' : ''}}>
                                     Bogota
+                                </option>
+                                <option value="Boyaca" {{ old('city', $employee->city) == 'Boyaca' ? 'selected' : ''}}>
+                                    Boyaca
+                                </option>
+                                <option value="Caldas" {{ old('city', $employee->city) == 'Caldas' ? 'selected' : ''}}>
+                                    Caldas
+                                </option>
+
+                                <option value="Cundinamarca"
+                                    {{ old('city', $employee->city) == 'Cundinamarca' ? 'selected' : ''}}>
+                                    Cundinamarca
                                 </option>
                                 <option value="Cundinamarca - Madrid"
                                     {{ old('city', $employee->city) == 'Cundinamarca - Madrid' ? 'selected' : ''}}>
                                     Cundinamarca - Madrid
+                                </option>
+                                <option value="Huila" {{ old('city', $employee->city) == 'Huila' ? 'selected' : ''}}>
+                                    Huila
+                                </option>
+                                <option value="Nariño" {{ old('city', $employee->city) == 'Nariño' ? 'selected' : ''}}>
+                                    Nariño
+                                </option>
+                                <option value="Risaralda"
+                                    {{ old('city', $employee->city) == 'Risaralda' ? 'selected' : ''}}>
+                                    Risaralda
+                                </option>
+                                <option value="Tolima" {{ old('city', $employee->city) == 'Tolima' ? 'selected' : ''}}>
+                                    Tolima
+                                </option>
+                                <option value="Valle del Cauca"
+                                    {{ old('city', $employee->city) == 'Valle del Cauca' ? 'selected' : ''}}>
+                                    Valle del Cauca
                                 </option>
                             </select>
                         </div>

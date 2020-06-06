@@ -7,7 +7,7 @@
 
 <section class="content">
     <div class="container-fluid">
-        <h1 class="h3 mb-1 text-gray-800">Agregar Tablet coorporativa</h1>
+        <h1 class="h3 mb-1 text-gray-800">Agregar Tablet Corporativa</h1>
         <p class="mb-4 text-justify">
             Complete el siguiente formulario, recuerde que los campos marcados con <strong>*</strong> son de caracter
             obligatorio.
@@ -43,8 +43,8 @@
                             <label>*Módelo:</label>
                             <select class="form-control" name="model" required autofocus>
                                 <option value="">Seleccione...</option>
-                                <option value="Galaxy Tab A" {{ old('model') == 'Galaxy Tab A' ? 'selected' : ''}}>
-                                    Galaxy Tab A
+                                <option value="Galaxy Tab A 10.1 LTE"
+                                    {{ old('model') == 'Galaxy Tab A 10.1 LTE' ? 'selected' : ''}}>Galaxy Tab A 10.1 LTE
                                 </option>
                             </select>
                         </div>
@@ -249,8 +249,8 @@
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label><code>*Imei:</code></label>
-                            <input type="text" class="form-control selectValidationNumber" name="imei" minlength="16"
-                                maxlength="16" value="{{ old('imei') }}" placeholder="Enter Serial" required autofocus>
+                            <input type="text" class="form-control selectValidationNumber" name="imei" minlength="15"
+                                maxlength="15" value="{{ old('imei') }}" placeholder="Enter Serial" required autofocus>
                             <small>
                                 <code> The Imei field cannot be duplicated</code>
                             </small>
@@ -303,8 +303,15 @@
                                 <option value="Bogota" {{ old('location') == 'Bogota' ? 'selected' : ''}}>
                                     Bogota
                                 </option>
+                                <option value="Boyaca" {{ old('location') == 'Boyaca' ? 'selected' : ''}}>
+                                    Boyaca
+                                </option>
                                 <option value="Cundinamarca" {{ old('location') == 'Cundinamarca' ? 'selected' : ''}}>
                                     Cundinamarca
+                                </option>
+                                <option value="Cundinamarca - Madrid"
+                                    {{ old('location') == 'Cundinamarca - Madrid'  ? 'selected' : ''}}>
+                                    Cundinamarca - Madrid
                                 </option>
                                 <option value="Antioquia" {{ old('location') == 'Antioquia' ? 'selected' : ''}}>
                                     Antioquia
@@ -312,17 +319,27 @@
                                 <option value="Meta" {{ old('location') == 'Meta' ? 'selected' : ''}}>
                                     Meta
                                 </option>
-                                <option value="Valle" {{ old('location') == 'Valle' ? 'selected' : ''}}>
-                                    Valle
+                                <option value="Valle del Cauca"
+                                    {{ old('location') == 'Valle del Cauca' ? 'selected' : ''}}>
+                                    Valle del Cauca
                                 </option>
                                 <option value="Caldas" {{ old('location') == 'Caldas' ? 'selected' : ''}}>
                                     Caldas
+                                </option>
+                                <option value="Huila" {{ old('location') == 'Huila' ? 'selected' : ''}}>
+                                    Huila
                                 </option>
                                 <option value="Nariño" {{ old('location') == 'Nariño' ? 'selected' : ''}}>
                                     Nariño
                                 </option>
                                 <option value="Casanare" {{ old('location') == 'Casanare' ? 'selected' : ''}}>
                                     Casanare
+                                </option>
+                                <option value="Risaralda" {{ old('location') == 'Risaralda' ? 'selected' : ''}}>
+                                    Risaralda
+                                </option>
+                                <option value="Tolima" {{ old('location') == 'Tolima' ? 'selected' : ''}}>
+                                    Tolima
                                 </option>
                             </select>
                         </div>
@@ -492,5 +509,4 @@
 @push('scripts')
 <!-- Custom scripts-->
 <script src="{{ asset('/core/js/selectValidationNumber.js') }}"></script>
-
 @endpush

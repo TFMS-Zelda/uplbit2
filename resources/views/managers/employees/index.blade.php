@@ -81,7 +81,6 @@
                                         <i class="fas fa-user"></i>
                                         <br>
                                         <div class="h5 mb-0 font-weight-bold text-muted">{{ $employee->id }} </div>
-
                                     </div>
                                 </td>
                                 <td>
@@ -102,7 +101,7 @@
                                         <i class="fa fa-fingerprint"></i>
                                         <br>
                                         {{ $employee->ugdn }} <br>
-                                        CC: {{ $employee->citizenship_card }}
+
                                     </div>
                                 </td>
                                 <td>
@@ -110,6 +109,7 @@
                                         {{ $employee->work_area }}
                                         <br>
                                         {{ $employee->employee_type }} <br>
+                                        Cédula: {{ $employee->citizenship_card }}
 
                                     </div>
                                 </td>
@@ -180,8 +180,10 @@
 <script src="{{ asset('/core/plugins/DataTables/datatables.min.js') }}"></script>
 <script>
     $(document).ready(function () {
-          $('#table-employees').DataTable({});
-      });
+        $('#table-employees').DataTable({
+            order: [ [0, 'desc'] ]
+        });
+    });
     
     document.onsubmit = function () {
         return confirm('Atencion: {{ Auth::user()->name }}, ¿Esta seguro de inhabilitar el siguiente empleado del sistema?');}

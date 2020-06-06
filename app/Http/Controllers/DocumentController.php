@@ -7,7 +7,6 @@ use App\Employee;
 use App\RelationshipConfiguration;
 use DB;
 use App;
-use RealRashid\SweetAlert\Facades\Alert;
 use PDF;
 
 
@@ -94,7 +93,6 @@ class DocumentController extends Controller
 
     public function downloadPeaceSave(Employee $employee)
     {
-
         $computers = DB::table('relationship_configurations')
         ->join('computers', 'relationship_configurations.assignable_id', '=', 'computers.id')
         ->where('relationship_configurations.employee_id', '=', $employee->id)

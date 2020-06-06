@@ -41,7 +41,9 @@ class RelationshipConfigurationController extends Controller
      */
     public function create()
     {
-        $employees = Employee::get();
+        $employees = \App\Employee::orderBy('id', 'DESC')
+        ->get();
+
 
         return view('relationship-&-configurations.create', [
             'employees' => $employees,
@@ -222,11 +224,10 @@ class RelationshipConfigurationController extends Controller
         return $request->all();
     }
 
-
     public function assignmentsComputersIndex()
     {
         $computers = DB::table('relationship_configurations')->where('assignable_type', '=', 'App\Computer')->count('id');
-        
+
         // dd($computer);
         if ($computers >= 1) {
             # code...

@@ -4,9 +4,8 @@
 @section('titlePosition', 'articles/show')
 <section class="content">
     <div class="container-fluid">
-        <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">Facturación</h1>
-        </div>
+        <h1 class="h3 mb-0 text-gray-800">Facturación</h1>
+        <h1 class="h3 mb-0 text-gray-800">Provedor {{ $article->provider->name }}</h1>
 
         <div class="text-center">
             <img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 20rem;"
@@ -125,7 +124,7 @@
                 </div>
             </div>
         </div>
-        <h1 class="h3 mb-0 text-gray-800">Observaciones</h1>
+        <h1 class="h3 mb-0 text-gray-800">Observaciones y Descripción</h1>
         <textarea id="observations" disabled>
             {{ $article->observations }}
         </textarea>
@@ -154,15 +153,13 @@
         <hr>
         Log...
         <p>
-            Registrado en el sistema por el usuario: {{ $article->user->name }} ~ {{ $article->user->email }} <br>
-            Articulo registrado en el sistema el día
+            Registrado en el sistema por el usuario: <strong>{{ $article->user->name }} ~
+                {{ $article->user->email }}</strong> <br>
+            Articulo registrado en el sistema el día:
             <strong>{{ Carbon\Carbon::parse($article->created_at)->format('l jS \\of F Y ') }}</strong>... <br>
-            Última actualización realizada el día
+            Última actualización realizada el día:
             <strong>{{ Carbon\Carbon::parse($article->updated_at)->format('l jS \\of F Y ') }}</strong>... <br>
         </p>
-
-
-
 </section>
 @endsection
 @push('scripts')

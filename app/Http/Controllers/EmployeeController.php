@@ -220,15 +220,11 @@ class EmployeeController extends Controller
 
                     return redirect()->route('managers.employees.index');
                 }
-
             }
             
         } catch (\Throwable $th) {
             //throw $th;
         }
-
-        
-
     }
 
     public function removeDisabledEmployees()

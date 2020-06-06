@@ -34,4 +34,3 @@ Route::get('monitors', 'Api\RelationshipConfigurationController@allMonitorsByAss
 // assigns perisfericos vue.js
 Route::get('/assignments/other-peripherals', 'Api\RelationshipConfigurationController@getOtherPeripherals');
 Route::get('other-peripherals', 'Api\RelationshipConfigurationController@allOtherPeripheralsByAssign');
-

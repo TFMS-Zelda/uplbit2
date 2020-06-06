@@ -15,7 +15,6 @@
             En este sitio encontrara el listado de las equipos de computo registrados en el sistema.
         </p>
 
-
         <div class="row">
             <div class="col-xl-3 col-md-6 mb-4">
                 <div class="card border-left-success shadow h-100 py-2 bg-success">
@@ -45,6 +44,38 @@
 
         <div class="card mb-4 py-3 border-left-primary">
             <div class="card-body">
+                <nav class="navbar navbar-expand navbar-light bg-light mb-4">
+                    <a class="navbar-brand" href="#">Reportes</a>
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Seleccione
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right animated--grow-in"
+                                aria-labelledby="navbarDropdown">
+
+                                <a class="dropdown-item" href="{{ route('computers.export.excel') }}">
+                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Total de Equipos de computo del inventario
+                                </a>
+
+                                <a class="dropdown-item" href="#">
+                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Total de Equipos de computo asignados del inventario
+                                </a>
+                                <a class="dropdown-item" href="#">
+                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Total de Equipos de computo sin asignar del inventario
+                                </a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="#"><i class='fas fa-history'></i> Reporte total de
+                                    equipos de computo eliminados
+                                </a>
+                            </div>
+                        </li>
+                    </ul>
+                </nav>
 
                 @can('permission:computers.remove-computers')
                 <!-- split remove computers   -->
@@ -176,6 +207,7 @@
                     <span class="text">Add Computer</span>
                 </a>
                 @endcan
+
             </div>
         </div>
     </div>
@@ -186,10 +218,10 @@
 <script src="{{ asset('/core/plugins/DataTables/datatables.min.js') }}"></script>
 <script>
     $(document).ready(function () {
-          $('#table-computers').DataTable({});
-      });
-    
-    document.onsubmit = function () {
+        $('#table-computers').DataTable({});
+        });
+        
+        document.onsubmit = function () {
         return confirm('Atencion: {{ Auth::user()->name }}, ¿Esta seguro de eliminar el siguiente equipo de computo del sistema?');}
 </script>
 @endpush

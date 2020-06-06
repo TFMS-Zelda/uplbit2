@@ -47,9 +47,9 @@
                             <label>*Módelo:</label>
                             <select class="form-control" name="model" required autofocus>
                                 <option value="">Seleccione...</option>
-                                <option value="Galaxy Tab A"
-                                    {{ old('model', $tablet->model) == 'Galaxy Tab A' ? 'selected' : ''}}>
-                                    Galaxy Tab A
+                                <option value="Galaxy Tab A 10.1 LTE"
+                                    {{ old('model', $tablet->model) == 'Galaxy Tab A 10.1 LTE' ? 'selected' : ''}}>
+                                    Galaxy Tab A 10.1 LTE
                                 </option>
                             </select>
                         </div>
@@ -259,8 +259,8 @@
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label><code>*Imei:</code></label>
-                            <input type="text" class="form-control selectValidationNumber" name="imei" minlength="16"
-                                maxlength="16" value="{{ $tablet->imei }}" placeholder="Enter Serial" required
+                            <input type="text" class="form-control selectValidationNumber" name="imei" minlength="15"
+                                maxlength="15" value="{{ $tablet->imei }}" placeholder="Enter Serial" required
                                 autofocus>
                             <small>
                                 <code> The Imei field cannot be duplicated</code>
@@ -315,21 +315,33 @@
                                     {{ old('location', $tablet->location) == 'Bogota' ? 'selected' : ''}}>
                                     Bogota
                                 </option>
+                                <option value="Boyaca"
+                                    {{ old('location', $tablet->location) == 'Boyaca' ? 'selected' : ''}}>
+                                    Boyaca
+                                </option>
                                 <option value="Cundinamarca"
                                     {{ old('location', $tablet->location) == 'Cundinamarca' ? 'selected' : ''}}>
                                     Cundinamarca
+                                </option>
+                                <option value="Cundinamarca - Madrid"
+                                    {{ old('location', $tablet->location) == 'Cundinamarca - Madrid' ? 'selected' : ''}}>
+                                    Cundinamarca - Madrid
                                 </option>
                                 <option value="Antioquia"
                                     {{ old('location', $tablet->location) == 'Antioquia' ? 'selected' : ''}}>
                                     Antioquia
                                 </option>
+                                <option value="Huila"
+                                    {{ old('location', $tablet->location) == 'Huila' ? 'selected' : ''}}>
+                                    Huila
+                                </option>
                                 <option value="Meta"
                                     {{ old('location', $tablet->location) == 'Meta' ? 'selected' : ''}}>
                                     Meta
                                 </option>
-                                <option value="Valle"
-                                    {{ old('location', $tablet->location) == 'Valle' ? 'selected' : ''}}>
-                                    Valle
+                                <option value="Valle del Cauca"
+                                    {{ old('location', $tablet->location) == 'Valle del Cauca' ? 'selected' : ''}}>
+                                    Valle del Cauca
                                 </option>
                                 <option value="Caldas"
                                     {{ old('location', $tablet->location) == 'Caldas' ? 'selected' : ''}}>
@@ -339,9 +351,17 @@
                                     {{ old('location', $tablet->location) == 'Nariño' ? 'selected' : ''}}>
                                     Nariño
                                 </option>
+                                <option value="Risaralda"
+                                    {{ old('location', $tablet->location) == 'Risaralda' ? 'selected' : ''}}>
+                                    Risaralda
+                                </option>
                                 <option value="Casanare"
                                     {{ old('location', $tablet->location) == 'Casanare' ? 'selected' : ''}}>
                                     Casanare
+                                </option>
+                                <option value="Tolima"
+                                    {{ old('location', $tablet->location) == 'Tolima' ? 'selected' : ''}}>
+                                    Tolima
                                 </option>
                             </select>
                         </div>

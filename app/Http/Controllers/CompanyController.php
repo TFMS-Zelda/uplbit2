@@ -109,21 +109,8 @@ class CompanyController extends Controller
      */
     public function destroy(Company $company)
     {
-        try {
-
-            $company->delete();
-            alert()->info('InfoAlert','La Compañia' . ' ' . $company->name . ' ' . 'a sido eliminada
-            correctamente del sistema');
-
-            return redirect()->route('providers.index');
-
-        } catch (\Exception $e){
-             alert()->error('Error...!', 'No puede eliminar la compañia' . ' ' .
-             $company->name . ' ' . 'porque contiene registros relacionados' );
-
-
-
-             return redirect()->route('companies.index');
-        }
+        Alert::info('Info!', 'La Compañía' . ' ' . $company->name . ' ' . 'no puede eliminarse porque es componente del sistema');
+        return redirect()->route('companies.index');
+        
     }
 }

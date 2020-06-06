@@ -255,15 +255,14 @@
     @else
     <div class="notification is-success is-light">
         <p class="has-text-black has-text-justified">
-            El área de Información y Tecnología de <strong>Uniphos Plant Limited Colombia</strong> certifica que la
-            persona <strong>{{ $employee->name }}</strong> identificada con el número de cedula
+            El área de Información y Tecnología de <strong>Uniphos Plant Limited Colombia</strong> certifica que el
+            usuario <strong>{{ $employee->name }}</strong> identificada con el número de cedula
             <strong>{{ $employee->citizenship_card }}</strong> se encuentra a paz y salvo con
             el área por concepto de asignación de activos fijos y recursos tecnologícos que le fueron proporcionados
             el día <strong>{{ Carbon\Carbon::parse($employee->created_at)->format('l jS \\of F Y ') }}</strong>,
-            fecha en la cual a sido registrada en el sistema.
+            fecha en la cual el empleado a sido registrado en el sistema.
             <br>
             <br>
-
             El presente certificado se expide a solicitud en la ciudad de Bogotá el día
             <strong>{{ Carbon\Carbon::now()->format('l jS \\of F Y ') }}</strong>.
         </p>

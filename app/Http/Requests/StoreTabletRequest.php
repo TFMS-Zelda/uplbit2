@@ -41,7 +41,7 @@ class StoreTabletRequest extends FormRequest
             'data_plan' => 'required|max:128',
             'sim_card' => 'required|max:128|unique:tablets',
             'pin' => 'required|min:4|max:4',
-            'imei' => 'required|numeric|digits_between:16,16|unique:tablets',
+            'imei' => 'required|numeric|digits_between:15,15|unique:tablets',
             'phone_number' => 'required|digits_between:10,10|unique:tablets',
             'license_plate' => 'required|digits_between:7,7|unique:tablets',
             'location' => 'required|max:128',

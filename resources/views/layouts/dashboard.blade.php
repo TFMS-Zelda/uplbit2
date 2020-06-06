@@ -32,7 +32,7 @@
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-cog fa-spin"></i>
                 </div>
-                <div class="sidebar-brand-text mx-3">Upl~Bit <sup>2</sup></div>
+                <div class="sidebar-brand-text mx-3">UplBit <sup>2</sup></div>
             </a>
 
             <!-- Divider -->
@@ -40,7 +40,7 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item">
-                <a class="nav-link" href="index.html">
+                <a class="nav-link" href="{{ route('information-&-technologies.dashboard') }}">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
             </li>
@@ -134,20 +134,9 @@
                         @endcan
 
                         <a class="collapse-item" href="{{ route('documents.peace-&-saves.index') }}">Paz y Salvo</a>
-                        <a class="collapse-item" href="forgot-password.html">Forgot Password</a>
-                        <div class="collapse-divider"></div>
-                        <h6 class="collapse-header">:</h6>
-                        <a class="collapse-item" href="404.html">404 Page</a>
-                        <a class="collapse-item" href="blank.html">Blank Page</a>
+
                     </div>
                 </div>
-            </li>
-
-            <!-- Nav Item - Charts -->
-            <li class="nav-item">
-                <a class="nav-link" href="charts.html">
-                    <i class="fas fa-fw fa-chart-area"></i>
-                    <span>Charts</span></a>
             </li>
 
             <li class="nav-item active">
