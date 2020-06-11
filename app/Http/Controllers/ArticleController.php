@@ -124,7 +124,7 @@ class ArticleController extends Controller
             $article->digital_invoice = $nombre;
         
             $article->save();
-            Alert::success('Success!', 'Articulo y Compra registrada' . ' ' . 'N° de Fatura:' . ' ' . $article->invoice_number . 'Registrado correctamente en el sistema');
+            Alert::success('Success!', 'Articulo y Compra registrada' . ' ' . 'N° de Factura:' . ' ' . $article->invoice_number . 'Registrado correctamente en el sistema');
             return redirect()->route('articles.index');
     
         } else {

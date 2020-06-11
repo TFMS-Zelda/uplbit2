@@ -234,17 +234,17 @@
                                     {{ old('processor', $computer->processor) == 'Intel(R) Core(TM) i7-8550 CPU' ? 'selected' : '' }}>
                                     Intel(R) Core(TM) i7-8550 CPU @1.80GHz
                                 </option>
-                                <option value="Intel(R) Core(TM) i7-8550 CPU @1.80GHz"
-                                    {{ old('processor,', $computer->processor) == 'Intel(R) Core(TM) i7-8550 CPU @1.80GHz' ? 'selected' : '' }}>
-                                    Intel(R) Core(TM) i7-8550 CPU @1.80GHz
+                                <option value="Intel(R) Core(TM) i7-7600U CPU @2.90GHz"
+                                    {{ old('processor,', $computer->processor) == 'Intel(R) Core(TM) i7-7600U CPU @2.90GHz' ? 'selected' : '' }}>
+                                    Intel(R) Core(TM) i7-7600U CPU @2.90GHz
                                 </option>
                                 <option value="Intel(R) Core(TM) i7-7600U CPU @1.80GHz"
                                     {{ old('processor,', $computer->processor) == 'Intel(R) Core(TM) i7-7600U CPU @1.80GHz' ? 'selected' : '' }}>
                                     Intel(R) Core(TM) i7-7600U CPU @1.80GHz
                                 </option>
-                                <option value="Intel(R) Core(TM) i7-6500U CPU @1.80GHz"
-                                    {{ old('processor,', $computer->processor) == 'Intel(R) Core(TM) i7-6500U CPU @1.80GHz' ? 'selected' : '' }}>
-                                    Intel(R) Core(TM) i7-6500U CPU @1.80GHz
+                                <option value="Intel(R) Core(TM) i7-6500U CPU @2.50GHz"
+                                    {{ old('processor,', $computer->processor) == 'Intel(R) Core(TM) i7-6500U CPU @2.50GHz' ? 'selected' : '' }}>
+                                    Intel(R) Core(TM) i7-6500U CPU @2.50GHz
                                 </option>
                                 <option value="Intel(R) Core(TM) i7-5600U CPU @1.80GHz"
                                     {{ old('processor,', $computer->processor) == 'Intel(R) Core(TM) i7-5600U CPU @1.80GHz' ? 'selected' : '' }}>
@@ -257,6 +257,10 @@
                                 <option value="Intel(R) Core(TM) i5-7200U CPU @1.80GHz"
                                     {{ old('processor,', $computer->processor) == 'Intel(R) Core(TM) i5-7200U CPU @1.80GHz' ? 'selected' : '' }}>
                                     Intel(R) Core(TM) i5-7200U CPU @1.80GHz
+                                </option>
+                                <option value="Intel(R) Core(TM) i5-4300U CPU @1.90GHz"
+                                    {{ old('processor,', $computer->processor) == 'Intel(R) Core(TM) i5-4300U CPU @1.90GHz' ? 'selected' : '' }}>
+                                    Intel(R) Core(TM) i5-4300U CPU @1.90GHz
                                 </option>
                             </select>
                         </div>

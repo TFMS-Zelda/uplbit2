@@ -19,7 +19,11 @@
             <div class="container">
                 <h1 class="title">
                     Operational Level Agreement
+
                 </h1>
+                <p>
+                    Se expide el dia {{ Carbon\Carbon::now()->format('l jS \\of F Y ') }}
+                </p>
                 <h2 class="subtitle">
                     {{ $employee->name }}
                     <br>
@@ -254,121 +258,147 @@
 
         <div class="notification">
             <p class="has-text-black has-text-justified">
-                La finalidad de los anteriores recursos tecnológicos es para el desarrollo de sus funciones y el
-                cumplimiento de las obligaciones que ha adquirido en virtud del contrato laboral suscrito.
+                <div class="notification">
+                    <p class="has-text-black has-text-justified">
+                        La finalidad de los anteriores recursos tecnológicos es para el desarrollo de sus funciones y el
+                        cumplimiento de las obligaciones que ha adquirido en virtud del contrato laboral suscrito.
 
-                <br>
-                <br>
+                        <br>
+                        <br>
 
-                Además de los recursos tecnológicos descritos anteriormente y concedidos por el área de Información y
-                Tecnología al empleado en virtud del
-                presente acuerdo de nivel operacional, puede verse actualizado en diferentes momentos dado la nesecidad
-                del empleado de suplir u obtener otros recursos tecnológicos en virtud de sus funciones laborales, los
-                cuales
-                le será notificado mediante el correo electronico <strong>{{ $employee->email_corporate }}</strong>
-                registrado en el sistema adjuntando la actualización del acuerdo de nivel operacional.
+                        Además de los recursos tecnológicos descritos anteriormente y concedidos por el área de
+                        Información y
+                        Tecnología al empleado en virtud del
+                        presente acuerdo de nivel operacional, puede verse actualizado en diferentes momentos dado la
+                        nesecidad
+                        del empleado de suplir u obtener otros recursos tecnológicos en virtud de sus funciones
+                        laborales, los
+                        cuales
+                        le será notificado mediante el correo electronico
+                        <strong>{{ $employee->email_corporate }}</strong>
+                        registrado en el sistema adjuntando la actualización del acuerdo de nivel operacional.
 
-                <br>
-                <br>
+                        <br>
+                        <br>
 
-                Los recursos tecnológicos se entregan en perfecto estado de uso y conservación, respondiendo el empleado
-                por la pérdida, daños, sustracciones o averías del mismo, cuando haya sido por negligencia o descuido,
-                para lo cual, con la suscripción del presente acuerdo de nivel operativo, autoriza expresamente y de
-                manera irrevocable a la empresa, para que proceda a descontar de su salario, liquidación y/o
-                prestaciones sociales, el valor de la reparación o sustitución.
+                        Los recursos tecnológicos se entregan en perfecto estado de uso y conservación, respondiendo el
+                        empleado
+                        por la pérdida, daños, sustracciones o averías del mismo, cuando haya sido por negligencia o
+                        descuido,
+                        para lo cual, con la suscripción del presente acuerdo de nivel operativo, autoriza expresamente
+                        y de
+                        manera irrevocable a la empresa, para que proceda a descontar de su salario, liquidación y/o
+                        prestaciones sociales, el valor de la reparación o sustitución.
 
-                <br>
-                <br>
+                        <br>
+                        <br>
 
-                El empleado no podrá usar, gozar o disponer de los recursos tecnológicos de propiedad de la compañía
-                para la realización o ejecución de actividades distintas a las que le corresponden conforme a las
-                funciones que le han sido asignadas en virtud del presente acuerdo. Por lo tanto, durante la vigencia
-                del acuerdo de nivel operativo, la compañía podrá adelantar inspecciones y controles para verificar el
-                cumplimiento de esta obligación.
+                        El empleado no podrá usar, gozar o disponer de los recursos tecnológicos de propiedad de la
+                        compañía
+                        para la realización o ejecución de actividades distintas a las que le corresponden conforme a
+                        las
+                        funciones que le han sido asignadas en virtud del presente acuerdo. Por lo tanto, durante la
+                        vigencia
+                        del acuerdo de nivel operativo, la compañía podrá adelantar inspecciones y controles para
+                        verificar el
+                        cumplimiento de esta obligación.
 
-                <br>
-                <br>
+                        <br>
+                        <br>
 
-                El empleado se compromete a realizar la devolución de los recursos tecnológicos a la terminación del
-                contrato laboral, en las mismas condiciones que le fue entregado, salvo el deterioro normal causado por
-                el uso. Es de anotar, que dichos recursos tecnológicos revisará un tercero y el costo de cualquier
-                novedad presentada respecto a la funcionalidad, completitud e integridad
-                en éste, será descontada de su salario, liquidación y/o prestaciones sociales según corresponda.
+                        El empleado se compromete a realizar la devolución de los recursos tecnológicos a la terminación
+                        del
+                        contrato laboral, en las mismas condiciones que le fue entregado, salvo el deterioro normal
+                        causado por
+                        el uso. Es de anotar, que dichos recursos tecnológicos revisará un tercero y el costo de
+                        cualquier
+                        novedad presentada respecto a la funcionalidad, completitud e integridad
+                        en éste, será descontada de su salario, liquidación y/o prestaciones sociales según corresponda.
 
-                <br>
-                <br>
+                        <br>
+                        <br>
 
-                Se suscribe en la ciudad de Bogotá en la fecha de creación del empleado <strong>
-                    {{ Carbon\Carbon::parse($employee->created_at)->format('l jS \\of F Y ') }}</strong> registrada en
-                el sistema.
-            </p>
+                        Se suscribe en la ciudad de Bogotá en la fecha de creación del empleado <strong>
+                            {{ Carbon\Carbon::parse($employee->created_at)->format('l jS \\of F Y ') }}</strong>
+                        registrada en
+                        el sistema.
+                    </p>
+                </div>
+
         </div>
-
-    </div>
-    <section class="hero is-ligth">
-        <div class="hero-body">
-            <div class="container">
-                <h1 class="title">
-                    Entrega
-                </h1>
-                <h2 class="subtitle">
-                    Federico Rubio Andrade
-                    <br>
-                    federico.rubio@upl-ltd.com
-                    <br>
-                    Information Technology/Bogota
-                    <br>
-                    20011781
-                </h2>
+        <section class="hero is-ligth">
+            <div class="hero-body">
+                <div class="container">
+                    <h1 class="title">
+                        Entrega
+                    </h1>
+                    <h2 class="subtitle">
+                        Federico Rubio Andrade
+                        <br>
+                        federico.rubio@upl-ltd.com
+                        <br>
+                        Information Technology/Bogota
+                        <br>
+                        20011781
+                        <br>
+                        CC 79507820
+                    </h2>
+                </div>
             </div>
-        </div>
-    </section>
-    <section class="hero is-ligth">
-        <div class="hero-body">
-            <div class="container">
-                <h1 class="title">
-                    Entrega
-                </h1>
-                <h2 class="subtitle">
-                    Víctor Andres Tuiran
-                    <br>
-                    victor.tuiran@upl-ltd.com
-                    <br>
-                    Information Technology/Bogota
-                    <br>
-                    30010039
-                </h2>
+        </section>
+        <section class="hero is-ligth">
+            <div class="hero-body">
+                <div class="container">
+                    <h1 class="title">
+                        Entrega
+                    </h1>
+                    <h2 class="subtitle">
+                        Víctor Andres Tuiran
+                        <br>
+                        victor.tuiran@upl-ltd.com
+                        <br>
+                        Information Technology/Bogota
+                        <br>
+                        30010039
+                        <br>
+                        CC 1026283090
+                    </h2>
+                </div>
             </div>
-        </div>
-    </section>
-    <section class="hero is-ligth">
-        <div class="hero-body">
-            <div class="container">
-                <h1 class="title">
-                    Recibe
-                </h1>
-                <h2 class="subtitle">
-                    {{ $employee->name }}
-                    <br>
-                    {{ $employee->email_corporate }}
-                    <br>
-                    {{ $employee->job_title }}
-                    <br>
-                    {{ $employee->ugdn }}
-                </h2>
+        </section>
+        <section class="hero is-ligth">
+            <div class="hero-body">
+                <div class="container">
+                    <h1 class="title">
+                        Recibe
+                    </h1>
+                    <h2 class="subtitle">
+                        {{ $employee->name }}
+                        <br>
+                        {{ $employee->email_corporate }}
+                        <br>
+                        {{ $employee->job_title }}
+                        <br>
+                        {{ $employee->ugdn }}
+                        <br>
+                        CC {{ $employee->citizenship_card }}
+                    </h2>
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <footer class="footer">
-        <div class="content has-text-centered">
-            <p>
-                <strong>Uniphos Plant Limited</strong>, <a>Información y Tecnología</a>. Operational Level Agreement,
-                Descargado Digitalmente.
-                <p class="title">2020</p>
-            </p>
-        </div>
-    </footer>
+
+
+        <footer class="footer">
+            <div class="content has-text-centered">
+                <p>
+                    <strong>Uniphos Plant Limited</strong>, <a>Información y Tecnología</a>. Operational Level
+                    Agreement,
+                    Descargado Digitalmente {{ Carbon\Carbon::now() }}
+                    <p class="title">2020</p>
+                </p>
+            </div>
+        </footer>
 
 </body>
 

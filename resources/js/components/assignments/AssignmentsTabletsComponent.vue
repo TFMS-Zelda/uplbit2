@@ -6,9 +6,7 @@
     >
       <thead class="thead-primary">
         <tr class="bg-gradient-primary text-white text-center">
-          <th>
-            <i class="fas fa-sort-numeric-down-alt"></i> ID:
-          </th>
+          <th>ID:</th>
           <th>Assigned Employee:</th>
           <th>Tablet Corporativa:</th>
           <th>Ubicación:</th>
@@ -19,9 +17,12 @@
         <tr class="text-center" v-for="(tablet, index) in tablets" :key="index">
           <td>
             <div class="col-auto text-center">
-              <i class="fas fa-tablet"></i>
-              <br />
-              <div class="h5 mb-0 font-weight-bold text-muted">{{ tablet.id }}</div>
+              <i class="fas fa-user"></i>
+              <i class="fas fa-sort-numeric-down-alt"></i>
+
+              <div class="h5 mb-0 font-weight-bold text-muted">
+                <span class="badge badge-success">{{ tablet.employee.id }}</span>
+              </div>
             </div>
           </td>
           <td>
@@ -41,9 +42,12 @@
           </td>
           <td>
             <div class="col-auto text-assignable">
-              <div
-                class="h6 mb-0 font-weight-bold text-muted"
-              >{{ tablet.assignable.brand }} ~ {{ tablet.assignable.model }} ~ Serial: {{ tablet.assignable.serial }}</div>
+              <div class="h6 mb-0 font-weight-bold text-muted">
+                <i class="fas fa-tablet"></i>
+                <span class="badge badge-info">Cí N° {{ tablet.assignable.id }}</span>
+                ,
+                {{ tablet.assignable.brand }} ~ {{ tablet.assignable.model }} ~ Serial: {{ tablet.assignable.serial }}
+              </div>
               <small>
                 {{ tablet.assignable.processor }} ~
                 {{ tablet.assignable.memory }}
@@ -139,7 +143,9 @@ export default {
 
     myTable() {
       $(document).ready(function() {
-        $("#relationTable").DataTable();
+        $("#relationTable").DataTable({
+          order: [[0, "desc"]]
+        });
       });
     }
   }

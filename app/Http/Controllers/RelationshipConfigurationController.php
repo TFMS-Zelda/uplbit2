@@ -25,12 +25,18 @@ class RelationshipConfigurationController extends Controller
      */
     public function index()
     {
-        $computers = \App\Computer::all()->count();
+        $computers = Computer::all()->count();
         $computersAssigns = DB::table('relationship_configurations')->where('assignable_type', '=', 'App\Computer')->count();
+
+        $tablets = Tablet::all()->count();
+        $tabletsAssigns = DB::table('relationship_configurations')->where('assignable_type', '=', 'App\Tablet')->count();
         // dd($computersAssigns);
         return view('relationship-&-configurations.index',[
             'computers' => $computers,
-            'computersAssigns' => $computersAssigns
+            'computersAssigns' => $computersAssigns,
+            'tablets' => $tablets,
+            'tabletsAssigns' => $tabletsAssigns,
+
         ]);
     }
 

@@ -51,6 +51,10 @@
                                     {{ old('model', $tablet->model) == 'Galaxy Tab A 10.1 LTE' ? 'selected' : ''}}>
                                     Galaxy Tab A 10.1 LTE
                                 </option>
+                                <option value="Galaxy Tab A 8.0 LTE"
+                                    {{ old('model', $tablet->model) == 'Galaxy Tab A 8.0 LTE' ? 'selected' : ''}}>
+                                    Galaxy Tab A 8.0 LTE
+                                </option>
                             </select>
                         </div>
                         <div class="form-group col-md-4">
@@ -96,6 +100,10 @@
                                     {{ old('screen', $tablet->screen) == '255.4 mm (10.1”) WUXG (1920x1200) TFT LCD' ? 'selected' : ''}}>
                                     255.4 mm (10.1”) WUXG (1920x1200) TFT LCD
                                 </option>
+                                <option value="137.9 x 208.4 x 7.5 mm TFT PLS"
+                                    {{ old('screen', $tablet->screen) == '137.9 x 208.4 x 7.5 mm TFT PLS' ? 'selected' : ''}}>
+                                    137.9 x 208.4 x 7.5 mm TFT PLS
+                                </option>
                             </select>
                         </div>
                     </div>
@@ -112,6 +120,10 @@
                                 <option value="Qualcomm Snapdragon 450 Quad-Core 1.8 GHz"
                                     {{ old('processor', $tablet->processor) == 'Qualcomm Snapdragon 450 Quad-Core 1.8 GHz' ? 'selected' : ''}}>
                                     Qualcomm Snapdragon 450 Quad-Core 1.8 GHz
+                                </option>
+                                <option value="Qualcomm Snapdragon 410 Quad-Core 1.5 GHz"
+                                    {{ old('processor', $tablet->processor) == 'Qualcomm Snapdragon 410 Quad-Core 1.5 GHz' ? 'selected' : ''}}>
+                                    Qualcomm Snapdragon 410 Quad-Core 1.5 GHz
                                 </option>
                             </select>
                         </div>
@@ -142,6 +154,10 @@
                                     {{ old('camera', $tablet->camera) == '8.0 MP AF + Frontal de 2.0 MP' ? 'selected' : ''}}>
                                     8.0 MP AF + Frontal de 2.0 MP
                                 </option>
+                                <option value="5.0 MP AF + Frontal de 2.0 MP"
+                                    {{ old('camera', $tablet->camera) == '5.0 MP AF + Frontal de 2.0 MP' ? 'selected' : ''}}>
+                                    5.0 MP AF + Frontal de 2.0 MP
+                                </option>
                             </select>
                         </div>
                         <div class="form-group col-md-4">
@@ -151,6 +167,9 @@
                                 <option value="7.300 mAh"
                                     {{ old('battery', $tablet->battery) == '7.300 mAh' ? 'selected' : ''}}>
                                     7.300 mAh
+                                </option>
+                                <option value="4.200 mAh"
+                                    {{ old('battery', $tablet->battery) == '4.200 mAh' ? 'selected' : ''}}>4.200 mAh
                                 </option>
                             </select>
                         </div>
@@ -168,6 +187,10 @@
                                 <option value="Android 9 Pie"
                                     {{ old('operating_system', $tablet->operating_system) == 'Android 9 Pie' ? 'selected' : ''}}>
                                     Android 9 Pie
+                                </option>
+                                <option value="Android 7 Nougat"
+                                    {{ old('operating_system', $tablet->operating_system) == 'Android 7 Nougat' ? 'selected' : ''}}>
+                                    Android 7 Nougat
                                 </option>
                             </select>
                         </div>
@@ -237,7 +260,7 @@
                 <div class="col-md-12">
                     <div class="form-row">
                         <div class="form-group col-md-4">
-                            <label>*<i class="fa fa-microchip" aria-hidden="true"></i> Sim Card:
+                            <label>*Sim Card:
                             </label>
                             <input type="text" class="form-control" name="sim_card" maxlength="128"
                                 value="{{ $tablet->sim_card }}" placeholder="Enter Code" required autofocus>
@@ -274,7 +297,7 @@
                 <div class="col-md-12">
                     <div class="form-row">
                         <div class="form-group col-md-6">
-                            <label><i class="fa fa-phone" aria-hidden="true"></i> *Número de Sim:</label>
+                            <label>*Número de Teléfono (Sim Card):</label>
                             <input type="text" class="form-control selectValidationNumber" name="phone_number"
                                 minlength="10" maxlength="10" value="{{ $tablet->phone_number }}"
                                 placeholder="Enter Number" required autofocus>
@@ -304,70 +327,37 @@
                 </div>
             </div>
 
+            <p class="h4 mb-1 text-gray-800">Ubicación</p>
+            <small>
+                Seleccione un País si solo desea cambiar de ubicación la Tablet Corporativa
+            </small>
             <div class="row">
                 <div class="col-md-12">
                     <div class="form-row">
                         <div class="form-group col-md-4">
-                            <label>*Ubicación & Localización:</label>
-                            <select class="form-control" name="location" required autofocus>
+                            <label>*Pais:</label>
+                            <select class="form-control paisSelectClass" id="paisSelectId" onchange="cargarCiudades()"
+                                required>
                                 <option value="">Seleccione...</option>
-                                <option value="Bogota"
-                                    {{ old('location', $tablet->location) == 'Bogota' ? 'selected' : ''}}>
-                                    Bogota
+                            </select>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label>*Ciudad:</label>
+                            <select class="form-control" name="location" id="ciudadSelectId" required>
+                                <option value="{{ $tablet->location }}" @if (old($tablet->
+                                    location)=='{{ $tablet->location }}' )
+                                    selected="selected" @endif>
+                                    {{ $tablet->location }}
                                 </option>
-                                <option value="Boyaca"
-                                    {{ old('location', $tablet->location) == 'Boyaca' ? 'selected' : ''}}>
-                                    Boyaca
-                                </option>
-                                <option value="Cundinamarca"
-                                    {{ old('location', $tablet->location) == 'Cundinamarca' ? 'selected' : ''}}>
-                                    Cundinamarca
-                                </option>
-                                <option value="Cundinamarca - Madrid"
-                                    {{ old('location', $tablet->location) == 'Cundinamarca - Madrid' ? 'selected' : ''}}>
-                                    Cundinamarca - Madrid
-                                </option>
-                                <option value="Antioquia"
-                                    {{ old('location', $tablet->location) == 'Antioquia' ? 'selected' : ''}}>
-                                    Antioquia
-                                </option>
-                                <option value="Huila"
-                                    {{ old('location', $tablet->location) == 'Huila' ? 'selected' : ''}}>
-                                    Huila
-                                </option>
-                                <option value="Meta"
-                                    {{ old('location', $tablet->location) == 'Meta' ? 'selected' : ''}}>
-                                    Meta
-                                </option>
-                                <option value="Valle del Cauca"
-                                    {{ old('location', $tablet->location) == 'Valle del Cauca' ? 'selected' : ''}}>
-                                    Valle del Cauca
-                                </option>
-                                <option value="Caldas"
-                                    {{ old('location', $tablet->location) == 'Caldas' ? 'selected' : ''}}>
-                                    Caldas
-                                </option>
-                                <option value="Nariño"
-                                    {{ old('location', $tablet->location) == 'Nariño' ? 'selected' : ''}}>
-                                    Nariño
-                                </option>
-                                <option value="Risaralda"
-                                    {{ old('location', $tablet->location) == 'Risaralda' ? 'selected' : ''}}>
-                                    Risaralda
-                                </option>
-                                <option value="Casanare"
-                                    {{ old('location', $tablet->location) == 'Casanare' ? 'selected' : ''}}>
-                                    Casanare
-                                </option>
-                                <option value="Tolima"
-                                    {{ old('location', $tablet->location) == 'Tolima' ? 'selected' : ''}}>
-                                    Tolima
-                                </option>
+
+                                <option style="font-size: 2pt; background-color: #E9EFF7;" disabled>&nbsp;</option>
                             </select>
                         </div>
                     </div>
                 </div>
             </div>
+
+
             <div class='alert alert-dark'>
                 <div class="row">
                     <div class="col-md-12">
@@ -625,4 +615,5 @@
 @push('scripts')
 <!-- Custom scripts-->
 <script src="{{ asset('/core/js/selectValidationNumber.js') }}"></script>
+<script src="{{ asset('/core/js/select-country-&-city-fix.js') }}"></script>
 @endpush

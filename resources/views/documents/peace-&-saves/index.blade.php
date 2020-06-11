@@ -19,7 +19,7 @@
                 <tr class="bg-gradient-primary text-white text-center">
                     <th>ID:</th>
                     <th>Nombre:</th>
-                    <th>UGDN:</th>
+                    <th>UGDN y CC:</th>
                     <th>Área:</th>
                     <th>Ubicación:</th>
                     <th>Acciones:</th>
@@ -101,7 +101,9 @@
 <script src="{{ asset('/core/plugins/DataTables/datatables.min.js') }}"></script>
 <script>
     $(document).ready(function () {
-        $('#table-employees').DataTable({});
+        $('#table-employees').DataTable({
+            order: [ [0, 'desc'] ]
+        });
     });
     
 </script>

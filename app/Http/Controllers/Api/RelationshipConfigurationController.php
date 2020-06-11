@@ -40,8 +40,8 @@ class RelationshipConfigurationController extends Controller
     public function getComputers()
     {
         $computers = RelationshipConfiguration::with(['assignable', 'employee'])
-        ->where('relationship_configurations.assignable_type', '=', 'App\Computer')->paginate(5);
-
+        ->where('relationship_configurations.assignable_type', '=', 'App\Computer')
+        ->get();
         return $computers;
     }
 

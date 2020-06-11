@@ -280,22 +280,29 @@
                 </div>
             </div>
             @else
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="form-row">
-                        <div class="form-group col-md-6">
-                            <label><code>*Provedor de Tecnología:</code></label>
-                            <select class="form-control" name="provider_id">
-                                <option value="">Seleccione...</option>
-                                @foreach($providers as $provider)
-                                <option value="{{ $provider->id }}"
-                                    {{ old('provider_id') == $provider->id ? 'selected' : '' }}>
-                                    {{ $provider->name }} - {{ $provider->kind_of_society }} </option>
-                                @endforeach
-                            </select>
-                            <small class="form-text text-gray-600">
-                                <code>¿De que Provedor es el ingreso de Articulo que desea registrar?</code>
-                            </small>
+
+            <div class="alert alert-secondary">
+                <p class="h4 mb-1 text-gray-800"></p>
+                <i class="fa fa-landmark fa-2x" aria-hidden="true"></i>
+
+                <h2>Provider Relation!</h2>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                <h4>*Seleccione un Provedor:</h4>
+                                <select class="form-control" name="provider_id">
+                                    <option value="">Seleccione...</option>
+                                    @foreach($providers as $provider)
+                                    <option value="{{ $provider->id }}"
+                                        {{ old('provider_id') == $provider->id ? 'selected' : '' }}>
+                                        {{ $provider->name }} - {{ $provider->kind_of_society }} </option>
+                                    @endforeach
+                                </select>
+                                <small class="form-text text-gray-800">
+                                    <strong>¿De que Provedor es el ingreso de Articulo que desea registrar?</strong>
+                                </small>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -304,7 +311,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="form-row">
-                        <div class="form-group col-md-4">
+                        <div class="form-group col-md-6">
                             <label>*Creado Por:</label>
                             <select class="form-control" name="user_id" required autofocus>
                                 <option value="{{ auth()->user()->id }}">{{ auth()->user()->name }}</option>

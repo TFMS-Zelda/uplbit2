@@ -201,6 +201,7 @@
 
                                     </div>
                                 </td>
+
                                 <td>
                                     @if ($tablet->status === 'Activo - Asignado')
                                     <h5><span class="badge badge-success">{{ $tablet->status }} </span></h5>
@@ -210,6 +211,10 @@
 
                                     @elseif($tablet->status === 'Dañado - Reportado')
                                     <h5><span class="badge badge-dark">{{ $tablet->status }} </span></h5>
+                                    @endif
+
+                                    @if ($tablet->sim_card === null)
+                                    <h5><span class="badge badge-dark">No tiene Sim Card</span></h5>
                                     @endif
                                 </td>
                                 <td>

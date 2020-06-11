@@ -147,13 +147,13 @@
                                     {{ old('processor') == 'Intel(R) Core(TM) i7-8550 CPU @1.80GHz' ? 'selected' : ''}}>
                                     Intel(R) Core(TM) i7-8550 CPU @1.80GHz
                                 </option>
-                                <option value="Intel(R) Core(TM) i7-7600U CPU @1.80GHz"
-                                    {{ old('processor') == 'Intel(R) Core(TM) i7-7600U CPU @1.80GHz' ? 'selected' : ''}}>
-                                    Intel(R) Core(TM) i7-7600U CPU @1.80GHz
+                                <option value="Intel(R) Core(TM) i7-7600U CPU @2.90GHz"
+                                    {{ old('processor') == 'Intel(R) Core(TM) i7-7600U CPU @2.90GHz' ? 'selected' : ''}}>
+                                    Intel(R) Core(TM) i7-7600U CPU @2.90GHz
                                 </option>
-                                <option value="Intel(R) Core(TM) i7-6500U CPU @1.80GHz"
-                                    {{ old('processor') == 'Intel(R) Core(TM) i7-6500U CPU @1.80GHz' ? 'selected' : ''}}>
-                                    Intel(R) Core(TM) i7-6500U CPU @1.80GHz
+                                <option value="Intel(R) Core(TM) i7-6500U CPU @2.50GHz"
+                                    {{ old('processor') == 'Intel(R) Core(TM) i7-6500U CPU @2.50GHz' ? 'selected' : ''}}>
+                                    Intel(R) Core(TM) i7-6500U CPU @2.50GHz
                                 </option>
                                 <option value="Intel(R) Core(TM) i7-5600U CPU @1.80GHz"
                                     {{ old('processor') == 'Intel(R) Core(TM) i7-5600U CPU @1.80GHz' ? 'selected' : ''}}>
@@ -163,9 +163,13 @@
                                     {{ old('processor') == 'Intel(R) Core(TM) i5-8250U CPU @1.80GHz' ? 'selected' : ''}}>
                                     Intel(R) Core(TM) i5-8250U CPU @1.80GHz
                                 </option>
-                                <option value="Intel(R) Core(TM) i5-7200U CPU @1.80GHz"
+                                <option value="Intel(R) Core(TM) i5-4300U CPU @1.90GHz"
                                     {{ old('processor') == 'Intel(R) Core(TM) i5-7200U CPU @1.80GHz' ? 'selected' : ''}}>
                                     Intel(R) Core(TM) i5-7200U CPU @1.80GHz
+                                </option>
+                                <option value="Intel(R) Core(TM) i5-4300U CPU @1.90GHz"
+                                    {{ old('processor') == 'Intel(R) Core(TM) i5-4300U CPU @1.90GHz' ? 'selected' : ''}}>
+                                    Intel(R) Core(TM) i5-4300U CPU @1.90GHz
                                 </option>
                             </select>
                         </div>
@@ -352,7 +356,7 @@
                 <div class="col-md-12">
                     <div class="form-row">
                         <div class="form-group col-md-6">
-                            <label>*Estado del Monitor:</label>
+                            <label>*Estado del Equipo de Computo:</label>
                             <select class="form-control" name="status" required>
                                 <option value="Inactivo - No Asignado"
                                     {{ old('status') == 'Inactivo - No Asignado' ? 'selected' : ''}}>Inactivo - No

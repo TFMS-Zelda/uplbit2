@@ -74,7 +74,7 @@ class EmployeeController extends Controller
     {
         $employee = new \App\Employee;
         $employee->create($request->all());
-        Alert::success('Success!', 'Empleado' . $employee->name . 'Registrado correctamente en el sistema');
+        Alert::success('Success!', 'Empleado' . $employee->name . ' ' . 'Registrado correctamente en el sistema');
 
         return redirect()->route('managers.employees.index');
     }
@@ -174,8 +174,6 @@ class EmployeeController extends Controller
             return redirect()->route('managers.employees.index');
 
         }
-
-         
     }
 
     /**

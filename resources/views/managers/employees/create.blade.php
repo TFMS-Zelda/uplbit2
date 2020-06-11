@@ -170,6 +170,9 @@
                                     {{ old('work_area') == 'Finanzas - IT' ? 'selected' : ''}}>
                                     Finanzas - IT
                                 </option>
+                                <option value="Gerencia" {{ old('work_area') == 'Gerencia' ? 'selected' : ''}}>
+                                    Gerencia
+                                </option>
                                 <option value="Investigacion & Desarollo"
                                     {{ old('work_area') == 'Investigacion & Desarollo' ? 'selected' : ''}}>
                                     Investigacion & Desarollo
@@ -191,6 +194,10 @@
                                 <option value="Produccion" {{ old('work_area') == 'Produccion' ? 'selected' : ''}}>
                                     Produccion
                                 </option>
+                                <option value="Recursos Humanos"
+                                    {{ old('work_area') == 'Recursos Humanos' ? 'selected' : ''}}>
+                                    Recursos Humanos
+                                </option>
                                 <option value="Registros" {{ old('work_area') == 'Registros' ? 'selected' : ''}}>
                                     Registros
                                 </option>
@@ -207,65 +214,27 @@
                 </div>
             </div>
 
+            <p class="h4 mb-1 text-gray-800">Ubicación</p>
             <div class="row">
                 <div class="col-md-12">
                     <div class="form-row">
                         <div class="form-group col-md-4">
-                            <label>*País:</label>
-                            <select class="form-control" name="country" required autofocus>
-                                <option value="">Escoger...</option>
-                                <option value="Colombia" {{ old('country') == 'Colombia' ? 'selected' : ''}}>
-                                    Colombia
-                                </option>
-                                <option value="Ecuador" {{ old('country') == 'Ecuador' ? 'selected' : ''}}>
-                                    Ecuador
-                                </option>
+                            <label>*Pais:</label>
+                            <select class="form-control paisSelectClass" id="paisSelectId" name="country"
+                                onchange="cargarCiudades()" required>
+                                <option value="">Seleccione...</option>
                             </select>
                         </div>
-
-                        <div class="form-group col-md-4">
+                        <div class="form-group col-md-6">
                             <label>*Ciudad:</label>
-                            <select class="form-control" name="city" required autofocus>
-                                <option value="">Escoger...</option>
-                                <option value="Antioquia" {{ old('city') == 'Antioquia' ? 'selected' : ''}}>
-                                    Antioquia
-                                </option>
-                                <option value="Bogota" {{ old('city') == 'Bogota' ? 'selected' : ''}}>
-                                    Bogota
-                                </option>
-                                <option value="Boyaca" {{ old('city') == 'Boyaca' ? 'selected' : ''}}>
-                                    Boyaca
-                                </option>
-                                <option value="Caldas" {{ old('city') == 'Caldas' ? 'selected' : ''}}>
-                                    Caldas
-                                </option>
-                                <option value="Cundinamarca" {{ old('city') == 'Cundinamarca' ? 'selected' : ''}}>
-                                    Cundinamarca
-                                </option>
-                                <option value="Cundinamarca - Madrid"
-                                    {{ old('city') == 'Cundinamarca - Madrid' ? 'selected' : ''}}>
-                                    Cundinamarca - Madrid
-                                </option>
-                                <option value="Huila" {{ old('city') == 'Huila' ? 'selected' : ''}}>
-                                    Huila
-                                </option>
-                                <option value="Nariño" {{ old('city') == 'Nariño' ? 'selected' : ''}}>
-                                    Nariño
-                                </option>
-                                <option value="Risaralda" {{ old('city') == 'Risaralda' ? 'selected' : ''}}>
-                                    Risaralda
-                                </option>
-                                <option value="Tolima" {{ old('city') == 'Tolima' ? 'selected' : ''}}>
-                                    Tolima
-                                </option>
-                                <option value="Valle del Cauca" {{ old('city') == 'Valle del Cauca' ? 'selected' : ''}}>
-                                    Valle del Cauca
-                                </option>
+                            <select class="form-control" name="city" id="ciudadSelectId" required>
+                                <option value="">Seleccione...</option>
                             </select>
                         </div>
                     </div>
                 </div>
             </div>
+
 
             <div class="row">
                 <div class="col-md-12">
@@ -320,21 +289,29 @@
                 </div>
             </div>
             @else
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="form-row">
-                        <div class="form-group col-md-6">
-                            <label><code>*Compañia</code></label>
-                            <select class="form-control" name="company_id">
-                                @foreach($companies as $company)
-                                <option value="{{ $company->id }}">{{ $company->name }}
-                                    {{ $company->kind_of_society }} , {{ $company->country }} - {{ $company->city }}
-                                </option>
-                                @endforeach
-                            </select>
-                            <small class="form-text text-gray-600">
-                                ¿De que Provedor es este ingreso de Articulo?
-                            </small>
+
+            <div class="alert alert-primary">
+                <p class="h4 mb-1 text-gray-800">
+                    <i class="fa fa-landmark" aria-hidden="true"></i>
+                    <h2>Company Relation!</h2>
+                </p>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                <h4>*Seleccione una Compañía:</h4>
+                                <select class="form-control" name="company_id">
+                                    @foreach($companies as $company)
+                                    <option value="{{ $company->id }}">{{ $company->name }}
+                                        {{ $company->kind_of_society }} , {{ $company->country }} - {{ $company->city }}
+                                    </option>
+                                    @endforeach
+                                </select>
+                                <small class="form-text text-gray-800">
+                                    <strong>¿De que Compañía es el ingreso del siguiente empleado que desea
+                                        registrar?</strong>
+                                </small>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -414,6 +391,7 @@
 </section>
 @endsection
 @push('scripts')
+<script src="{{ asset('/core/js/select-country-&-city-fix.js') }}"></script>
 <script>
     $('.selectValidationNumber').on('input', function () {
         this.value = this.value.replace(/[^0-9]/g, '');

@@ -218,7 +218,9 @@
 <script src="{{ asset('/core/plugins/DataTables/datatables.min.js') }}"></script>
 <script>
     $(document).ready(function () {
-        $('#table-computers').DataTable({});
+        $('#table-computers').DataTable({
+            order: [ [0, 'desc'] ]
+        });
         });
         
         document.onsubmit = function () {

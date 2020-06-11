@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Manager;
 use Illuminate\Http\Request;
 use App\User;
+use App\Employee;
 
 
 class ManagerController extends Controller
@@ -17,7 +18,11 @@ class ManagerController extends Controller
     public function index()
     {
         $users = User::all()->count();
-        return \view('managers.index', compact('users'));
+        $employees = Employee::all()->count();
+        return \view('managers.index', compact(
+            'users',
+            'employees'
+        ));
     }
 
     /**

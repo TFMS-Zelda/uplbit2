@@ -54,26 +54,30 @@
                                 @foreach($articles as $article)
                                 <tr class="text-center">
                                     <td>
-                                        <i class="fas fa-sort-numeric-down-alt"></i><br>
-                                        <strong>{{ $article->id }}</strong>
-
+                                        <div class="h5 mb-0 font-weight-bold text-muted">
+                                            <i class="fas fa-sort-numeric-down-alt"></i><br>
+                                            <strong>{{ $article->id }}</strong>
+                                        </div>
                                     </td>
                                     <td>
-                                        <i class="fa fa-landmark" aria-hidden="true"></i>
-                                        <br>
-                                        <small>
+                                        <div class="h6 mb-0 font-weight-bold text-muted">
+                                            <i class="fa fa-landmark" aria-hidden="true"></i>
+                                            <br>
                                             {{ $article->provider->name }} {{ $article->provider->kind_of_society }}
-                                        </small>
+                                        </div>
                                     </td>
 
                                     <td>
                                         <i class="fas fa-cart-arrow-down fa-1x text-muted"></i> <br>
-                                        <small><b>Invoice: {{ $article->invoice_number }} </b></small>
+                                        <h5><span class="badge badge-success">Invoice: {{ $article->invoice_number }}
+                                            </span>
+                                        </h5>
 
                                     </td>
                                     <td>
-                                        <code> <i class="fas fa-dollar-sign"></i> {{ $article->total_bill }}</code>
-
+                                        <div class="h6 mb-0 font-weight-bold text-muted">
+                                            <code> <i class="fas fa-dollar-sign"></i> {{ $article->total_bill }}</code>
+                                        </div>
                                     </td>
                                     <td>
                                         <div class="mb-0 font-weight-bold text-gray-700">
@@ -138,10 +142,12 @@
 <script src="{{ asset('/core/plugins/DataTables/datatables.min.js') }}"></script>
 <script>
     $(document).ready(function () {
-          $('#table-articles').DataTable();
-      });
+        $('#table-articles').DataTable({
+            order: [ [0, 'desc'] ]
+        });
+    });
         document.onsubmit = function () {
-          return confirm('Atencion: {{ Auth::user()->name }}, ¿Esta seguro de eliminar el siguiente articulo del sistema?');
-      }
+        return confirm('Atencion: {{ Auth::user()->name }}, ¿Esta seguro de eliminar el siguiente articulo del sistema?');
+    }
 </script>
 @endpush

@@ -145,7 +145,7 @@
                                     Monitores Registrados
                                 </div>
                                 <div class="h4 mb-0 font-weight-bold text-white">
-                                    <strong>{{ $computers }}</strong> Cí
+                                    <strong>{{ $monitors }}</strong> Cí
                                 </div>
                             </div>
                             <div class="col-auto">
