@@ -34,11 +34,15 @@ class ComputerController extends Controller
         $computers = \App\Computer::orderBy('id', 'DESC')
         ->get();
 
-        //Consulta cantidad de computers status = 'No Asignado'
-        $computersNoAsignados = DB::table('computers')->where('status', 'like', '%No Asignado%')->count('id');
-        $computersAsignados = DB::table('computers')->where('status', 'like', '%Asignado%')->count('id');
+        
+        $computersNoAsignados = DB::table('computers')->where('status', '=', 'Inactivo - No Asignado')->count('id');
+        $computersAsignados = DB::table('computers')->where('status', '=', 'Activo - Asignado')->count('id');
+        $computersDañado = DB::table('computers')->where('status', '=', 'Dañado - Reportado')->count('id');
+        $computersHurto = DB::table('computers')->where('status', '=', 'Reportado - Hurto')->count('id');
 
-        return view('computers.index', compact('computers', 'totalComputerInStock', 'computersNoAsignados', 'computersAsignados'));
+
+        return view('computers.index', compact('computers', 'totalComputerInStock', 
+        'computersNoAsignados', 'computersAsignados' , 'computersHurto', 'computersDañado' ));
 
     }
 

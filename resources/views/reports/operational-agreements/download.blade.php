@@ -21,10 +21,11 @@
                     Operational Level Agreement
 
                 </h1>
-                <p>
-                    Se expide el dia {{ Carbon\Carbon::now()->format('l jS \\of F Y ') }}
-                </p>
+
                 <h2 class="subtitle">
+                    <p>
+                        Se expide el dia {{ Carbon\Carbon::now()->format('l jS \\of F Y ') }}
+                    </p>
                     {{ $employee->name }}
                     <br>
                     {{ $employee->email_corporate }}
@@ -52,7 +53,7 @@
         </div>
         @else
         <div class="notification is-primary is-light">
-            <h3 class="title is-3">Equipo de computo</h3>
+            <h3 class="title is-3">Equipo de Computo</h3>
             <h2 class="subtitle">
                 Se asigna {{ $computersCount }} Cí
             </h2>
@@ -133,20 +134,40 @@
                             {{ $tablet->screen }}
                         </td>
                         <td class="has-text-centered">
-                            <span class="tag is-link is-light"><strong>
-                                    Placa: {{ $tablet->license_plate }}</strong></span> <br>
-                            {{ $tablet->status }}
+                            <span class="tag is-link is-light">
+                                <strong>
+                                    <h6 class="title is-6">Placa: {{ $tablet->license_plate }}</h6>
+                                </strong></span>
+                            <h6 class="title is-6">Estado: {{ $tablet->status }}</h6>
 
                         </td>
                         <td class="has-text-centered">
-                            <span class="tag is-link is-light"><strong>IMEI:
-                                    {{ $tablet->imei }}</strong></span>
-                            <span class="tag is-link is-light"><strong>Número de Teléfono:
-                                    {{ $tablet->phone_number }}</strong></span>
-                            <span class="tag is-link is-light"><strong>SimCard:
-                                    {{ $tablet->sim_card }}</strong></span>
-                            <span class="tag is-danger is-light"><strong>Pin:
-                                    {{ $tablet->pin }}</strong></span>
+                            <span class="tag is-link is-light">
+                                <strong>
+                                    <h6 class="title is-6">IMEI: {{ $tablet->imei }}</h6>
+                                </strong>
+                            </span>
+
+                            @if ($tablet->phone_number === null)
+                            <h6 class="title is-6">No contiene Sim Card</h6>
+                            @else
+                            <strong>
+                                <h6 class="title is-6">Número de Teléfono: {{ $tablet->phone_number }}</h6>
+                            </strong>
+                            <br>
+                            <strong>
+                                <h6 class="title is-6">Sim Card: {{ $tablet->sim_card }}</h6>
+                            </strong>
+                            <strong>
+                                <h6 class="title is-6">Pín: {{ $tablet->pin }} - Ar1sta</h6>
+
+                            </strong>
+
+
+                            @endif
+
+
+
                         </td>
                     </tr>
                     @endforeach
@@ -258,73 +279,69 @@
 
         <div class="notification">
             <p class="has-text-black has-text-justified">
-                <div class="notification">
-                    <p class="has-text-black has-text-justified">
-                        La finalidad de los anteriores recursos tecnológicos es para el desarrollo de sus funciones y el
-                        cumplimiento de las obligaciones que ha adquirido en virtud del contrato laboral suscrito.
+                La finalidad de los anteriores recursos tecnológicos es para el desarrollo de sus funciones y el
+                cumplimiento de las obligaciones que ha adquirido en virtud del contrato laboral suscrito.
 
-                        <br>
-                        <br>
+                <br>
+                <br>
 
-                        Además de los recursos tecnológicos descritos anteriormente y concedidos por el área de
-                        Información y
-                        Tecnología al empleado en virtud del
-                        presente acuerdo de nivel operacional, puede verse actualizado en diferentes momentos dado la
-                        nesecidad
-                        del empleado de suplir u obtener otros recursos tecnológicos en virtud de sus funciones
-                        laborales, los
-                        cuales
-                        le será notificado mediante el correo electronico
-                        <strong>{{ $employee->email_corporate }}</strong>
-                        registrado en el sistema adjuntando la actualización del acuerdo de nivel operacional.
+                Además de los recursos tecnológicos descritos anteriormente y concedidos por el área de
+                Información y
+                Tecnología al empleado en virtud del
+                presente acuerdo de nivel operacional, puede verse actualizado en diferentes momentos dado la
+                nesecidad
+                del empleado de suplir u obtener otros recursos tecnológicos en virtud de sus funciones
+                laborales, los
+                cuales
+                le será notificado mediante el correo electronico
+                <strong>{{ $employee->email_corporate }}</strong>
+                registrado en el sistema adjuntando la actualización del acuerdo de nivel operacional.
 
-                        <br>
-                        <br>
+                <br>
+                <br>
 
-                        Los recursos tecnológicos se entregan en perfecto estado de uso y conservación, respondiendo el
-                        empleado
-                        por la pérdida, daños, sustracciones o averías del mismo, cuando haya sido por negligencia o
-                        descuido,
-                        para lo cual, con la suscripción del presente acuerdo de nivel operativo, autoriza expresamente
-                        y de
-                        manera irrevocable a la empresa, para que proceda a descontar de su salario, liquidación y/o
-                        prestaciones sociales, el valor de la reparación o sustitución.
+                Los recursos tecnológicos se entregan en perfecto estado de uso y conservación, respondiendo el
+                empleado
+                por la pérdida, daños, sustracciones o averías del mismo, cuando haya sido por negligencia o
+                descuido,
+                para lo cual, con la suscripción del presente acuerdo de nivel operativo, autoriza expresamente
+                y de
+                manera irrevocable a la empresa, para que proceda a descontar de su salario, liquidación y/o
+                prestaciones sociales, el valor de la reparación o sustitución.
 
-                        <br>
-                        <br>
+                <br>
+                <br>
 
-                        El empleado no podrá usar, gozar o disponer de los recursos tecnológicos de propiedad de la
-                        compañía
-                        para la realización o ejecución de actividades distintas a las que le corresponden conforme a
-                        las
-                        funciones que le han sido asignadas en virtud del presente acuerdo. Por lo tanto, durante la
-                        vigencia
-                        del acuerdo de nivel operativo, la compañía podrá adelantar inspecciones y controles para
-                        verificar el
-                        cumplimiento de esta obligación.
+                El empleado no podrá usar, gozar o disponer de los recursos tecnológicos de propiedad de la
+                compañía
+                para la realización o ejecución de actividades distintas a las que le corresponden conforme a
+                las
+                funciones que le han sido asignadas en virtud del presente acuerdo. Por lo tanto, durante la
+                vigencia
+                del acuerdo de nivel operativo, la compañía podrá adelantar inspecciones y controles para
+                verificar el
+                cumplimiento de esta obligación.
 
-                        <br>
-                        <br>
+                <br>
+                <br>
 
-                        El empleado se compromete a realizar la devolución de los recursos tecnológicos a la terminación
-                        del
-                        contrato laboral, en las mismas condiciones que le fue entregado, salvo el deterioro normal
-                        causado por
-                        el uso. Es de anotar, que dichos recursos tecnológicos revisará un tercero y el costo de
-                        cualquier
-                        novedad presentada respecto a la funcionalidad, completitud e integridad
-                        en éste, será descontada de su salario, liquidación y/o prestaciones sociales según corresponda.
+                El empleado se compromete a realizar la devolución de los recursos tecnológicos a la terminación
+                del
+                contrato laboral, en las mismas condiciones que le fue entregado, salvo el deterioro normal
+                causado por
+                el uso. Es de anotar, que dichos recursos tecnológicos revisará un tercero y el costo de
+                cualquier
+                novedad presentada respecto a la funcionalidad, completitud e integridad
+                en éste, será descontada de su salario, liquidación y/o prestaciones sociales según corresponda.
 
-                        <br>
-                        <br>
+                <br>
+                <br>
 
-                        Se suscribe en la ciudad de Bogotá en la fecha de creación del empleado <strong>
-                            {{ Carbon\Carbon::parse($employee->created_at)->format('l jS \\of F Y ') }}</strong>
-                        registrada en
-                        el sistema.
-                    </p>
-                </div>
-
+                Se suscribe en la ciudad de Bogotá en la fecha de creación del empleado <strong>
+                    {{ Carbon\Carbon::parse($employee->created_at)->format('l jS \\of F Y ') }}</strong>
+                registrada en
+                el sistema.
+            </p>
         </div>
         <section class="hero is-ligth">
             <div class="hero-body">

@@ -20,8 +20,11 @@
                 <h1 class="title">
                     Reporte de Mantenimiento
                 </h1>
+
                 <h2 class="subtitle">
-                    {{ Carbon\Carbon::parse($historyMaintenance->maintenance_date)->format('l jS \\of F Y ') }} <br>
+                    <p>
+                        Se expide el dia {{ Carbon\Carbon::now()->format('l jS \\of F Y ') }}
+                    </p>
                     {{ $historyMaintenance->maintenance_type }} <br>
                     N° {{ $historyMaintenance->id }}
                     <br>
@@ -112,9 +115,8 @@
     <footer class="footer">
         <div class="content has-text-centered">
             <p>
-                <strong>Uniphos Plant Limited</strong>, <a>Información y Tecnología</a>. Operational Level
-                Agreement,
-                Descargado Digitalmente.
+                <strong>Uniphos Plant Limited</strong>, <a>Información y Tecnología</a>. Reporte de Mantenimiento,
+                Descargado Digitalmente {{ Carbon\Carbon::now() }}
                 <p class="title">2020</p>
             </p>
         </div>

@@ -36,7 +36,7 @@ class UpdateEmployeeRequest extends FormRequest
             'country' => 'required|string|max:64',
             'city' => 'required|string|max:64',
             'work_area' => 'required|string|max:128',
-            'phone' => "required|digits:10|numeric|unique:employees,phone,{$this->employee->id}",
+            'phone' => "required|digits_between:7,10|numeric|unique:employees,phone,{$this->employee->id}",
             'creation_date' => 'required|date',
             'company_id' => 'required|numeric',
             'user_id' => 'required|numeric',

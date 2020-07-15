@@ -75,9 +75,10 @@
                                 <th>ID:</th>
                                 <th>Marca:</th>
                                 <th>Módelo:</th>
-                                <th>Placa</th>
-                                <th>Estado:</th>
-                                <th>Acciones:</th>
+                                <th>Placa:</th>
+                                <th>Location</th>
+                                <th>Status:</th>
+                                <th>Actions:</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -85,13 +86,15 @@
                             <tr class="text-center">
                                 <td>
                                     <div class="col-auto text-center">
-                                        <i class="fas fa-print fa-2x"></i>
-                                        <br>
+
                                         <div class="h5 mb-0 font-weight-bold text-muted">{{ $printer->id }} </div>
                                     </div>
                                 </td>
                                 <td>
+                                    <i class="fas fa-print fa-2x"></i>
+
                                     <div class="h6 mb-0 font-weight-bold text-muted">{{ $printer->brand }}<br>
+
                                         <small>
                                             {{ $printer->resolution }}, {{ $printer->serial }}, <br>
                                             {{ $printer->printer_functions }}
@@ -101,7 +104,30 @@
                                     </div>
                                 </td>
                                 <td>
-                                    <div class="h6 mb-0 font-weight-bold text-muted">{{ $printer->model }} </div>
+                                    <div class="h6 mb-0 font-weight-bold text-muted">{{ $printer->model }}
+                                        <br>
+                                        Serial:
+                                        <small>
+                                            {{ $printer->serial }}
+                                        </small>
+                                        <br>
+                                        Ip Address:
+                                        <small>
+                                            {{ $printer->ip_address }}
+                                        </small>
+                                        <br>
+                                        Mac Adrress:
+                                        <small>
+                                            {{ $printer->mac_adrress }}
+                                        </small>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="mb-0 font-weight-bold text-gray-600">
+                                        <i class="fa fa-map-marker-alt" aria-hidden="true"></i>
+                                        <br>
+                                        {{ $printer->location }}
+                                    </div>
                                 </td>
                                 <td>
                                     <div class="h6 mb-0 font-weight-bold text-muted">
@@ -112,14 +138,19 @@
                                 </td>
                                 <td>
                                     <div class="h6 mb-0 font-weight-bold text-muted">
-                                        @if ($printer->status === 'Activo - Operativo')
+                                        @if ($printer->status === 'Inactivo - No Asignado')
+                                        <h5><span class="badge badge-info">{{ $printer->status }} </span></h5>
+
+                                        @elseif($printer->status === 'Activo - Asignado')
                                         <h5><span class="badge badge-success">{{ $printer->status }} </span></h5>
 
-                                        @elseif($printer->status === 'Inactivo - No Operativo')
-                                        <h5><span class="badge badge-danger">{{ $printer->status }} </span></h5>
-
-                                        @elseif($printer->status === 'Dañado - Reportado')
+                                        @elseif($printer->status === 'En Mantenimiento')
                                         <h5><span class="badge badge-dark">{{ $computer->status }} </span></h5>
+
+                                        @elseif($printer->status === 'Dañado')
+                                        <h5><span class="badge badge-warning">{{ $computer->status }} </span></h5>
+
+
                                         @endif
                                     </div>
                                 </td>

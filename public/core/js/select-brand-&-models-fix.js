@@ -16,7 +16,7 @@ function addOptions(domElement, array) {
 
 function cargarModelos() {
     var listaModelos = {
-        Lenovo: ['X1 Yoga 20LE', "ThinkPad x290", "ThinkPad x280", "ThinkPad x270", "ThinkPad x260", "ThinkPad x250", 'ThinkPad x240'],
+        Lenovo: ['X1 Carbon 2nd Gen', 'X1 Yoga 20LE', "ThinkPad x290", "ThinkPad x280", "ThinkPad x270", "ThinkPad x260", "ThinkPad x250", 'ThinkPad x240'],
         Dell: ['Latitude E5540', 'Latitude E5480', 'Latitude E6320', 'Latitude E6330',
             'Latitude E6440', 'Latitude E7240', 'Latitude E7250', 'Latitude E7490', 'Vostro 1510', 'Vostro 3500', 'Vostro 3460', 'Vostro 3550 ', 'Vostro 3560'],
     }

@@ -230,8 +230,12 @@
                         <div class="form-group col-md-6">
                             <label>*Procesador:</label>
                             <select class="form-control" name="processor" required autofocus>
+                                <option value="Intel(R) Core(TM) i7-8650 CPU @1.90GHz"
+                                    {{ old('processor', $computer->processor) == 'Intel(R) Core(TM) i7-8650 CPU @1.90GHz' ? 'selected' : '' }}>
+                                    Intel(R) Core(TM) i7-8650 CPU @1.90GHz
+                                </option>
                                 <option value="Intel(R) Core(TM) i7-8550 CPU @1.80GHz"
-                                    {{ old('processor', $computer->processor) == 'Intel(R) Core(TM) i7-8550 CPU' ? 'selected' : '' }}>
+                                    {{ old('processor', $computer->processor) == 'Intel(R) Core(TM) i7-8550 CPU @1.80GHz' ? 'selected' : '' }}>
                                     Intel(R) Core(TM) i7-8550 CPU @1.80GHz
                                 </option>
                                 <option value="Intel(R) Core(TM) i7-7600U CPU @2.90GHz"
@@ -486,6 +490,11 @@
                                     <option value="Dañado - Reportado"
                                         {{ old('status', $computer->status) == 'Dañado - Reportado' ? 'selected' : ''}}>
                                         Dañado - Reportado
+                                    </option>
+
+                                    <option value="Reportado - Hurto"
+                                        {{ old('status', $computer->status) == 'Reportado - Hurto' ? 'selected' : ''}}>
+                                        Reportado - Hurto
                                     </option>
                                 </select>
                             </div>

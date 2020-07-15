@@ -61,12 +61,16 @@
                             <tr class="text-center">
                                 <td>
                                     <div class="col-auto text-center">
-                                        <div class="mb-0 font-weight-bold text-gray-700">{{ $employee->id }} </div>
+                                        <i class="fas fa-sort-numeric-down-alt"></i><br>
+                                        <i class="fas fa-user"></i>
+                                        <br>
+                                        <div class="h5 mb-0 font-weight-bold text-muted">{{ $employee->id }} </div>
                                     </div>
                                 </td>
                                 <td>
                                     <div class="mb-0 font-weight-bold text-gray-600">
-                                        <img class="img-fluid rounded-circle" src="{{ $employee->profile_avatar }}"
+                                        <img class="img-fluid rounded-circle"
+                                            src='{{ Storage::url('Employees-avatar/'.$employee->profile_avatar )}}'
                                             alt="avatarEmployeeImage" width="40px">
                                         <br>
                                         {{ $employee->name }}
@@ -81,26 +85,22 @@
                                         <i class="fa fa-fingerprint"></i>
                                         <br>
                                         {{ $employee->ugdn }} <br>
-                                        <small class="is-primary">{{ $employee->citizenship_card }} </small>
-                                        @if ( $employee->status === 'Activo')
-                                        <br>
-                                        <span class="badge badge-success">{{ $employee->status }} </span>
-                                        @else
-                                        <span class="badge badge-danger">{{ $employee->status }} </span>
-                                        @endif
+                                        {{ $employee->citizenship_card }}
                                     </div>
                                 </td>
                                 <td>
                                     <div class="mb-0 font-weight-bold text-gray-600">
                                         {{ $employee->work_area }}
                                         <br>
-                                        <small> <i class="fas fa-phone"></i> {{ $employee->phone }} <br>
-                                        </small>
+                                        <i class="fas fa-phone"></i> <br>
+                                        {{ $employee->phone }}
                                     </div>
                                 </td>
                                 <td>
                                     <div class="mb-0 font-weight-bold text-gray-600">
-                                        <small> {{ $employee->country }} / {{ $employee->city }}</small>
+                                        <i class="fa fa-map-marker-alt" aria-hidden="true"></i>
+                                        <br>
+                                        {{ $employee->country }} / {{ $employee->city }} <br>
                                         <div class="h6 mb-0 font-weight-bold text-muted">
                                             <h5><span class="badge badge-danger">{{ $employee->status }}
                                                 </span></h5>

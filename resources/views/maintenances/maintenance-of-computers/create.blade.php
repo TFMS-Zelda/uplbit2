@@ -113,8 +113,8 @@
             <div class="col-md-12">
                 <div class="form-row">
                     <div class="form-group col-md-12">
-                        <textarea class="form-control" maxlength="512" name="maintenance_description"
-                            id="maintenance_description">{{ old('maintenance_description') }}</textarea>
+                        <textarea class="form-control" maxlength="512"
+                            name="maintenance_description">{{ old('maintenance_description') }}</textarea>
                     </div>
                 </div>
             </div>
@@ -151,8 +151,8 @@
                 <div class="form-row">
                     <div class="form-group col-md-12">
 
-                        <textarea class="form-control" name="observations" maxlength="512"
-                            id="observations">{{ old('observations') }}</textarea>
+                        <textarea class="form-control" name="observations"
+                            maxlength="512">{{ old('observations') }}</textarea>
                     </div>
                 </div>
             </div>
@@ -287,18 +287,5 @@
         <!-- Close Modal -->
         <a href="#" class="btn btn-danger">Cancelar</a>
     </form>
-
 </section>
 @endsection
-@push('scripts')
-<!-- Ckeditor plugin  -->
-<script src="{{ asset('/core/plugins/ckeditor/ckeditor.js') }}"></script>
-<script>
-    // CkEditor
-      CKEDITOR.config.heigth = 400;
-      CKEDITOR.config.width = 'auto';
-      CKEDITOR.replace('maintenance_description');
-      CKEDITOR.replace('observations');
-    
-</script>
-@endpush

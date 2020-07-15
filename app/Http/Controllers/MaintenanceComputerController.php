@@ -27,8 +27,7 @@ class MaintenanceComputerController extends Controller
         $totalMaintenancesCorrectivo  = DB::table('maintenance_computers')->where('maintenance_type', '=', 'Mantenimiento Correctivo')->count();
         $totalReportesGarantia  = DB::table('maintenance_computers')->where('maintenance_type', '=', 'Reporte por Garantia')->count();
 
-        $computers = \App\Computer::orderBy('id', 'DESC')
-        ->paginate(10);
+        $computers = Computer::all();
 
         return view('maintenances.maintenance-of-computers.index', [
             'totalComputers' => $totalComputers,
@@ -37,7 +36,6 @@ class MaintenanceComputerController extends Controller
             'totalMaintenancesPreventivo' => $totalMaintenancesPreventivo,
             'totalMaintenancesCorrectivo' => $totalMaintenancesCorrectivo,
             'totalReportesGarantia' => $totalReportesGarantia,
-
         ]);
     }
 

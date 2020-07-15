@@ -143,6 +143,10 @@
                             <select class="form-control" name="processor" required autofocus>
                                 <option value="">Escoger...</option>
 
+                                <option value="Intel(R) Core(TM) i7-8650 CPU @1.90GHz"
+                                    {{ old('processor') == 'Intel(R) Core(TM) i7-8650 CPU @1.90GHz' ? 'selected' : ''}}>
+                                    Intel(R) Core(TM) i7-8650 CPU @1.90GHz
+                                </option>
                                 <option value="Intel(R) Core(TM) i7-8550 CPU @1.80GHz"
                                     {{ old('processor') == 'Intel(R) Core(TM) i7-8550 CPU @1.80GHz' ? 'selected' : ''}}>
                                     Intel(R) Core(TM) i7-8550 CPU @1.80GHz

@@ -438,11 +438,6 @@
                                     Dañado
                                 </option>
 
-                                <option value="Retirado - Baja de Activo"
-                                    {{ old('status', $printer->status) == 'Retirado - Baja de Activo' ? 'selected' : ''}}>
-                                    Retirado - Baja de Activo
-                                </option>
-
                             </select>
                         </div>
                     </div>

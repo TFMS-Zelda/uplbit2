@@ -58,7 +58,8 @@
                         <div class="mb-0 font-weight-bold text-gray-600">
                             {{ $employee->work_area }}
                             <br>
-                            {{ $employee->employee_type }} <br>
+                            {{ $employee->employee_type }}<br>
+                            {{ $employee->job_title }}
                         </div>
                     </td>
                     <td>

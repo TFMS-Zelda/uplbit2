@@ -149,7 +149,6 @@ class RelationshipConfigurationController extends Controller
         ->update(['status' => 'Activo - Asignado']);
         
         return $request->all();
-    
     }
 
     public function storeRelationMonitors(Request $request)

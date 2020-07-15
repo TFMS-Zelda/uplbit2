@@ -138,7 +138,7 @@
                             <span class="tag is-link is-light"><strong>IMEI:
                                     {{ $tablet->imei }}</strong></span>
                             <span class="tag is-link is-light"><strong>Número de Teléfono:
-                                    {{ $tablet->phone_number }}</strong></span>
+                                    {{ $tablet->phone_number }}</strong></span> <br>
                             <span class="tag is-link is-light"><strong>SimCard:
                                     {{ $tablet->sim_card }}</strong></span>
                             <span class="tag is-danger is-light"><strong>Pin:

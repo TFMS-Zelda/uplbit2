@@ -70,6 +70,18 @@
 
         <h1 class="h3 mb-0 text-gray-800"><i class="fas fa-file-invoice-dollar"></i> Provedor y Facturación</h1>
 
+
+        @if (is_null($computer->article_id))
+        <div class="alert alert-danger">
+            <p class="h4 mb-1 text-gray-800"></p>
+            <i class="fa fa-bell fa-2x" aria-hidden="true"></i>
+
+            <h2>Provider & Article No Encontrado!</h2>
+            <p>El siguiente equipo de computo no presenta ninguna compra relacionada con
+                un provedor de TI...</p>
+        </div>
+
+        @else
         <div class="card shadow mb-4">
             <a href="#collapseCardExample" class="d-block card-header py-3" data-toggle="collapse" role="button"
                 aria-expanded="true" aria-controls="collapseCardExample">
@@ -81,13 +93,17 @@
                     {{ Carbon\Carbon::parse($computer->article->invoice_date)->format('l jS \\of F Y ') }}</strong>
                 </p>
             </a>
+
             <div class="collapse show" id="collapseCardExample">
                 <div class="card-body">
                     <embed src="/storage/Invoices-articles-providers/{{ $computer->article->digital_invoice }}"
                         style="width:942px; height:768px;" frameborder="0">
                 </div>
             </div>
+
         </div>
+        @endif
+
 
         <h1 class="h3 mb-0 text-gray-800"><i class="fas fa-history"></i> Historial y Trazabilidad</h1>
         <p> Acontinuación encontrara la trazabilidad del equipo de computo desde el día

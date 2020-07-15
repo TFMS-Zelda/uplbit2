@@ -30,8 +30,8 @@ class EmployeeController extends Controller
     public function index()
     {
         //code
-        $employees = \App\Employee::orderBy('id', 'DESC')
-        ->paginate(10); 
+        $employees = \App\Employee::all();
+    
         $totalEmployeesActivos = DB::table('employees')->where('status', 'like', '%Activo%')->count('id');
         return view('managers.employees.index', [
             'employees' => $employees,
@@ -50,11 +50,11 @@ class EmployeeController extends Controller
         if ($companies->isEmpty()) {
             Alert::error('Error, Crear Empleado', '
             No se encontro una compañia registrada en el sistema.')->persistent('Close');
-           
+        
             return view('managers.employees.create', [
                 'companies' => $companies,
             ]);
-          
+        
         } else {
             # code...
             return view('managers.employees.create', [
@@ -117,7 +117,7 @@ class EmployeeController extends Controller
     {
         $this->validate($request, [
             'name' => 'required|string|max:128',
-            'citizenship_card' => "required|digits:10|numeric|unique:employees,citizenship_card," .$employee->id,
+            'citizenship_card' => "required|digits_between:7,10|numeric|unique:employees,citizenship_card," .$employee->id,
             'email_corporate' => "required|email|max:128|unique:employees,email_corporate,".$employee->id,
             'job_title' => 'required|string|max:128',
             'employee_type' => 'required|string|max:128',
@@ -126,7 +126,7 @@ class EmployeeController extends Controller
             'work_area' => 'required|string|max:64',
             'country' => 'required|string|max:64',
             'city' => 'required|string|max:64',
-            'phone' => "required|digits:10|numeric|unique:employees,phone,".$employee->id,
+            'phone' => "required|digits_between:7,10|numeric|unique:employees,phone,".$employee->id,
             'creation_date' => 'required|date',
             'company_id' => 'required|numeric',
             'user_id' => 'required|numeric',
@@ -206,7 +206,7 @@ class EmployeeController extends Controller
                     $whenUserDelete = Auth::id();
                     Employee::where('id','=', $employee->id)->update(['status' => $updateStatusPostDelete, 'user_id' => $whenUserDelete]);
 
-                    $computer->delete();
+                    $employee->delete();
 
                     return redirect()->route('managers.employees.index');
 
@@ -227,8 +227,8 @@ class EmployeeController extends Controller
 
     public function removeDisabledEmployees()
     {
-        $employeeRemoveInventary = DB::table('employees')->where('status', 'like', '%Inactivo%')->get();
-        $employeesRemove = DB::table('employees')->where('status', 'like', '%Inactivo%')->count();
+        $employeeRemoveInventary = DB::table('employees')->where('status', '=', 'Eliminado')->get();
+        $employeesRemove = DB::table('employees')->where('status', '=', 'Eliminado')->count();
 
         return view('managers.employees.remove-&-disabled-employees', [
             'employeeRemoveInventary' => $employeeRemoveInventary,

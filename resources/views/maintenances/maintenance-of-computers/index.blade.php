@@ -163,22 +163,34 @@
                             @elseif($computer->status === 'Inactivo - No Asignado')
                             <h5><span class="badge badge-danger">{{ $computer->status }} </span></h5>
 
+                            @elseif($computer->status === 'Reportado - Hurto')
+                            <h5>
+                                <i class="fas fa-exclamation-circle"></i>
+                                <span class="badge badge-dark">{{ $computer->status }} </span>
+                            </h5>
+
                             @elseif($computer->status === 'Dañado - Reportado')
                             <h5><span class="badge badge-dark">{{ $computer->status }} </span></h5>
-
-                            @elseif($computer->status === 'Retirado - Baja de Activo')
-                            <h5><span class="badge badge-warning">{{ $computer->status }} </span></h5>
                             @endif
                         </td>
                         <td>
                             <div class="btn-group">
 
                                 @can('permission:maintenances.maintenance-of-computers.create')
+
+                                @if($computer->status != 'Reportado - Hurto')
+
                                 <a href="{{ route('maintenances.maintenance-of-computers.create', $computer->id) }}"
                                     title="Reportar Mantenimiento"
                                     class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm">
                                     <i class="fas fa-bug fa-sm text-white"></i>
                                 </a>
+                                @else
+                                <a href="#" title="Reportar Mantenimiento"
+                                    class="d-none d-sm-inline-block btn btn-sm btn-danger shadow-sm">
+                                    <i class="fas fa-frown fa-sm text-white"></i>
+                                </a>
+                                @endif
                                 @endcan
                             </div>
                         </td>
@@ -197,7 +209,9 @@
 
 <script>
     $(document).ready(function () {
-          $('#table-computers').DataTable({});
-      });
+        $('#table-computers').DataTable({
+            order: [ [0, 'desc'] ]
+        });
+    });
 </script>
 @endpush

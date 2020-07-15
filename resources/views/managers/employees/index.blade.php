@@ -101,7 +101,6 @@
                                         <i class="fa fa-fingerprint"></i>
                                         <br>
                                         {{ $employee->ugdn }} <br>
-
                                     </div>
                                 </td>
                                 <td>
@@ -110,7 +109,6 @@
                                         <br>
                                         {{ $employee->employee_type }} <br>
                                         Cédula: {{ $employee->citizenship_card }}
-
                                     </div>
                                 </td>
                                 <td>

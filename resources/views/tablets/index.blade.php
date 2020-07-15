@@ -214,7 +214,7 @@
                                     @endif
 
                                     @if ($tablet->sim_card === null)
-                                    <h5><span class="badge badge-dark">No tiene Sim Card</span></h5>
+                                    <h5><span class="badge badge-danger">No tiene Sim Card</span></h5>
                                     @endif
                                 </td>
                                 <td>

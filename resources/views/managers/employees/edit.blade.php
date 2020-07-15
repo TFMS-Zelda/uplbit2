@@ -269,6 +269,10 @@
                             <label>*Area:</label>
                             <select class="form-control" name="work_area" required>
                                 <option value="">Escoger...</option>
+                                <option value="Control Interno"
+                                    {{ old('work_area', $employee->work_area) == 'Control Interno' ? 'selected' : ''}}>
+                                    Control Interno
+                                </option>
                                 <option value="Despachos"
                                     {{ old('work_area', $employee->work_area) == 'Despachos' ? 'selected' : ''}}>
                                     Despachos
@@ -293,6 +297,10 @@
                                     {{ old('work_area', $employee->work_area) == 'Finanzas - IT' ? 'selected' : ''}}>
                                     Finanzas - IT
                                 </option>
+                                <option value="Finanzas - Tesoreria"
+                                    {{ old('work_area', $employee->work_area) == 'Finanzas - Tesoreria' ? 'selected' : ''}}>
+                                    Finanzas - Tesoreria
+                                </option>
                                 <option value="Gerencia"
                                     {{ old('work_area', $employee->work_area) == 'Gerencia' ? 'selected' : ''}}>
                                     Gerencia
@@ -300,6 +308,10 @@
                                 <option value="Investigacion & Desarollo"
                                     {{ old('work_area', $employee->work_area) == 'Investigacion & Desarollo' ? 'selected' : ''}}>
                                     Investigacion & Desarollo
+                                </option>
+                                <option value="Inventarios"
+                                    {{ old('work_area', $employee->work_area) == 'Inventarios' ? 'selected' : ''}}>
+                                    Inventarios
                                 </option>
                                 <option value="Mantenimiento"
                                     {{ old('work_area', $employee->work_area) == 'Mantenimiento' ? 'selected' : ''}}>

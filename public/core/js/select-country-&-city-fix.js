@@ -17,7 +17,7 @@ function addOptions(domElement, array) {
 function cargarCiudades() {
     var listaCiudades = {
         Colombia: ['Antioquia', 'Bogota', 'Boyaca', 'Casanare', 'Caldas', 'Cundinamarca', 'Cundinamarca - Madrid',
-            'Huila', 'Meta', 'Nariño', 'Risaralda', 'Tolima', 'Valle del Cauca'
+            'Huila', 'Meta', 'Nariño', 'Risaralda', 'Tolima', 'Quindio', 'Valle del Cauca'
         ],
         Ecuador: ['Quayaquil', 'Quito'],
     }

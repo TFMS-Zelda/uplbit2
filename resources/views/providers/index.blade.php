@@ -37,16 +37,14 @@
         <div class="card mb-4 py-3 border-left-primary">
             <div class="card-body">
                 <div class="table-responsive">
-                    <table class="table table-light  table-striped table-bordered table-sm  table-hover"
-                        id="table-providers" width="100%" cellspacing="0">
+                    <table class="table  table-striped table-bordered table-sm  table-hover" id="table-providers"
+                        width="100%" cellspacing="0">
                         <thead>
                             <tr class="bg-gradient-primary text-white text-center">
                                 <th>ID:</th>
-                                <th>Nombre del Provedor:</th>
-                                <th>Nit:</th>
-                                <th>Location:</th>
-                                <th>Contact</th>
-                                <th>Acciones:</th>
+                                <th>Provider Information:</th>
+                                <th>Contact:</th>
+                                <th>Actions:</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -60,39 +58,19 @@
                                 </td>
                                 <td>
                                     <i class="fa fa-landmark" aria-hidden="true"></i>
-                                    <br>
-                                    <div class="h6 mb-0 font-weight-bold text-muted">
-                                        {{ $provider->name }} {{ $provider->kind_of_society }}
-                                    </div>
-                                </td>
-                                <td>
-                                    <i class="fa fa-id-card" aria-hidden="true"></i>
-                                    <br>
-                                    <div class="h6 mb-0 font-weight-bold text-muted">
+                                    <div class="h6 mb-0 font-weight-bold text-800">
+                                        {{ $provider->name }} ~ {{ $provider->kind_of_society }}
+                                        <br>
                                         {{ $provider->nit }}
                                     </div>
                                 </td>
                                 <td>
-                                    <i class="fas fa-map-marker-alt"></i><br>
-                                    {{ $provider->country }} / {{ $provider->city }}
-                                    <br>
-                                    <small>{{ $provider->address }}</small>
-                                </td>
-                                <td>
-
-                                    <i class="fas fa-address-book"></i>
-                                    <small> {{ $provider->sales_representative }}</small>
-                                    <br>
-                                    <i class="fas fa-envelope-open-text"></i>
-                                    <small> <u>{{ $provider->email_contact }}</u></small>
-                                    <br>
-                                    <i class="fas fa-phone-square-alt"></i>
-                                    <small>
-                                        {{ $provider->phone_contact }} Ext:
-                                        {{ $provider->extension_contact }}
-                                    </small>
-
-
+                                    <i class="fas fa-location-arrow" aria-hidden="true"></i>
+                                    <div class="h6 mb-0 font-weight-bold text-800">
+                                        {{ $provider->country }} ~ {{ $provider->city }}
+                                        <br>
+                                        <i>{{ $provider->address }}</i>
+                                    </div>
                                 </td>
 
                                 <td>
