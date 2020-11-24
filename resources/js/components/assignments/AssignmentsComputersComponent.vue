@@ -71,6 +71,8 @@
                   <br />
                   {{ computer.assignment_date }}
                 </small>
+                <br />
+                <small>{{ computer.assignable.hostname }}</small>
               </div>
             </div>
           </td>
@@ -100,7 +102,7 @@ export default {
     return {
       // #Modelo Relaciones y asignaciones
       computers: {},
-      search: ""
+      search: "",
     };
   },
 
@@ -116,8 +118,8 @@ export default {
           showCancelButton: true,
           confirmButtonColor: "#3085d6",
           cancelButtonColor: "#d33",
-          confirmButtonText: "Eliminar"
-        }).then(result => {
+          confirmButtonText: "Eliminar",
+        }).then((result) => {
           if (result.value) {
             Swal.fire(
               "Deleted!",
@@ -125,7 +127,7 @@ export default {
               correctamente del sistema.`,
               "success"
             );
-            axios.delete(urlDelete).then(response => {
+            axios.delete(urlDelete).then((response) => {
               this.getComputers();
             });
           }
@@ -152,15 +154,15 @@ export default {
     // },
 
     myTable() {
-      $(document).ready(function() {
+      $(document).ready(function () {
         $("#table-employees").DataTable({
-          order: [[0, "desc"]]
+          order: [[0, "desc"]],
         });
       });
-    }
+    },
   },
 
-  computed: {}
+  computed: {},
 };
 </script>
 

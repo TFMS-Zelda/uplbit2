@@ -95,7 +95,7 @@ export default {
   },
   data() {
     return {
-      tablets: []
+      tablets: [],
     };
   },
 
@@ -122,8 +122,8 @@ export default {
           showCancelButton: true,
           confirmButtonColor: "#3085d6",
           cancelButtonColor: "#d33",
-          confirmButtonText: "Eliminar"
-        }).then(result => {
+          confirmButtonText: "Eliminar",
+        }).then((result) => {
           if (result.value) {
             Swal.fire(
               "Deleted!",
@@ -131,7 +131,7 @@ export default {
               correctamente del sistema.`,
               "success"
             );
-            axios.delete(urlDelete).then(response => {
+            axios.delete(urlDelete).then((response) => {
               this.getTablets();
             });
           }
@@ -142,13 +142,13 @@ export default {
     },
 
     myTable() {
-      $(document).ready(function() {
+      $(document).ready(function () {
         $("#relationTable").DataTable({
-          order: [[0, "desc"]]
+          order: [[0, "desc"]],
         });
       });
-    }
-  }
+    },
+  },
 };
 </script>
 

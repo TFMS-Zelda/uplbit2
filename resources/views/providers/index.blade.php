@@ -43,7 +43,7 @@
                             <tr class="bg-gradient-primary text-white text-center">
                                 <th>ID:</th>
                                 <th>Provider Information:</th>
-                                <th>Contact:</th>
+                                <th>Localización</th>
                                 <th>Actions:</th>
                             </tr>
                         </thead>
@@ -57,22 +57,22 @@
                                     </div>
                                 </td>
                                 <td>
-                                    <i class="fa fa-landmark" aria-hidden="true"></i>
                                     <div class="h6 mb-0 font-weight-bold text-800">
-                                        {{ $provider->name }} ~ {{ $provider->kind_of_society }}
-                                        <br>
-                                        {{ $provider->nit }}
+                                    <i class="fas fa-briefcase"></i>                                       
+                                    {{ $provider->name }} ~ {{ $provider->kind_of_society }}   
+                                    <br>
+                                       <code> Nit: {{ $provider->nit }}</code>
                                     </div>
                                 </td>
                                 <td>
-                                    <i class="fas fa-location-arrow" aria-hidden="true"></i>
-                                    <div class="h6 mb-0 font-weight-bold text-800">
-                                        {{ $provider->country }} ~ {{ $provider->city }}
-                                        <br>
-                                        <i>{{ $provider->address }}</i>
+                                <div class="h6 mb-0 font-weight-bold text-muted">
+                                    <i class="fas fa-location-arrow"></i>
+                                    {{ $provider->country }} ~ {{ $provider->city }}   
+                                    <br>
+                                       <p> Fecha de Creación: {{ $provider->created_at }}</p>
                                     </div>
+               
                                 </td>
-
                                 <td>
                                     @can('permission:providers.show')
                                     <a href="{{ route('providers.show', $provider->id) }}"

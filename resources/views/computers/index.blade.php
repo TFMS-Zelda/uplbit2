@@ -207,7 +207,9 @@
                                 </td>
                                 <td>
                                     <i class="fas fa-laptop fa-2x"></i>
-                                    <div class="h6 mb-0 font-weight-bold text-muted">{{ $computer->brand }} </div>
+                                    <div class="h6 mb-0 font-weight-bold text-muted">{{ $computer->brand }}
+
+                                    </div>
                                 </td>
                                 <td>
                                     <div class="h6 mb-0 font-weight-bold text-muted">{{ $computer->model }} <br>
@@ -221,7 +223,8 @@
                                     </div>
                                     <small>
                                         {{ $computer->processor }}
-                                        {{ $computer->memory_ram }} - {{ $computer->hard_drive }}
+                                        {{ $computer->memory_ram }} - {{ $computer->hard_drive }} <br>
+                                        {{ $computer->hostname }}
                                     </small>
                                 </td>
                                 <td>
@@ -249,6 +252,7 @@
                                     @elseif($computer->status === 'Dañado - Reportado')
                                     <h5><span class="badge badge-dark">{{ $computer->status }} </span></h5>
                                     @endif
+
                                 </td>
                                 <td>
                                     @can('permission:computers.show')

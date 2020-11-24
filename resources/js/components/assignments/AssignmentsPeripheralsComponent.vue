@@ -1,6 +1,9 @@
 <template>
   <div>
-    <table class="table table-sm table-striped table-light table-hover table-fixed">
+    <table
+      class="table table-sm table-striped table-light table-hover table-fixed"
+      id="relationTable"
+    >
       <thead class="thead-primary">
         <tr class="bg-gradient-primary text-white text-center">
           <th>
@@ -16,9 +19,12 @@
         <tr class="text-center" v-for="(peripheral, index) in peripherals" :key="index">
           <td>
             <div class="col-auto text-center">
-              <i class="fas fa-tablet"></i>
+              <i class="fas fa-user"></i>
+              <i class="fas fa-sort-numeric-down-alt"></i>
               <br />
-              <div class="h5 mb-0 font-weight-bold text-muted">{{ peripheral.id }}</div>
+              <div class="h5 mb-0 font-weight-bold text-muted">
+                <span class="badge badge-success">{{ peripheral.employee.id }}</span>
+              </div>
             </div>
           </td>
           <td>
@@ -85,13 +91,15 @@
 </template>
 
 <script>
+import datatables from "datatables";
+
 export default {
   created() {
     this.getPeripherals();
   },
   data() {
     return {
-      peripherals: []
+      peripherals: [],
     };
   },
   methods: {
@@ -99,7 +107,7 @@ export default {
       const url = "/api/assignments/other-peripherals";
 
       try {
-        axios.get(url).then(response => {
+        axios.get(url).then((response) => {
           this.peripherals = response.data;
         });
       } catch (error) {
@@ -119,8 +127,8 @@ export default {
           showCancelButton: true,
           confirmButtonColor: "#3085d6",
           cancelButtonColor: "#d33",
-          confirmButtonText: "Eliminar"
-        }).then(result => {
+          confirmButtonText: "Eliminar",
+        }).then((result) => {
           if (result.value) {
             Swal.fire(
               "Deleted!",
@@ -128,7 +136,7 @@ export default {
               correctamente del sistema.`,
               "success"
             );
-            axios.delete(urlDelete).then(response => {
+            axios.delete(urlDelete).then((response) => {
               this.getPeripherals();
             });
           }
@@ -136,8 +144,15 @@ export default {
       } catch (error) {
         console.log(error);
       }
-    }
-  }
+    },
+    myTable() {
+      $(document).ready(function () {
+        $("#relationTable").DataTable({
+          order: [[0, "desc"]],
+        });
+      });
+    },
+  },
 };
 </script>
 

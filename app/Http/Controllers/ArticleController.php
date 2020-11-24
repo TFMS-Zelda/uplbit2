@@ -35,14 +35,12 @@ class ArticleController extends Controller
     public function index()
     {
         //Code.
-        $articles = \App\Article::orderBy('id', 'DESC')
-        ->paginate(10);
+        $articles = Article::all(); 
         $totalArticlesRegister = \App\Article::count();
 
         return view('articles.index', [
             'articles' => $articles,
             'totalArticlesRegister' => $totalArticlesRegister
-
         ]);
     }
 

@@ -17,8 +17,9 @@ class ComputersAllExport implements FromCollection
         $a = RelationshipConfiguration::with(['assignable', 'employee'])
         ->join('computers', 'relationship_configurations.assignable_id', '=', 'computers.id')
         ->join('employees', 'relationship_configurations.employee_id', '=', 'employees.id')
-
         ->where('relationship_configurations.assignable_type', '=', 'App\Computer')
+
+
 
         ->get();
         return $a;

@@ -162,12 +162,12 @@ export default {
   props: {
     id_user: {
       type: Number,
-      required: true
+      required: true,
     },
     id_employee: {
       type: Number,
-      required: false
-    }
+      required: false,
+    },
   },
   data() {
     return {
@@ -176,19 +176,19 @@ export default {
         assignment_date: "",
         body: "",
         user_id: this.id_user,
-        employee_id: this.id_employee
+        employee_id: this.id_employee,
       }),
 
       computers: [],
 
-      stateButton: false
+      stateButton: false,
     };
   },
 
   methods: {
     getComputers() {
       const url = "/api/computers";
-      axios.get(url).then(response => {
+      axios.get(url).then((response) => {
         this.computers = response.data;
         this.stateButton = true;
       });
@@ -208,9 +208,9 @@ export default {
           assignment_date: this.assignment_date,
           user_id: this.user_id,
           employee_id: this.employee_id,
-          body: this.body
+          body: this.body,
         })
-        .then(response => {
+        .then((response) => {
           this.getComputers();
           $("#modalComputer").modal("hide");
           this.form.selectComputer = this.form.assignment_date = this.form.body =
@@ -222,10 +222,10 @@ export default {
             icon: "success",
             title: "Asignación de equipo de computo realizada correctamente!",
             showConfirmButton: false,
-            timer: 1500
+            timer: 1500,
           });
         });
-    }
+    },
   },
 
   computed: {
@@ -235,7 +235,7 @@ export default {
       } else {
         return false;
       }
-    }
-  }
+    },
+  },
 };
 </script>

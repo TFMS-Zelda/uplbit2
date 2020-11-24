@@ -106,7 +106,6 @@
             </div>
         </div>
 
-
         <p class="h4 mb-1 text-gray-800"><i class="fas fa-wrench"></i> Maintance Description</p>
 
         <div class="row">
@@ -144,7 +143,6 @@
             </div>
         </div>
 
-
         <p class="h4 mb-1 text-gray-800"><i class="fas fa-wrench"></i> Observations</p>
         <div class="row">
             <div class="col-md-12">
@@ -176,7 +174,6 @@
                     </p>
                     <input type="file" class="form-control col-md-8" name="attachments" accept="file/PDF, image/PDF">
                 </div>
-
             </div>
         </div>
 
@@ -262,7 +259,6 @@
                                                             <strong>{{ $computer->servicetag }}</strong> <br>
                                                             Placa corporativa:
                                                             <strong>{{ $computer->license_plate }}</strong>
-
                                                         </p>
                                                     </div>
                                                 </p>
