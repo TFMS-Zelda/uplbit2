@@ -1,5 +1,5 @@
 function cargarMarcas() {
-    var array = ["Kyocera", "Epson",];
+    var array = ["Kyocera", "Epson"];
     array.sort();
     addOptions("BrandSelectClass", array);
 }
@@ -16,25 +16,25 @@ function addOptions(domElement, array) {
 
 function cargarModelos() {
     var listaModelos = {
-        Kyocera: ['Kyocera ecosys m3550idn', 'kyocera ecosys m3655idn'],
-        Epson: ['EcoTank L355', 'EcoTank L375'],
-    }
+        Kyocera: ["Kyocera ecosys m3550idn", "kyocera ecosys m3655idn"],
+        Epson: ["EcoTank L355", "EcoTank L375"]
+    };
 
-    var marcas = document.getElementById('brandSelectId')
-    var modelos = document.getElementById('modelSelectId')
-    var marcaSeleccionada = marcas.value
+    var marcas = document.getElementById("brandSelectId");
+    var modelos = document.getElementById("modelSelectId");
+    var marcaSeleccionada = marcas.value;
 
-    modelos.innerHTML = `<option value="">Seleccione un Módelo</option>`
+    modelos.innerHTML = `<option value="">Seleccione un Módelo</option>`;
 
-    if (marcaSeleccionada !== '') {
-        marcaSeleccionada = listaModelos[marcaSeleccionada]
-        marcaSeleccionada.sort()
+    if (marcaSeleccionada !== "") {
+        marcaSeleccionada = listaModelos[marcaSeleccionada];
+        marcaSeleccionada.sort();
 
-        marcaSeleccionada.forEach(function (modelo) {
-            let opcion = document.createElement('option')
-            opcion.value = modelo
-            opcion.text = modelo
-            modelos.add(opcion)
+        marcaSeleccionada.forEach(function(modelo) {
+            let opcion = document.createElement("option");
+            opcion.value = modelo;
+            opcion.text = modelo;
+            modelos.add(opcion);
         });
     }
 }

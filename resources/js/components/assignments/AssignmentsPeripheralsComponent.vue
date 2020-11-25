@@ -2,13 +2,11 @@
   <div>
     <table
       class="table table-sm table-striped table-light table-hover table-fixed"
-      id="relationTable"
+      id="table-peripherals"
     >
       <thead class="thead-primary">
         <tr class="bg-gradient-primary text-white text-center">
-          <th>
-            <i class="fas fa-sort-numeric-down-alt"></i> ID:
-          </th>
+          <th>ID</th>
           <th>Assigned Employee:</th>
           <th>Tipo & Perisférico:</th>
           <th>Ubicación:</th>
@@ -16,14 +14,20 @@
         </tr>
       </thead>
       <tbody>
-        <tr class="text-center" v-for="(peripheral, index) in peripherals" :key="index">
+        <tr
+          v-for="peripheral in peripherals"
+          :key="peripheral.id"
+          class="text-center"
+        >
           <td>
             <div class="col-auto text-center">
               <i class="fas fa-user"></i>
               <i class="fas fa-sort-numeric-down-alt"></i>
               <br />
               <div class="h5 mb-0 font-weight-bold text-muted">
-                <span class="badge badge-success">{{ peripheral.employee.id }}</span>
+                <span class="badge badge-success">{{
+                  peripheral.assignable.id
+                }}</span>
               </div>
             </div>
           </td>
@@ -44,25 +48,33 @@
           </td>
           <td>
             <div class="col-auto text-assignable">
-              <div
-                class="h6 mb-0 font-weight-bold text-muted"
-              >{{ peripheral.assignable.type_device }} ~ {{ peripheral.assignable.type_other_peripherals }}</div>
-              <small>
-                {{ peripheral.assignable.brand }} ~
-                {{ peripheral.assignable.model }}
+              <div class="h6 mb-0 font-weight-bold text-muted">
+                <i class="fas fa-asterisk"></i>
+
+                <span class="badge badge-info"
+                  >Cí N° {{ peripheral.assignable.id }}</span
+                >
+                ,
+                {{ peripheral.assignable.type_device }} ~
+                {{ peripheral.assignable.type_other_peripherals }}
                 <br />
-                <strong>Serial:</strong>
-                : {{ peripheral.assignable.serial }}
-              </small>
-              <br />
-              <span class="badge badge-success">{{ peripheral.assignable.license_plate }}</span>
+                {{ peripheral.assignable.brand }}
+
+                {{ peripheral.assignable.model }}
+                {{ peripheral.assignable.serial }}
+              </div>
+
+              <span class="badge badge-success">{{
+                peripheral.assignable.license_plate
+              }}</span>
             </div>
           </td>
           <td>
             <div class="col-auto text-assignable">
               <div class="h6 mb-0 font-weight-bold text-muted">
                 <i class="fas fa-location-arrow"></i>
-                {{ peripheral.employee.country }} ~ {{ peripheral.employee.city }}
+                {{ peripheral.employee.country }} ~
+                {{ peripheral.employee.city }}
                 <br />
                 <small>
                   {{ peripheral.employee.work_area }}
@@ -70,6 +82,7 @@
                   <br />
                   {{ peripheral.assignment_date }}
                 </small>
+                <br />
               </div>
             </div>
           </td>
@@ -91,30 +104,19 @@
 </template>
 
 <script>
-import datatables from "datatables";
-
 export default {
   created() {
     this.getPeripherals();
   },
   data() {
     return {
-      peripherals: [],
+      // #Modelo Relaciones y asignaciones
+      peripherals: {},
+      search: "",
     };
   },
+
   methods: {
-    async getPeripherals() {
-      const url = "/api/assignments/other-peripherals";
-
-      try {
-        axios.get(url).then((response) => {
-          this.peripherals = response.data;
-        });
-      } catch (error) {
-        console.log(error);
-      }
-    },
-
     deletePeripheral(peripheral) {
       const urlDelete =
         "/relationship-&-configurations/assignments/other-peripherals/" +
@@ -132,7 +134,7 @@ export default {
           if (result.value) {
             Swal.fire(
               "Deleted!",
-              `Se elimino la asignación del Perisférico
+              `Se elimino la asignación del siguiente períferico
               correctamente del sistema.`,
               "success"
             );
@@ -141,21 +143,40 @@ export default {
             });
           }
         });
+      } catch (error) {}
+    },
+
+    async getPeripherals() {
+      try {
+        const url = "/api/assignments/other-peripherals";
+
+        const response = await axios.get(url);
+        this.peripherals = response.data;
+        this.myTable();
       } catch (error) {
         console.log(error);
       }
     },
+
+    // getPeripherals(page = 1) {
+    //   axios.get("/api/assignments/peripherals?page=" + page).then(response => {
+    //     this.peripherals = response.data;
+    //     this.myTable();
+    //   });
+    // },
+
     myTable() {
       $(document).ready(function () {
-        $("#relationTable").DataTable({
+        $("#table-peripherals").DataTable({
           order: [[0, "desc"]],
         });
       });
     },
   },
+
+  computed: {},
 };
 </script>
 
 <style lang="sass" scoped>
-
 </style>

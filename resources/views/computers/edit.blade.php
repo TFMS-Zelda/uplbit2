@@ -211,9 +211,9 @@
                                     {{ old('hard_drive', $computer->hard_drive) == '256 GB SSD' ? 'selected' : '' }}>
                                     256 GB SSD
                                 </option>
-                                <option value="500 GB SSD"
-                                    {{ old('hard_drive', $computer->hard_drive) == '500 GB SSD' ? 'selected' : '' }}>
-                                    500 GB SSD
+                                <option value="512 GB SSD"
+                                    {{ old('hard_drive', $computer->hard_drive) == '512 GB SSD' ? 'selected' : '' }}>
+                                    512 GB SSD
                                 </option>
                                 <option value="1 TB SSD"
                                     {{ old('hard_drive', $computer->hard_drive) == '1 TB SSD"' ? 'selected' : '' }}>
@@ -230,6 +230,12 @@
                         <div class="form-group col-md-6">
                             <label>*Procesador:</label>
                             <select class="form-control" name="processor" required autofocus>
+
+                                <option value="Intel(R) Core(TM) i7-10510U CPU @1.80GHz"
+                                    {{ old('processor', $computer->processor) == 'Intel(R) Core(TM) i7-10510U CPU @1.80GHz' ? 'selected' : '' }}>
+                                    Intel(R) Core(TM) i7-10510U CPU @1.80GHz
+                                </option>
+
                                 <option value="Intel(R) Core(TM) i7-8650 CPU @1.90GHz"
                                     {{ old('processor', $computer->processor) == 'Intel(R) Core(TM) i7-8650 CPU @1.90GHz' ? 'selected' : '' }}>
                                     Intel(R) Core(TM) i7-8650 CPU @1.90GHz

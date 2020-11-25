@@ -312,7 +312,7 @@
             order: [ [0, 'desc'] ]
         });
         });
-        
+
         document.onsubmit = function () {
         return confirm('Atencion: {{ Auth::user()->name }}, ¿Esta seguro de eliminar el siguiente equipo de computo del sistema?');}
 </script>

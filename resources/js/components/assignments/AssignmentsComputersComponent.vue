@@ -14,14 +14,20 @@
         </tr>
       </thead>
       <tbody>
-        <tr v-for="computer in computers" :key="computer.id" class="text-center">
+        <tr
+          v-for="computer in computers"
+          :key="computer.id"
+          class="text-center"
+        >
           <td>
             <div class="col-auto text-center">
               <i class="fas fa-user"></i>
               <i class="fas fa-sort-numeric-down-alt"></i>
               <br />
               <div class="h5 mb-0 font-weight-bold text-muted">
-                <span class="badge badge-success">{{ computer.employee.id }}</span>
+                <span class="badge badge-success">{{
+                  computer.employee.id
+                }}</span>
               </div>
             </div>
           </td>
@@ -45,18 +51,25 @@
               <div class="h6 mb-0 font-weight-bold text-muted">
                 <i class="fas fa-laptop"></i>
 
-                <span class="badge badge-info">Cí N° {{ computer.assignable.id }}</span>
+                <span class="badge badge-info"
+                  >Cí N° {{ computer.assignable.id }}</span
+                >
                 ,
-                {{ computer.assignable.type_machine }} ~ {{ computer.assignable.model }} ~ {{ computer.assignable.brand }}
+                {{ computer.assignable.type_machine }} ~
+                {{ computer.assignable.model }} ~
+                {{ computer.assignable.brand }}
               </div>
               <small>
                 {{ computer.assignable.processor }} ~
-                {{ computer.assignable.memory_ram }} ~ {{ computer.assignable.hard_drive }}
+                {{ computer.assignable.memory_ram }} ~
+                {{ computer.assignable.hard_drive }}
                 <br />
                 {{ computer.assignable.operating_system }}
               </small>
               <br />
-              <span class="badge badge-success">{{ computer.assignable.license_plate }}</span>
+              <span class="badge badge-success">{{
+                computer.assignable.license_plate
+              }}</span>
             </div>
           </td>
           <td>
@@ -167,5 +180,4 @@ export default {
 </script>
 
 <style lang="sass" scoped>
-
 </style>

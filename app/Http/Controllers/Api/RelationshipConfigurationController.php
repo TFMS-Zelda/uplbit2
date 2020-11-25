@@ -54,7 +54,7 @@ class RelationshipConfigurationController extends Controller
         return $tablets;
     }
 
-    
+
     // ruta para obtener todos los monitores asignados en vue js
     public function getMonitors()
     {
