@@ -10,6 +10,18 @@ new AutoNumeric('#valorTotal', {
     modifyValueOnWheel: 'true',
     positiveSignCharacter: '+'
 });
+
+new AutoNumeric('#valorUnitario', {
+    digitGroupSeparator: '.',
+    decimalCharacter: ',',
+    decimalCharacterAlternative: '.',
+    leadingZero: 'deny',
+    maximumValue: '300000000',
+    minimumValue: '0',
+    modifyValueOnWheel: 'true',
+    positiveSignCharacter: '+'
+});
+
 // AutoNumeric.js
 new AutoNumeric('#valorTotalFactura', {
     digitGroupSeparator: '.',

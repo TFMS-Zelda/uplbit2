@@ -17,6 +17,7 @@ function addOptions(domElement, array) {
 function cargarModelos() {
     var listaModelos = {
         Lenovo: [
+            "ThinkPad L13",
             "ThinkPad T14S",
             "X1 Carbon 2nd Gen",
             "X1 Yoga 20LE",

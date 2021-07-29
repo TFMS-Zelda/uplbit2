@@ -161,7 +161,17 @@
                                 value="{{ old('quantity') }}" placeholder="Enter Quantity" min="0" max="1000" required
                                 autofocus>
                         </div>
-                        <div class="form-group col-md-4">
+
+                        <div class="form-group col-md-2">
+                            <label>*Valor Unitario:</label>
+                            <input type="text" class="form-control" id="valorUnitario" name="unit_value" maxlength="64"
+                                value="{{ old('unit_value') }}" placeholder="Enter Total" required autofocus>
+                            <div class="valid-feedback">
+                                <i class="fas fa-money-bill-alt"></i> Valor Total del Articulo
+                            </div>
+                        </div>
+
+                        <div class="form-group col-md-2">
                             <label>*Valor Total:</label>
                             <input type="text" class="form-control" id="valorTotal" name="total_value" maxlength="64"
                                 value="{{ old('total_value') }}" placeholder="Enter Total" required autofocus>
@@ -169,6 +179,7 @@
                                 <i class="fas fa-money-bill-alt"></i> Valor Total del Articulo
                             </div>
                         </div>
+
                         <div class="form-group col-md-4">
                             <label>*Valor Total de Factura:</label>
                             <input type="text" class="form-control" id="valorTotalFactura" name="total_bill"

@@ -11,7 +11,7 @@ try {
     window.$ = window.jQuery = require("jquery");
 
     require("bootstrap");
-    require("../../public/core/js/sb-admin-2");
+    require("../../public/core/js/sb-admin-2.min");
 } catch (e) {}
 
 /**

@@ -25,7 +25,7 @@
               <i class="fas fa-sort-numeric-down-alt"></i>
               <br />
               <div class="h5 mb-0 font-weight-bold text-muted">
-                <span class="badge badge-success">{{
+                <span class="badge badge-primary">{{
                   computer.employee.id
                 }}</span>
               </div>
@@ -59,6 +59,12 @@
                 {{ computer.assignable.model }} ~
                 {{ computer.assignable.brand }}
               </div>
+               <img
+                  class="img-thumbnail"
+                  src="/core/undraw/laptop-index.svg"
+                  width="55px"
+                  alt="computer-assignment"
+                />
               <small>
                 {{ computer.assignable.processor }} ~
                 {{ computer.assignable.memory_ram }} ~
@@ -85,6 +91,7 @@
                   {{ computer.assignment_date }}
                 </small>
                 <br />
+
                 <small>{{ computer.assignable.hostname }}</small>
               </div>
             </div>
@@ -178,6 +185,3 @@ export default {
   computed: {},
 };
 </script>
-
-<style lang="sass" scoped>
-</style>

@@ -46,7 +46,6 @@
                                     <th>Número de Factura:</th>
                                     <th>Valor de Factura:</th>
                                     <th>Fecha de Factura</th>
-                                    <th>¿Registrado Por?:</th>
                                     <th>Acciones:</th>
                                 </tr>
                             </thead>
@@ -84,14 +83,6 @@
                                             <i class="fas fa-clock"></i><br>
                                             <small>{{ Carbon\Carbon::parse($article->invoice_date)->format('l jS \\of F Y ') }}</small>
                                         </div>
-                                    </td>
-                                    <td>
-                                        <img src="{{ $article->user->avatar }}" class="rounded" alt="profile-image"
-                                            width="35px">
-                                        <small><u>{{ $article->user->name }}</u></small><br>
-                                        <i class="fas fa-history"></i>
-                                        <small>{{ $article->created_at->diffForHumans() }}</small>
-
                                     </td>
                                     <td>
                                         @can('permission:articles.show')

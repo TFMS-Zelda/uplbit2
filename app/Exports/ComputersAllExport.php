@@ -24,6 +24,6 @@ class ComputersAllExport implements FromCollection
             ->where('relationship_configurations.assignable_type', '=', 'App\Tablet')
             ->get();
 
-        return $computers;
+        return $tablets;
     }
 }

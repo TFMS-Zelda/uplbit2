@@ -10,8 +10,8 @@
         </div>
 
         <div class="text-center">
-            <img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 20rem;"
-                src="{{ asset('/core/undraw/computer.svg') }}">
+            <img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 15rem;"
+                src="{{ asset('/core/undraw/laptop-index.svg') }}">
         </div>
 
         <h1 class="h3 mb-0 text-gray-800"> <i class="fas fa-compress-alt"></i> Check List</h1>
@@ -103,7 +103,6 @@
 
         </div>
         @endif
-
 
         <h1 class="h3 mb-0 text-gray-800"><i class="fas fa-history"></i> Historial y Trazabilidad</h1>
         <p> Acontinuación encontrara la trazabilidad del equipo de computo desde el día

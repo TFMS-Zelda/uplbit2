@@ -8,7 +8,7 @@
         <tr class="bg-gradient-primary text-white text-center">
           <th>ID</th>
           <th>Assigned Employee:</th>
-          <th>Tipo & Perisférico:</th>
+          <th>Tipo & Periferico:</th>
           <th>Ubicación:</th>
           <th>Acciones:</th>
         </tr>

@@ -255,7 +255,7 @@
     @else
     <div class="notification is-success is-light">
         <p class="has-text-black has-text-justified">
-            El área de Información y Tecnología de <strong>Uniphos Plant Limited Colombia</strong> certifica que el
+            El área de Información y Tecnología de <strong>United Phosphorus Ltd</strong> certifica que el
             usuario <strong>{{ $employee->name }}</strong> identificada con el número de cedula
             <strong>{{ $employee->citizenship_card }}</strong> se encuentra a paz y salvo con
             el área por concepto de asignación de activos fijos y recursos tecnologícos que le fueron proporcionados
@@ -311,7 +311,7 @@
                 <strong>Uniphos Plant Limited</strong>, <a>Información y Tecnología</a>. Operational Level
                 Agreement,
                 Descargado Digitalmente.
-                <p class="title">2020</p>
+                <p class="title">2021</p>
             </p>
         </div>
     </footer>

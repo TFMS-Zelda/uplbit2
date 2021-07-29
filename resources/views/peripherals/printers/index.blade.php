@@ -87,14 +87,13 @@
                                 <td>
                                     <div class="col-auto text-center">
 
+                                        <i class="fas fa-print fa-2x"></i>
+
                                         <div class="h5 mb-0 font-weight-bold text-muted">{{ $printer->id }} </div>
                                     </div>
                                 </td>
                                 <td>
-                                    <i class="fas fa-print fa-2x"></i>
-
                                     <div class="h6 mb-0 font-weight-bold text-muted">{{ $printer->brand }}<br>
-
                                         <small>
                                             {{ $printer->resolution }}, {{ $printer->serial }}, <br>
                                             {{ $printer->printer_functions }}
@@ -207,7 +206,7 @@
     $(document).ready(function () {
           $('#table-printers').DataTable({});
       });
-    
+
     document.onsubmit = function () {
         return confirm('Atencion: {{ Auth::user()->name }}, ¿Esta seguro de eliminar la siguiente impresora del sistema?');}
 </script>

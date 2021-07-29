@@ -24,8 +24,9 @@ class OtherPeripheralController extends Controller
      */
     public function index()
     {
-        $otherPeripherals = \App\OtherPeripheral::orderBy('id', 'DESC')
-        ->paginate(10);
+        // $otherPeripherals = \App\OtherPeripheral::orderBy('id', 'DESC')
+        // ->paginate(10);
+        $otherPeripherals = \App\OtherPeripheral::all();
 
         return view('peripherals.other-peripherals.index', compact('otherPeripherals'));
     }
@@ -45,11 +46,11 @@ class OtherPeripheralController extends Controller
             // Nota: este es un servicio
             $providers = app(ProviderOrArticle::class)->getProviders();
             return view('peripherals.other-peripherals.create', compact('providers'));
-            
+
         } else {
-        
+
             alert()->html('<i>Provedor ó Articulo, no registrado en el sistema</i>',"
-        
+
             <div role='alert' class='alert alert-danger alert-dismissible'>
                 <button aria-label='Close' data-dismiss='alert' class='close' type='button'><span
                 aria-hidden='true'>×</span></button>
@@ -63,10 +64,10 @@ class OtherPeripheralController extends Controller
             </p>
             <h3>$providersValidation , Provedores registrados</h3>
             <h3>$articlesValidation , Articulos registrados de un provedor</h3>
-            <hr> 
+            <hr>
             </div>
             ",'error')->persistent('Close');
-            
+
             return redirect()->route('peripherals.other-peripherals.index');
         }
     }
@@ -81,7 +82,7 @@ class OtherPeripheralController extends Controller
     {
         $otherPeripheral = new \App\OtherPeripheral;
         $otherPeripheral->create($request->all());
-        
+
         // se obtiene el ultimo computer creado
         $thePeripheral = OtherPeripheral::all()->last();
 
@@ -92,14 +93,14 @@ class OtherPeripheralController extends Controller
         $comment = new Comment();
         $comment->user_id = $sessionIdUser;
         $comment->commentable_id = $thePeripheral->id;
-    
+
         $comment->body =  $request->body;
         $thePeripheral->comments()->save($comment);
 
         Alert::success('Success!', 'Perisferico Ci' . ' ' . $thePeripheral->license_plate . ' ' . 'Registrado correctamente en el sistema');
 
         return redirect()->route('peripherals.other-peripherals.index');
-    
+
     }
 
     /**
@@ -119,7 +120,7 @@ class OtherPeripheralController extends Controller
      * @param  \App\OtherPeripheral  $otherPeripheral
      * @return \Illuminate\Http\Response
      */
-    public function edit(OtherPeripheral $otherPeripheral) 
+    public function edit(OtherPeripheral $otherPeripheral)
     {
         if ($otherPeripheral->status != 'Activo - Asignado') {
             # code...
@@ -149,13 +150,13 @@ class OtherPeripheralController extends Controller
     public function update(UpdateOtherPeripheralsRequest $request, OtherPeripheral $otherPeripheral)
     {
         $otherPeripheral->update($request->all());
-          
+
         $sessionIdUser = Auth::id();
 
         $comment = new Comment();
         $comment->user_id = $sessionIdUser;
         $comment->commentable_id = $otherPeripheral->id;
-    
+
         $comment->body =  $request->body;
         // dd($comment);
 
@@ -188,7 +189,7 @@ class OtherPeripheralController extends Controller
                 if ($otherPeripheral->status  === 'Inactivo - No Asignado' ) {
                     # code...
                     // return 'se puede eliminar porque contiene el status';
-                    alert()->success('Nota','El Perisférico' . ' ' . $otherPeripheral->license_plate . ' ' . 'a sido eliminado 
+                    alert()->success('Nota','El Perisférico' . ' ' . $otherPeripheral->license_plate . ' ' . 'a sido eliminado
                     correctamente del sistema');
 
                     $updateStatusPostDelete = 'Eliminado - Baja de Activo';
@@ -209,12 +210,12 @@ class OtherPeripheralController extends Controller
                 }
 
             }
-            
+
         } catch (\Throwable $th) {
             //throw $th;
         }
     }
-    
+
 
     public function removeDisabledOtherPeripheral()
     {

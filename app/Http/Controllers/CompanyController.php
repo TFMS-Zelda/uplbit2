@@ -3,18 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Company;
-use App\User;
-
-use Illuminate\Http\Request;
 use App\Http\Requests\StoreCompanyRequest;
 use App\Http\Requests\UpdateCompanyRequest;
-
-
+use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class CompanyController extends Controller
 {
-    public function __construct(){
+    public function __construct()
+    {
         $this->middleware('auth');
     }
 
@@ -26,7 +23,7 @@ class CompanyController extends Controller
     public function index()
     {
         $companies = \App\Company::orderBy('id', 'DESC')
-        ->paginate(10);
+            ->paginate(10);
 
         $totalCompaniesRegistradas = \App\Company::all()->count();
         return \view('companies.index', [
@@ -97,8 +94,7 @@ class CompanyController extends Controller
     {
         $company->update($request->all());
         Alert::success('Success!', 'Compañia' . ' ' . $company->name . ' ' . 'a sido actualizada correctamente en el sistema');
-        return redirect()->route('companies.index');        return redirect()->route('companies.index');
-
+        return redirect()->route('companies.index');return redirect()->route('companies.index');
     }
 
     /**
@@ -111,6 +107,5 @@ class CompanyController extends Controller
     {
         Alert::info('Info!', 'La Compañía' . ' ' . $company->name . ' ' . 'no puede eliminarse porque es componente del sistema');
         return redirect()->route('companies.index');
-        
     }
 }

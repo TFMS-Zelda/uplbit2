@@ -45,7 +45,7 @@ class RoleController extends Controller
         $role->permissions()->sync($request->get('permissions'));
 
         return redirect()->route('managers.roles.index', $role->id);
-           
+
     }
 
     /**
@@ -88,7 +88,7 @@ class RoleController extends Controller
         $role->permissions()->sync($request->get('permissions'));
 
         return redirect()->route('managers.roles.edit', $role->id);
-   
+
     }
 
     /**
@@ -100,18 +100,18 @@ class RoleController extends Controller
     public function destroy(Role $role)
     {
         try {
-            
+
             $role->delete();
             alert()->info('InfoAlert','El role' . ' ' . $role->name . ' ' . 'Se a elimiando
             correctamente del sistema');
-    
+
             return redirect()->route('managers.roles.index');
-        
+
         } catch (\Exception $e){
              alert()->error('Oops...!', 'No puede eliminar este role' . ' ' .
              $company->name . ' ' . 'porque contiene registros relacionados' );
 
-            
+
              return redirect()->route('companies.index');
         }
     }

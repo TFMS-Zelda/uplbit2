@@ -1,24 +1,30 @@
 <template>
   <div>
-    <table class="table table-sm table-striped table-light table-hover table-fixed">
+    <table
+      class="table table-sm table-striped table-light table-hover table-fixed"
+      id="table-monitors"
+    >
       <thead class="thead-primary">
         <tr class="bg-gradient-primary text-white text-center">
-          <th>
-            <i class="fas fa-sort-numeric-down-alt"></i> ID:
-          </th>
+          <th>ID</th>
           <th>Assigned Employee:</th>
-          <th>Tablet Corporativa:</th>
+          <th>Display Peripheral:</th>
           <th>Ubicación:</th>
           <th>Acciones:</th>
         </tr>
       </thead>
       <tbody>
-        <tr class="text-center" v-for="(monitor, index) in monitors" :key="index">
+        <tr v-for="monitor in monitors" :key="monitor.id" class="text-center">
           <td>
             <div class="col-auto text-center">
-              <i class="fas fa-tablet"></i>
+              <i class="fas fa-user"></i>
+              <i class="fas fa-sort-numeric-down-alt"></i>
               <br />
-              <div class="h5 mb-0 font-weight-bold text-muted">{{ monitor.id }}</div>
+              <div class="h5 mb-0 font-weight-bold text-muted">
+                <span class="badge badge-primary">{{
+                  monitor.employee.id
+                }}</span>
+              </div>
             </div>
           </td>
           <td>
@@ -38,17 +44,34 @@
           </td>
           <td>
             <div class="col-auto text-assignable">
-              <div
-                class="h6 mb-0 font-weight-bold text-muted"
-              >{{ monitor.assignable.brand }} ~ {{ monitor.assignable.model }} ~ Serial: {{ monitor.assignable.serial }}</div>
+              <div class="h6 mb-0 font-weight-bold text-muted">
+                <i class="fas fa-laptop"></i>
+
+                <span class="badge badge-info"
+                  >Cí N° {{ monitor.assignable.id }}</span
+                >
+                ,
+                {{ monitor.assignable.type_machine }} ~
+                {{ monitor.assignable.model }} ~
+                {{ monitor.assignable.brand }}
+              </div>
+              <img
+                class="img-thumbnail"
+                src="/core/undraw/monitor.svg"
+                width="55px"
+                alt="monitor-assignment"
+              />
               <small>
-                {{ monitor.assignable.backlight }} ~
-                {{ monitor.assignable.input_connector_type }}
+                {{ monitor.assignable.processor }} ~
+                {{ monitor.assignable.memory_ram }} ~
+                {{ monitor.assignable.hard_drive }}
                 <br />
-                {{ monitor.assignable.maximum_resolution }}
+                {{ monitor.assignable.operating_system }}
               </small>
               <br />
-              <span class="badge badge-success">{{ monitor.assignable.license_plate }}</span>
+              <span class="badge badge-success">{{
+                monitor.assignable.license_plate
+              }}</span>
             </div>
           </td>
           <td>
@@ -63,6 +86,9 @@
                   <br />
                   {{ monitor.assignment_date }}
                 </small>
+                <br />
+
+                <small>{{ monitor.assignable.hostname }}</small>
               </div>
             </div>
           </td>
@@ -70,7 +96,10 @@
             <button class="btn btn-success btn-circle btn-sm">
               <i class="fas fa-info-circle"></i>
             </button>
-            <a class="btn btn-danger btn-circle btn-sm" v-on:click.prevent="deleteMonitor(monitor)">
+            <a
+              class="btn btn-danger btn-circle btn-sm"
+              v-on:click.prevent="deleteMonitor(monitor)"
+            >
               <i class="fas fa-times text-white"></i>
             </a>
           </td>
@@ -87,22 +116,13 @@ export default {
   },
   data() {
     return {
-      monitors: []
+      // #Modelo Relaciones y asignaciones
+      monitors: {},
+      search: "",
     };
   },
+
   methods: {
-    async getMonitors() {
-      const url = "/api/assignments/monitors";
-
-      try {
-        axios.get(url).then(response => {
-          this.monitors = response.data;
-        });
-      } catch (error) {
-        console.log(error);
-      }
-    },
-
     deleteMonitor(monitor) {
       const urlDelete =
         "/relationship-&-configurations/assignments/monitors/" + monitor.id;
@@ -114,28 +134,50 @@ export default {
           showCancelButton: true,
           confirmButtonColor: "#3085d6",
           cancelButtonColor: "#d33",
-          confirmButtonText: "Eliminar"
-        }).then(result => {
+          confirmButtonText: "Eliminar",
+        }).then((result) => {
           if (result.value) {
             Swal.fire(
               "Deleted!",
-              `Se elimino la asignación del Monitor
+              `Se elimino la asignación del equipo de un Monitor
               correctamente del sistema.`,
               "success"
             );
-            axios.delete(urlDelete).then(response => {
+            axios.delete(urlDelete).then((response) => {
               this.getMonitors();
             });
           }
         });
+      } catch (error) {}
+    },
+
+    async getMonitors() {
+      try {
+        const url = "/api/assignments/monitors";
+        const response = await axios.get(url);
+        this.monitors = response.data;
+        this.myTable();
       } catch (error) {
         console.log(error);
       }
-    }
-  }
+    },
+
+    // getComputers(page = 1) {
+    //   axios.get("/api/assignments/computers?page=" + page).then(response => {
+    //     this.computers = response.data;
+    //     this.myTable();
+    //   });
+    // },
+
+    myTable() {
+      $(document).ready(function () {
+        $("#table-monitors").DataTable({
+          order: [[0, "desc"]],
+        });
+      });
+    },
+  },
+
+  computed: {},
 };
 </script>
-
-<style lang="sass" scoped>
-
-</style>

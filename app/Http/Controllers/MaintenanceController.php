@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Maintenance;
-use Illuminate\Http\Request;
 use App\MaintenanceComputer;
 use App\MaintenancePrinter;
 

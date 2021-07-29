@@ -79,7 +79,7 @@
                                 <th>Impresora:</th>
                                 <th>Tipo de Mantenimiento & Placa</th>
                                 <th>Responsible:</th>
-                                <th>Register Log!</th>
+                                <th>Ubicación</th>
                                 <th>Acciones:</th>
                             </tr>
                         </thead>
@@ -103,11 +103,10 @@
                                         <i class="fas fa-print"></i> {{ $historyMaintenance->printer->brand }},
                                     </div>
                                     <small>
-                                        {{ $historyMaintenance->printer->model }}
-                                        {{ $historyMaintenance->printer->proccesor }} -
-                                        {{ $historyMaintenance->printer->memory_ram }}
-                                        <br>
-                                        {{ $historyMaintenance->printer->servicetag }}
+                                        {{ $historyMaintenance->printer->model }} <br />
+                                        <div class="h6 mb-0 font-weight-bold text-muted">
+                                            {{ $historyMaintenance->printer->serial }}
+                                        </div>
                                     </small>
                                 </td>
                                 <td>
@@ -152,10 +151,11 @@
                                 </td>
                                 <td>
                                     <div class="h6 mb-0 font-weight-bold text-muted">
-                                        <i class="fa fa-fingerprint"></i> <br>
-                                        <small>{{ $historyMaintenance->user->name }}</small> <br>
+                                        <i class="fas fa-map-marker-alt"></i>
+                                        <small>{{ $historyMaintenance->printer->location }}</small> <br>
                                         {{ $historyMaintenance->created_at }}
-                                        <small><br>{{ $historyMaintenance->created_at->diffForHumans() }}</small>
+                                        <small><br>{{ $historyMaintenance->printer->maintenance_date }}</small>
+                                        {{ Carbon\Carbon::parse($historyMaintenance->maintenance_date)->format('l jS \\of F Y ') }}
                                     </div>
                                 </td>
 
@@ -199,7 +199,9 @@
 
 <script>
     $(document).ready(function () {
-      $('#table-printers').DataTable({});
-  });
+        $('#table-printers').DataTable({
+            order: [ [0, 'desc'] ]
+        });
+        });
 </script>
 @endpush

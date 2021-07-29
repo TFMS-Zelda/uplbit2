@@ -187,20 +187,13 @@
 @push('scripts')
 <script src="{{ asset('/core/plugins/DataTables/datatables.min.js') }}"></script>
 <script>
+
     $(document).ready(function () {
-        $("#table-other-peripherals").DataTable({
-            dom: "lBtipr",
-            buttons: {
-                dom: {
-                    button: {
-                        tag: "button",
-                        className: "btn btn-primary"
-                    }
-                }
-            }
+        $('#table-other-peripherals').DataTable({
+            order: [ [0, 'ASC'] ]
+            });
         });
-    });
-    
+
     document.onsubmit = function () {
         return confirm('Atencion: {{ Auth::user()->name }}, ¿Esta seguro de eliminar el siguiente perisferico del sistema?');}
 </script>

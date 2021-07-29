@@ -2,16 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\MaintenancePrinter;
-use Illuminate\Http\Request;
-use App\Printer;
 use App\Http\Requests\StoreMaintenancePrinterRequest;
 use App\Http\Requests\UpdateMaintenancePrinterRequest;
-
-use RealRashid\SweetAlert\Facades\Alert;
+use App\MaintenancePrinter;
+use App\Printer;
 use DB;
+use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
 use Storage;
-
 
 class MaintenancePrinterController extends Controller
 {
@@ -25,12 +23,11 @@ class MaintenancePrinterController extends Controller
         //code..
         $totalPrinters = Printer::count();
         $totalMaintenancePrinters = MaintenancePrinter::count();
-        $totalMaintenancesPreventivo  = DB::table('maintenance_printers')->where('maintenance_type', '=', 'Mantenimiento Preventivo')->count();
-        $totalMaintenancesCorrectivo  = DB::table('maintenance_printers')->where('maintenance_type', '=', 'Mantenimiento Correctivo')->count();
-        $totalReportesGarantia  = DB::table('maintenance_printers')->where('maintenance_type', '=', 'Reporte por Garantia')->count();
-       
-        $printers = \App\Printer::orderBy('id', 'DESC')
-        ->paginate(10);
+        $totalMaintenancesPreventivo = DB::table('maintenance_printers')->where('maintenance_type', '=', 'Mantenimiento Preventivo')->count();
+        $totalMaintenancesCorrectivo = DB::table('maintenance_printers')->where('maintenance_type', '=', 'Mantenimiento Correctivo')->count();
+        $totalReportesGarantia = DB::table('maintenance_printers')->where('maintenance_type', '=', 'Reporte por Garantia')->count();
+
+        $printers = \App\Printer::all();
 
         return view('maintenances.maintenance-of-printers.index', [
             'totalPrinters' => $totalPrinters,
@@ -72,30 +69,30 @@ class MaintenancePrinterController extends Controller
         $maintenancePrinter->observations = $request->observations;
         $maintenancePrinter->user_id = $request->user_id;
         $maintenancePrinter->printer_id = $request->printer_id;
-        
-        // PDF -> Upload attachments 
+
+        // PDF -> Upload attachments
         if ($request->hasFile('attachments')) {
 
             $nombre = $request->attachments->getClientOriginalName();
             $request->attachments->storeAs('public/Attachments-maintenances/Maintenance-printers/', $nombre);
             $maintenancePrinter->attachments = $nombre;
-        
-            $maintenancePrinter->save();
-            $maintenancePrinterLast = MaintenancePrinter::all()->last();
-            
-            Alert::success('Success!', $maintenancePrinterLast->maintenance_type . ' ' . 'N°' . ' ' . $maintenancePrinterLast->id . ' ' .
-            'Registrado correctamente en el sistema')
-            ->persistent('Close');
-            
-            return redirect()->route('maintenances.maintenance-of-printers.history');
-        
-        } else {
-            
+
             $maintenancePrinter->save();
             $maintenancePrinterLast = MaintenancePrinter::all()->last();
 
-            Alert::info('Nota!', 'Registro un mantenimiento de una impresora sin adjuntos!!, El mantenimiento a sido registrado correctamente en el sistema' . ' ' .  $maintenancePrinterLast->maintenance_type . ' ' . 'N°' . ' ' . $maintenancePrinterLast->id)
-            ->persistent('Close');
+            Alert::success('Success!', $maintenancePrinterLast->maintenance_type . ' ' . 'N°' . ' ' . $maintenancePrinterLast->id . ' ' .
+                'Registrado correctamente en el sistema')
+                ->persistent('Close');
+
+            return redirect()->route('maintenances.maintenance-of-printers.history');
+
+        } else {
+
+            $maintenancePrinter->save();
+            $maintenancePrinterLast = MaintenancePrinter::all()->last();
+
+            Alert::info('Nota!', 'Registro un mantenimiento de una impresora sin adjuntos!!, El mantenimiento a sido registrado correctamente en el sistema' . ' ' . $maintenancePrinterLast->maintenance_type . ' ' . 'N°' . ' ' . $maintenancePrinterLast->id)
+                ->persistent('Close');
             return redirect()->route('maintenances.maintenance-of-printers.history');
 
         }
@@ -134,7 +131,7 @@ class MaintenancePrinterController extends Controller
      */
     public function update(UpdateMaintenancePrinterRequest $request, MaintenancePrinter $historyMaintenance)
     {
-        
+
         $historyMaintenance->maintenance_date = $request->maintenance_date;
         $historyMaintenance->maintenance_type = $request->maintenance_type;
         $historyMaintenance->maintenance_description = $request->maintenance_description;
@@ -142,34 +139,33 @@ class MaintenancePrinterController extends Controller
         $historyMaintenance->observations = $request->observations;
         $historyMaintenance->user_id = $request->user_id;
         $historyMaintenance->printer_id = $request->printer_id;
-        
-        // PDF -> Upload attachments 
+
+        // PDF -> Upload attachments
         if ($request->hasFile('attachments')) {
-            Storage::delete('public/Attachments-maintenances/Maintenance-printers/'.$historyMaintenance->attachments);
+            Storage::delete('public/Attachments-maintenances/Maintenance-printers/' . $historyMaintenance->attachments);
 
             $file = $request->hasFile('attachments');
             $nombre = $request->attachments->getClientOriginalName();
             $file = $request->attachments->storeAs('public/Attachments-maintenances/Maintenance-computers/', $nombre);
-            $historyMaintenance->attachments= $nombre;
+            $historyMaintenance->attachments = $nombre;
             $historyMaintenance->update();
-            
+
             Alert::success('Success!', $historyMaintenance->maintenance_type . ' ' . 'N°' . ' ' . $historyMaintenance->id . ' ' .
-            'Actualizado correctamente en el sistema')
-            ->persistent('Close');
-            
+                'Actualizado correctamente en el sistema')
+                ->persistent('Close');
+
             return redirect()->route('maintenances.maintenance-of-printers.history');
-        
+
         } else {
-            Storage::delete('public/Attachments-maintenances/Maintenance-printers/'.$historyMaintenance->attachments);
+            Storage::delete('public/Attachments-maintenances/Maintenance-printers/' . $historyMaintenance->attachments);
             $historyMaintenance->attachments = null;
             $historyMaintenance->update();
 
-            Alert::info('Nota!', 'Actualizo un mantenimiento de una impresora sin adjuntos y se a registrado correctamente en el sistema' . ' ' .  $historyMaintenance->maintenance_type . ' ' . 'N°' . ' ' . $historyMaintenance->id)
-            ->persistent('Close');
+            Alert::info('Nota!', 'Actualizo un mantenimiento de una impresora sin adjuntos y se a registrado correctamente en el sistema' . ' ' . $historyMaintenance->maintenance_type . ' ' . 'N°' . ' ' . $historyMaintenance->id)
+                ->persistent('Close');
             return redirect()->route('maintenances.maintenance-of-printers.history');
 
         }
-
 
     }
 
@@ -187,8 +183,7 @@ class MaintenancePrinterController extends Controller
     public function historyMaintenances()
     {
         $totalMaintenances = MaintenancePrinter::count();
-        $historyMaintenances = \App\MaintenancePrinter::orderBy('id', 'DESC')
-        ->paginate(10);
+        $historyMaintenances = \App\MaintenancePrinter::all();
 
         return view('maintenances.maintenance-of-printers.history', compact('historyMaintenances', 'totalMaintenances'));
     }

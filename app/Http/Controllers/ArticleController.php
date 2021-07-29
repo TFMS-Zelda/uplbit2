@@ -35,7 +35,7 @@ class ArticleController extends Controller
     public function index()
     {
         //Code.
-        $articles = Article::all(); 
+        $articles = Article::all();
         $totalArticlesRegister = \App\Article::count();
 
         return view('articles.index', [
@@ -55,18 +55,18 @@ class ArticleController extends Controller
         if ($providers->isEmpty()) {
             Alert::error('Error, Crear Articulo', '
             No se encontro un provedor registrado en el sistema.')->persistent('Close');
-        
+
             return view('articles.create', [
                 'providers' => $providers,
             ]);
-        
+
         } else {
             # code...
             return view('articles.create', [
                 'providers' => $providers,
             ]);
         }
-    
+
         return view('articles.create', compact('providers'));
     }
 
@@ -85,11 +85,12 @@ class ArticleController extends Controller
             'remission' => 'required|max:64|unique:articles,remission',
             'quotation' => 'required|max:64|unique:articles,quotation',
             'quantity' => 'required|numeric',
+            'unit_value' => 'required|string|max:128',
             'total_value' => 'required|string|max:128',
             'total_bill' => 'required|string|max:128',
             'total_in_letters' => 'required|string|max:512',
             'invoice_number' => 'required|unique:articles|max:64',
-            'seller' => 'required|string|max:128|regex:/^[\pL\s\-]+$/u',   
+            'seller' => 'required|string|max:128|regex:/^[\pL\s\-]+$/u',
             'digital_invoice' => 'required|unique:articles|max:1024|mimes:pdf',
             'observations' => 'required|min:4|max:1024',
             'provider_id' => 'required|numeric',
@@ -104,6 +105,7 @@ class ArticleController extends Controller
         $article->remission = $request->remission;
         $article->quotation = $request->quotation;
         $article->quantity = $request->quantity;
+        $article->unit_value = $request->unit_value;
         $article->total_value = $request->total_value;
         $article->total_bill = $request->total_bill;
         $article->total_in_letters = $request->total_in_letters;
@@ -120,16 +122,16 @@ class ArticleController extends Controller
             $nombre = $request->digital_invoice->getClientOriginalName();
             $request->digital_invoice->storeAs('public/Invoices-articles-providers', $nombre);
             $article->digital_invoice = $nombre;
-        
+
             $article->save();
             Alert::success('Success!', 'Articulo y Compra registrada' . ' ' . 'N° de Factura:' . ' ' . $article->invoice_number . 'Registrado correctamente en el sistema');
             return redirect()->route('articles.index');
-    
+
         } else {
             Alert::danger('Error!', 'Se presentó un error al momento de registrar un articulo en el sistema');
 
         }
-    
+
     }
 
     /**
@@ -177,16 +179,17 @@ class ArticleController extends Controller
             'remission' => 'required|max:64|unique:articles,remission,'.$article->id,
             'quotation' => 'required|max:64|unique:articles,quotation,'.$article->id,
             'quantity' => 'required|numeric',
+            'unit_value' => 'required|string|max:128',
             'total_value' => 'required|string|max:128',
             'total_bill' => 'required|string|max:128',
             'total_in_letters' => 'required|string|max:512',
             'invoice_number' => 'required|max:64|unique:articles,invoice_number,'.$article->id,
-            'seller' => 'required|string|max:128|regex:/^[\pL\s\-]+$/u',   
+            'seller' => 'required|string|max:128|regex:/^[\pL\s\-]+$/u',
             'digital_invoice' => 'required|unique:articles|max:1024|mimes:pdf,digital_invoice,'.$article->id,
             'observations' => 'required|min:4|max:1024',
             'provider_id' => 'required|numeric',
             'user_id' => 'required|numeric',
-        ]);   
+        ]);
 
         $article->area = $request->area;
         $article->invoice_date = $request->invoice_date;
@@ -194,6 +197,7 @@ class ArticleController extends Controller
         $article->remission = $request->remission;
         $article->quotation = $request->quotation;
         $article->quantity = $request->quantity;
+        $article->unit_value = $request->unit_value;
         $article->total_value = $request->total_value;
         $article->total_bill = $request->total_bill;
         $article->total_in_letters = $request->total_in_letters;
@@ -215,12 +219,12 @@ class ArticleController extends Controller
             $article->update();
             Alert::success('Success!', 'Articulo con' . ' ' . 'Factura #:' . ' ' . $article->invoice_number . 'Actualizado correctamente en el sistema');
             return redirect()->route('articles.index');
-        
+
         } else {
             # code...
             Alert::danger('Error!', 'Se presento un error al momento de actualizar el articulo' . ' ' . $article->invoice_number);
 
-        }  
+        }
     }
 
     /**
@@ -238,10 +242,10 @@ class ArticleController extends Controller
         $existRelOtherPeripheral = OtherPeripheral::where('article_id', '=',  $article->id)->exists();
         // dd($existRelTablet);
         try {
-            if ($existRelComputer || $existRelTablet || $existRelMonitor || $existRelMonitor 
+            if ($existRelComputer || $existRelTablet || $existRelMonitor || $existRelMonitor
                 ||$existRelPrinter || $existRelOtherPeripheral === true) {
                     Alert::error('Articulo No Eliminado',
-                    'No puede eliminar este Articulo registrado del Provedor' . ' ' . 
+                    'No puede eliminar este Articulo registrado del Provedor' . ' ' .
                     $article->provider->name . ' ' . 'con número de factura' . ' ' .
                     $article->invoice_number . ' ' . 'porque contiene registros relacionados
                     en algunos Cí registrados en el sistema')->toToast()->showConfirmButton('Aceptar', '#3085d6');
@@ -251,12 +255,12 @@ class ArticleController extends Controller
                 return redirect()->route('articles.index');
 
             }
-            
+
         } catch (\Throwable $th) {
             //throw $th;
         }
 
-    
+
     }
 
 

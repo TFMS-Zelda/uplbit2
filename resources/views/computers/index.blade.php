@@ -115,12 +115,10 @@
                     </div>
                 </div>
             </div>
-
-
         </div>
 
         <div class="text-center">
-            <img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 20rem;"
+            <img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 15rem;"
                 src="{{ asset('/core/undraw/laptop-index.svg') }}">
         </div>
 
@@ -180,6 +178,15 @@
                     </div>
                 </div>
                 <!-- end split remove computers -->
+                @endcan
+
+                @can('permission:computers.create')
+                <a href="{{ route('computers.create') }}" class="btn btn-success btn-icon-split float-right">
+                    <span class="icon text-white-50">
+                        <i class="fas fa-arrow-right"></i>
+                    </span>
+                    <span class="text">Add Computer</span>
+                </a>
                 @endcan
 
                 <div class="table-responsive">
@@ -288,16 +295,6 @@
                         </tbody>
                     </table>
                 </div>
-
-                @can('permission:computers.create')
-                <a href="{{ route('computers.create') }}" class="btn btn-secondary btn-icon-split">
-                    <span class="icon text-white-50">
-                        <i class="fas fa-arrow-right"></i>
-                    </span>
-                    <span class="text">Add Computer</span>
-                </a>
-                @endcan
-
             </div>
         </div>
     </div>

@@ -231,6 +231,11 @@
                             <label>*Procesador:</label>
                             <select class="form-control" name="processor" required autofocus>
 
+                                <option value="11th Gen Intel(R) Core(TM) i7-1165G7 @ 2.80GHz   2.80 GHz"
+                                    {{ old('processor', $computer->processor) == '11th Gen Intel(R) Core(TM) i7-1165G7 @ 2.80GHz   2.80 GHz' ? 'selected' : '' }}>
+                                    11th Gen Intel(R) Core(TM) i7-1165G7 @ 2.80GHz   2.80 GHz
+                                </option>
+
                                 <option value="Intel(R) Core(TM) i7-10510U CPU @1.80GHz"
                                     {{ old('processor', $computer->processor) == 'Intel(R) Core(TM) i7-10510U CPU @1.80GHz' ? 'selected' : '' }}>
                                     Intel(R) Core(TM) i7-10510U CPU @1.80GHz

@@ -4,14 +4,9 @@
 @section('content')
 
 @section('titlePosition', 'maintenances.maintenance-of-printers/show')
+@push('sass')
 
-<style>
-    input[type="text"],
-    input[type="email"],
-    textarea {
-        background - color: #E9EFF7;
-    }
-</style>
+@endpush
 <section class="content">
     <div class="container-fluid">
         <section class="bg-success text-center text-white">
@@ -38,7 +33,7 @@
                                     </div>
                                     <div class="h5 mb-0 font-weight-bold text-gray-800">
                                         Realizado:
-                                        {{ Carbon\Carbon::parse($historyMaintenance->created_at)->format('l jS \\of F Y ') }},
+                                        {{ Carbon\Carbon::parse($historyMaintenance->maintenance_date)->format('l jS \\of F Y ') }},
                                     </div>
                                 </div>
                                 <div class="col-auto">
@@ -87,9 +82,8 @@
                     </a>
                     <div class="collapse show" id="collapseCardExample">
                         <div class="card-body">
-                            <embed
-                                src="/storage/Attachments-maintenances/Maintenance-computers/{{ $historyMaintenance->attachments }}"
-                                style="width:942px; height:768px;" frameborder="0">
+                                <embed src="/storage/Attachments-maintenances/Maintenance-printers/{{ $historyMaintenance->attachments }}"
+                                    style="width:942px; height:768px;" frameborder="0">
                         </div>
                     </div>
                 </div>

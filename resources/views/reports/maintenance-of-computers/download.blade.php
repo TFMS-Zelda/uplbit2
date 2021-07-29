@@ -23,7 +23,7 @@
 
                 <h2 class="subtitle">
                     <p>
-                        Se expide el dia {{ Carbon\Carbon::now()->format('l jS \\of F Y ') }}
+                        Se expide el día {{ Carbon\Carbon::now()->format('l jS \\of F Y ') }}
                     </p>
                     {{ $historyMaintenance->maintenance_type }} <br>
                     N° {{ $historyMaintenance->id }}
@@ -117,7 +117,7 @@
             <p>
                 <strong>Uniphos Plant Limited</strong>, <a>Información y Tecnología</a>. Reporte de Mantenimiento,
                 Descargado Digitalmente {{ Carbon\Carbon::now() }}
-                <p class="title">2020</p>
+                <p class="title">2021</p>
             </p>
         </div>
     </footer>

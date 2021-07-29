@@ -32,7 +32,6 @@
 
             <p class="h4 mb-1 text-gray-800">
                 Resume Company
-
             </p>
 
 

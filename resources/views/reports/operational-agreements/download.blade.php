@@ -24,7 +24,7 @@
 
                 <h2 class="subtitle">
                     <p>
-                        Se expide el dia {{ Carbon\Carbon::now()->format('l jS \\of F Y ') }}
+                        Se expide el día {{ Carbon\Carbon::now()->format('l jS \\of F Y ') }}
                     </p>
                     {{ $employee->name }}
                     <br>
@@ -41,7 +41,7 @@
         <div class="notification">
             <p class="has-text-black has-text-justified">
                 Por el presente acuerdo se hace constar la entrega que hace
-                <strong>Uniphos Plant Limited</strong> con Nit <strong>830095854</strong> al
+                <strong>United Phosphorus Ltd Colombia</strong> con Nit <strong>830095854</strong> al
                 empleado de los siguientes recursos tecnológicos los cuales son detallados a continuacion:
             </p>
         </div>
@@ -54,13 +54,10 @@
         @else
         <div class="notification is-primary is-light">
             <h3 class="title is-3">Equipo de Computo</h3>
-            <h2 class="subtitle">
-                Se asigna {{ $computersCount }} Cí
-            </h2>
+
             <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
                 <thead>
                     <tr>
-                        <th class="has-text-centered"><abbr>Activo:</abbr></th>
                         <th class="has-text-centered">Marca y Módelo:</th>
                         <th class="has-text-centered"><abbr>Características:</abbr></th>
                         <th class="has-text-centered"><abbr>Placa Corporativa:</abbr></th>
@@ -70,7 +67,6 @@
                 <tbody>
                     @foreach ($computers as $computer)
                     <tr>
-                        <td class="has-text-centered">{{ $computer->id }}</td>
                         <td class="has-text-centered">{{ $computer->type_machine }}: {{ $computer->brand }} <br>
                             {{ $computer->model }}
                             <span class="tag is-link is-light"><strong>
@@ -107,13 +103,9 @@
         @else
         <div class="notification is-link is-light">
             <h3 class="title is-3">Tablet Corporativa</h3>
-            <h2 class="subtitle">
-                Se asigna {{ $tabletsCount }} Cí
-            </h2>
             <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
                 <thead>
                     <tr>
-                        <th class="has-text-centered"><abbr>Activo:</abbr></th>
                         <th class="has-text-centered">Marca y Módelo:</th>
                         <th class="has-text-centered"><abbr>Características:</abbr></th>
                         <th class="has-text-centered"><abbr>Placa Corporativa:</abbr></th>
@@ -123,7 +115,6 @@
                 <tbody>
                     @foreach ($tablets as $tablet)
                     <tr>
-                        <td class="has-text-centered">{{ $tablet->id }}</td>
                         <td class="has-text-centered">{{ $tablet->brand }}: {{ $tablet->model }} <br>
                             <span class="tag is-link is-light"><strong>
                                     Serial: {{ $tablet->serial }}</strong></span>
@@ -184,12 +175,10 @@
         <div class="notification is-warning is-light">
             <h3 class="title is-3">Monitor Corporativo</h3>
             <h2 class="subtitle">
-                Se asigna {{ $monitorsCount }} Cí
             </h2>
             <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
                 <thead>
                     <tr>
-                        <th class="has-text-centered"><abbr>Activo:</abbr></th>
                         <th class="has-text-centered">Marca y Módelo:</th>
                         <th class="has-text-centered"><abbr>Características:</abbr></th>
                         <th class="has-text-centered"><abbr>Placa Corporativa:</abbr></th>
@@ -199,7 +188,6 @@
                 <tbody>
                     @foreach ($monitors as $monitor)
                     <tr>
-                        <td class="has-text-centered">{{ $monitor->id }}</td>
                         <td class="has-text-centered">{{ $monitor->brand }}: {{ $monitor->model }} <br>
                             <span class="tag is-link is-light"><strong>
                                     Serial: {{ $monitor->serial }}</strong></span>
@@ -235,7 +223,10 @@
 
         @if ($perisfericos->isEmpty())
         <div class="notification is-danger is-light">
-            <strong>No se asigna Perisfericos Corporativos</strong>
+            <strong>No se asigna Periféricos Corporativos</strong>
+        </div>
+        <div class="notification is-danger is-light">
+            <strong>No se asigna Smarthphone Corporativo</strong>
         </div>
         @else
         <div class="notification is-black is-light">
@@ -285,15 +276,8 @@
                 <br>
                 <br>
 
-                Además de los recursos tecnológicos descritos anteriormente y concedidos por el área de
-                Información y
-                Tecnología al empleado en virtud del
-                presente acuerdo de nivel operacional, puede verse actualizado en diferentes momentos dado la
-                nesecidad
-                del empleado de suplir u obtener otros recursos tecnológicos en virtud de sus funciones
-                laborales, los
-                cuales
-                le será notificado mediante el correo electronico
+                Este acuerdo de nivel operacional tendrá actualizaciones al momento de adicionarle, modificarle o eliminarle un recurso
+                tecnológico, le será notificada dicha actualización por medio de el correo electronico
                 <strong>{{ $employee->email_corporate }}</strong>
                 registrado en el sistema adjuntando la actualización del acuerdo de nivel operacional.
 
@@ -304,7 +288,7 @@
                 empleado
                 por la pérdida, daños, sustracciones o averías del mismo, cuando haya sido por negligencia o
                 descuido,
-                para lo cual, con la suscripción del presente acuerdo de nivel operativo, autoriza expresamente
+                para lo cual, con la suscripción del presente acuerdo de nivel operacional, usted autoriza expresamente
                 y de
                 manera irrevocable a la empresa, para que proceda a descontar de su salario, liquidación y/o
                 prestaciones sociales, el valor de la reparación o sustitución.
@@ -318,7 +302,7 @@
                 las
                 funciones que le han sido asignadas en virtud del presente acuerdo. Por lo tanto, durante la
                 vigencia
-                del acuerdo de nivel operativo, la compañía podrá adelantar inspecciones y controles para
+                del acuerdo de nivel operacional, la compañía podrá adelantar inspecciones y controles para
                 verificar el
                 cumplimiento de esta obligación.
 
@@ -329,7 +313,7 @@
                 del
                 contrato laboral, en las mismas condiciones que le fue entregado, salvo el deterioro normal
                 causado por
-                el uso. Es de anotar, que dichos recursos tecnológicos revisará un tercero y el costo de
+                el uso. Es de anotar, que dichos recursos tecnológicos serán revisados por  un tercero y el costo de
                 cualquier
                 novedad presentada respecto a la funcionalidad, completitud e integridad
                 en éste, será descontada de su salario, liquidación y/o prestaciones sociales según corresponda.
@@ -337,10 +321,8 @@
                 <br>
                 <br>
 
-                Se suscribe en la ciudad de Bogotá en la fecha de creación del empleado <strong>
-                    {{ Carbon\Carbon::parse($employee->created_at)->format('l jS \\of F Y ') }}</strong>
-                registrada en
-                el sistema.
+                Se suscribe en la ciudad de Bogotá el día<strong>
+                    {{ Carbon\Carbon::now()->format('l jS \\of F Y ') }}
             </p>
         </div>
         <section class="hero is-ligth">
@@ -404,15 +386,13 @@
             </div>
         </section>
 
-
-
         <footer class="footer">
             <div class="content has-text-centered">
                 <p>
-                    <strong>Uniphos Plant Limited</strong>, <a>Información y Tecnología</a>. Operational Level
+                    <strong>United Phosphorus Ltd Colombia</strong>, <a>Información y Tecnología</a>. Operational Level
                     Agreement,
                     Descargado Digitalmente {{ Carbon\Carbon::now() }}
-                    <p class="title">2020</p>
+                    <p class="title">2021</p>
                 </p>
             </div>
         </footer>

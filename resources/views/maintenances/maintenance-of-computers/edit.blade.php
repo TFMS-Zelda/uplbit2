@@ -35,7 +35,8 @@
 
     <section class="bg-primary text-center">
         <div class="container">
-            <h2> <i class="fas fa-wrench"></i> EDITAR MANTENIMIENTO EQUIPO DE COMPUTO N° {{ $historyMaintenance->id }}
+            <h2>
+                <i class="fas fa-wrench"></i> EDITAR MANTENIMIENTO EQUIPO DE COMPUTO N° {{ $historyMaintenance->id }}
             </h2>
         </div>
         <!-- /.container-->
@@ -116,11 +117,9 @@
                         <textarea class="form-control" maxlength="512" name="maintenance_description"
                             required>{{ $historyMaintenance->maintenance_description }}</textarea>
                     </div>
-
                 </div>
             </div>
         </div>
-
 
         <div class="alert alert-primary" role="alert">
             <h4 class="alert-heading">

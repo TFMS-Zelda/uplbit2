@@ -6,10 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Article extends Model
 {
-   
+
     protected $fillable = [
     'user_id', 'provider_id', 'area', 'invoice_date', 'expiration_date',
-    'remission', 'quotation', 'quantity',
+    'remission', 'quotation', 'quantity', 'unit_value',
     'total_value', 'total_bill', 'total_in_letters', 'invoice_number', 'seller',
     'digital_invoice', 'observations',
     ];
@@ -46,7 +46,7 @@ class Article extends Model
         return $this->belongsTo('App\Monitor');
     }
 
-    
+
     /**
      * Get the printer that owns the article.
      */
